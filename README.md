@@ -14,4 +14,8 @@
 - Adwitya Sadhu Prayastita (Programmer 2)
 - Dandy Wiraditya Putra (Tester)
 
-
+## Product Backlog
+- Pengelolaan Data Sapi
+- Pengelolaan Data Susu
+- Fitur Laporan
+- Fitur Pegawai
