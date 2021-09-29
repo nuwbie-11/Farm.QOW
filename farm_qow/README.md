@@ -1,6 +1,9 @@
 # farm_qow
+A Flutter project.
+# Branch author 
+[nuwbie-11](https://github.com/nuwbie-11)
 
-A new Flutter project.
+
 
 ## Getting Started
 
