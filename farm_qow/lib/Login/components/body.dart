@@ -12,50 +12,52 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Container(
-      height: size.height,
-      width: double.infinity,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 35),
-            child: Image.asset(
-              "assets/images/Logo.png",
-              width: size.width * 0.45,
+    return SingleChildScrollView(
+      child: Container(
+        height: size.height,
+        width: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 35),
+              child: Image.asset(
+                "assets/images/Logo.png",
+                width: size.width * 0.45,
+              ),
             ),
-          ),
-          InputField(
-            hintText: "Username",
-            icon: Icon(Icons.person),
-            onChanged: (value) {},
-          ),
-          // ignore: prefer_const_constructors
-          PasswordFieldContainer(
-            onChanged: (value) {},
-          ),
-          RoundedButton(
-            size: size,
-            title: "Login",
-            press: () {},
-            color: kPrimary,
-            textColor: Colors.white,
-          ),
-          Container(
-              margin: EdgeInsets.symmetric(vertical: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Lupa Password?",
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text("Hubungi Admin"),
-                  )
-                ],
-              ))
-        ],
+            InputField(
+              hintText: "Username",
+              icon: Icon(Icons.person),
+              onChanged: (value) {},
+            ),
+            // ignore: prefer_const_constructors
+            PasswordFieldContainer(
+              onChanged: (value) {},
+            ),
+            RoundedButton(
+              size: size,
+              title: "Login",
+              press: () {},
+              color: kPrimary,
+              textColor: Colors.white,
+            ),
+            Container(
+                margin: EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Lupa Password?",
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: Text("Hubungi Admin"),
+                    )
+                  ],
+                ))
+          ],
+        ),
       ),
     );
   }
