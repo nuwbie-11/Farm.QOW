@@ -8,7 +8,6 @@ import 'package:farm_qow/Login/components/password_field.dart';
 import 'package:farm_qow/Login/components/round_button.dart';
 import 'package:farm_qow/constant.dart';
 import 'package:farm_qow/home.dart';
-import 'package:farm_qow/model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -36,7 +35,7 @@ class _BodyState extends State<Body> {
   @override
   void initState() {
     super.initState();
-    this._account();
+    _account();
   }
 
   @override
@@ -63,7 +62,6 @@ class _BodyState extends State<Body> {
     // final Map<String, dynamic> data = _data as Map<String, dynamic>;
 
     // final json = UserModel.fromJson(data);
-    print(_data[0]);
     if (_check()) {
       Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
     }
