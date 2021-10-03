@@ -5,10 +5,15 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Home"),
+    return WillPopScope(
+      onWillPop: () async {
+        return false;
+      },
+      child: MaterialApp(
+        home: Scaffold(
+          appBar: AppBar(
+            title: Text("Home"),
+          ),
         ),
       ),
     );

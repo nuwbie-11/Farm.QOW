@@ -2,12 +2,13 @@
 
 import 'dart:convert';
 
-import 'package:crypt/crypt.dart' show Crypt;
+import 'package:crypto/crypto.dart';
 import 'package:farm_qow/Login/components/input_field.dart';
 import 'package:farm_qow/Login/components/password_field.dart';
 import 'package:farm_qow/Login/components/round_button.dart';
 import 'package:farm_qow/constant.dart';
 import 'package:farm_qow/home.dart';
+import 'package:farm_qow/model/user_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -22,8 +23,11 @@ class _BodyState extends State<Body> {
   final usernameController = TextEditingController();
   final passwordController = TextEditingController();
   late List _data;
+
   Future<void> _account() async {
-    var res = json.decode(await rootBundle.loadString('json_model/users.json'));
+    final List res =
+        json.decode(await rootBundle.loadString('json_model/users.json'));
+
     setState(() {
       _data = res;
     });
@@ -44,10 +48,10 @@ class _BodyState extends State<Body> {
 
   bool _check() {
     var user = usernameController.text;
-    var pwd = passwordController.text;
+    final pwd = sha256.convert(utf8.encode(passwordController.text));
     for (var item in _data) {
       if (item['username'] == user) {
-        if (item['password'] == pwd) {
+        if (sha256.convert(utf8.encode(item['password'])) == pwd) {
           return true;
         }
       }
@@ -56,6 +60,10 @@ class _BodyState extends State<Body> {
   }
 
   void _navigate() {
+    // final Map<String, dynamic> data = _data as Map<String, dynamic>;
+
+    // final json = UserModel.fromJson(data);
+    print(_data[0]);
     if (_check()) {
       Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
     }
@@ -72,7 +80,7 @@ class _BodyState extends State<Body> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              margin: EdgeInsets.symmetric(vertical: 35),
+              margin: EdgeInsets.symmetric(vertical: size.height * 0.02),
               child: Image.asset(
                 "assets/images/Logo.png",
                 width: size.width * 0.45,
@@ -97,7 +105,7 @@ class _BodyState extends State<Body> {
               textColor: Colors.white,
             ),
             Container(
-                margin: EdgeInsets.symmetric(vertical: 10),
+                margin: EdgeInsets.symmetric(vertical: size.height * 0.015),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
