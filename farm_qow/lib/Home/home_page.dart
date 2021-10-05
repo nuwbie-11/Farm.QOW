@@ -42,6 +42,26 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
+  Future<bool?> _onBack(BuildContext context) {
+    return showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text("U Sure Wanna Exit?"),
+        content: Text("Need to login again Later"),
+        actions: [
+          FlatButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: Text("Yes"),
+          ),
+          FlatButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: Text("No"),
+          )
+        ],
+      ),
+    );
+  }
+
   List _data = [];
 
   Future<void> _refresh() async {
@@ -60,20 +80,27 @@ class HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Farm.QOW"),
-      ),
-      body: ListView.builder(
-        itemCount: _data == null ? 0 : _data.length,
-        itemBuilder: (BuildContext context, index) {
-          return Card(
-            margin: EdgeInsets.all(15),
-            child: ListTile(
-              title: Text(_data[index]["nama"]),
-            ),
-          );
-        },
+    return WillPopScope(
+      onWillPop: () async {
+        final response = await _onBack(context);
+
+        return response ?? false;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text("Farm.QOW"),
+        ),
+        body: ListView.builder(
+          itemCount: _data == null ? 0 : _data.length,
+          itemBuilder: (BuildContext context, index) {
+            return Card(
+              margin: EdgeInsets.all(15),
+              child: ListTile(
+                title: Text(_data[index]["nama"]),
+              ),
+            );
+          },
+        ),
       ),
     );
   }
