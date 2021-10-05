@@ -6,8 +6,8 @@ import 'package:crypto/crypto.dart';
 import 'package:farm_qow/Login/components/input_field.dart';
 import 'package:farm_qow/Login/components/password_field.dart';
 import 'package:farm_qow/Login/components/round_button.dart';
+import 'package:farm_qow/Home/home_page.dart';
 import 'package:farm_qow/constant.dart';
-import 'package:farm_qow/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -63,7 +63,8 @@ class _BodyState extends State<Body> {
 
     // final json = UserModel.fromJson(data);
     if (_check()) {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => HomePage()));
     }
   }
 
