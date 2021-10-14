@@ -1,4 +1,4 @@
-import 'package:farm_qow/Login/login.dart';
+import 'package:farm_qow/Pages/Data%20Sapi/dataSapi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Login(),
+      home: HalamanDataSapi(),
     );
   }
 }

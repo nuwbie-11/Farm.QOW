@@ -1,19 +1,21 @@
-# farm_qow
-A Flutter project.
-# Branch author 
-[nuwbie-11](https://github.com/nuwbie-11)
+# Farm.QOW
+
+## Links
+
+- Trello : [PPL AGRO C1](https://trello.com/b/7V98H8yA/ppl-agro-c1-farmqow)
+- Mockup : [Farm.QOW Mockup](https://www.figma.com/file/A3ywxW2rRSj7FOnha3XtYh/Untitled?node-id=0%3A1)
 
 
+## Team
+- Abdil Aziez (PM / Scrum Master)
+- Imas Andrian Fajri (Analis)
+- Yusrian Darus Syifa (Designer)
+- Rozin Hilmi Annabhan (Programmer 1)
+- Adwitya Sadhu Prayastita (Programmer 2)
+- Dandy Wiraditya Putra (Tester)
 
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Product Backlog
+- Pengelolaan Data Sapi
+- Pengelolaan Data Susu
+- Fitur Laporan
+- Fitur Pegawai
