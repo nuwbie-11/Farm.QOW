@@ -1,23 +1,19 @@
-import 'package:farm_qow/Login/login.dart';
+import 'package:farm_qow/Pages/Data%20Sapi/dataSapi.dart';
 import 'package:flutter/material.dart';
-import 'package:farm_qow/constant.dart';
+import 'package:flutter/widgets.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: kPrimary,
-      ),
-      home: Login(),
+      home: HalamanDataSapi(),
     );
   }
 }

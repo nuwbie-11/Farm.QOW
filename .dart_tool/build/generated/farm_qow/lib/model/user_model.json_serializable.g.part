@@ -1,0 +1,17 @@
+// **************************************************************************
+// JsonSerializableGenerator
+// **************************************************************************
+
+UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
+      id: json['id'] as String,
+      username: json['username'] as String,
+      password: json['password'] as String,
+      isManager: json['isManager'] as bool,
+    );
+
+Map<String, dynamic> _$UserModelToJson(UserModel instance) => <String, dynamic>{
+      'id': instance.id,
+      'username': instance.username,
+      'password': instance.password,
+      'isManager': instance.isManager,
+    };
