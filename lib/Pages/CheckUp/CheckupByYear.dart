@@ -1,25 +1,27 @@
 import 'package:farm_qow/Model/model.dart';
-import 'package:farm_qow/Pages/CheckUp/CheckupByYear.dart';
 import 'package:farm_qow/Pages/CheckUp/DetailCheckUp.dart';
 import 'package:flutter/material.dart';
 
+import 'CheckUp.dart';
 
 
-class CheckUp extends StatefulWidget {
+
+class CheckUpByYear extends StatefulWidget {
   int idSapi;
-  CheckUp(this.idSapi);
+  int tahun;
+  CheckUpByYear(this.idSapi,this.tahun);
 
   @override
-  _CheckUpState createState() => _CheckUpState();
+  _CheckUpByYearState createState() => _CheckUpByYearState();
 }
 
-class _CheckUpState extends State<CheckUp> {
+class _CheckUpByYearState extends State<CheckUpByYear> {
   @override
   Widget build(BuildContext context) {
 
     var dataCheckup = [];
     for(int i=0; i<checkup.length;i++){
-      if(checkup[i][1] == widget.idSapi ){
+      if(checkup[i][1] == widget.idSapi && checkup[i][4] == (widget.tahun)){
         dataCheckup.add(checkup[i]);
       }
     }
@@ -36,16 +38,16 @@ class _CheckUpState extends State<CheckUp> {
           backgroundColor: Colors.transparent,
           endDrawer: Drawer(
             child: Container(
-                width: 50,
-                height: 50,
-                color: Color.fromRGBO(143, 197, 255, 0.95),
-                child: ListView(
-                  children: [
-                    YearFilterAll(widget.idSapi),
-                    for(int i=21;i>16;i--)
+              width: 50,
+              height: 50,
+              color: Color.fromRGBO(143, 197, 255, 0.95),
+              child: ListView(
+                children: [
+                  YearFilterAll(widget.idSapi),
+                  for(int i=21;i>16;i--)
                     YearFilter(widget.idSapi,"20"+i.toString())
-              ],
-                ),
+                ],
+              ),
             ),
           ),
           appBar: AppBar(
@@ -68,7 +70,7 @@ class _CheckUpState extends State<CheckUp> {
                       icon: Icon(Icons.arrow_back,color:Colors.white,size: 30,),
                     ),
 
-                    Text('Check Up | Semua Waktu'),
+                    Text('Check Up | '+widget.tahun.toString()),
                   ],
                 ),
               ],
@@ -79,7 +81,7 @@ class _CheckUpState extends State<CheckUp> {
 
               for(int i=dataCheckup.length-1;i>-1;i--)
                 ItemCheckup(widget.idSapi,dataCheckup[i][2],dataCheckup[i][3],dataCheckup[i][4],dataCheckup[i][14],dataCheckup[i][0])
-                // ItemCheckup('2', "3", "20021")
+              // ItemCheckup('2', "3", "20021")
             ],
           ),
         ),
@@ -149,7 +151,7 @@ class ItemCheckup extends StatelessWidget {
                 height: 200,
                 decoration: BoxDecoration(
                     color: bgKesehatan,
-                  borderRadius: BorderRadius.circular(10)
+                    borderRadius: BorderRadius.circular(10)
                 ),
 
                 child: Column(
@@ -196,7 +198,6 @@ class YearFilter extends StatelessWidget {
     );
   }
 }
-
 
 
 class YearFilterAll extends StatelessWidget {
