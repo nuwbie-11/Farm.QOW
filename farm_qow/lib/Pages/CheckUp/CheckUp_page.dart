@@ -1,10 +1,31 @@
-// ignore: file_names
+// ignore_for_file: file_names
+
+import 'dart:convert';
+
+import 'package:farm_qow/Controller/checkup_controller.dart';
 import 'package:farm_qow/Pages/CheckUp/DetailCheckUp.dart';
 import 'package:flutter/material.dart';
 
 class CheckUp extends StatelessWidget {
-  const CheckUp({Key? key}) : super(key: key);
-
+  final List bulans = [
+    'Januari',
+    'Februari',
+    'Maret',
+    'April',
+    'Mei',
+    'Juni',
+    'Juli',
+    'Agustus',
+    'September',
+    'Oktober',
+    'November',
+    'Desember'
+  ];
+  final Map<String, dynamic> content;
+  final int idProfilSapi;
+  CheckUp({Key? key, required this.content, required this.idProfilSapi})
+      : super(key: key);
+  CheckUpController cekup = CheckUpController();
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -78,15 +99,29 @@ class CheckUp extends StatelessWidget {
             ],
           ),
         ),
-        body: ListView(
-          children: [
-            // Bulan('Januari','Sehat','Kurang Sehat'),
-            // Bulan('Febuari','Sakit','Sehat'),
-            // Bulan('Maret','Kurang Sehat','Sakit'),
-            // Bulan('April','Sehat','Sehat'),
-            // Bulan('Mei','Sehat','Sakit'),
-            Bulan('Oktober', 'Sehat', ''),
-          ],
+        body: FutureBuilder(
+          future: cekup.jsonAsString(),
+          builder: (context, snapshot) {
+            dynamic selectedContents = [];
+            var jsonList = jsonDecode(snapshot.data.toString());
+            for (var item in jsonList) {
+              if (item["idProfilSapi"] == idProfilSapi) {
+                selectedContents.add(item);
+              }
+            }
+            if (selectedContents.length != 0) {
+              for (var item in selectedContents) {
+                return ListView(
+                  children: [
+                    Bulan(bulans[int.parse(item['blncheckup']) - 1], "Sehat",
+                        "Tidak Sehat")
+                  ],
+                );
+              }
+            }
+
+            return Center(child: CircularProgressIndicator());
+          },
         ),
       ),
     );

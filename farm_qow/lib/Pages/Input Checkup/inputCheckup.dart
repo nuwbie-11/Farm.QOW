@@ -1,44 +1,21 @@
 // ignore_for_file: file_names
 
+import 'package:farm_qow/Controller/checkup_controller.dart';
 import 'package:farm_qow/Model/model.dart';
-import 'package:farm_qow/Pages/Profil%20Sapi/profilSapi.dart';
+import 'package:farm_qow/Pages/Sapi/profil_selected_sapi.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-var data_input = [
-  0,
-  3,
-  DateTime.now().day,
-  DateTime.now().month,
-  DateTime.now().year,
-  1,
-  0,
-  0,
-  0,
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-];
-
 class InputCheckup extends StatefulWidget {
   int idSapi;
-  InputCheckup(this.idSapi);
-
-  List<DropdownMenuItem> nafsuMakan = [
-    DropdownMenuItem(child: Text("Baik"), value: "Baik"),
-    DropdownMenuItem(child: Text("Cukup"), value: "Cukup"),
-    DropdownMenuItem(child: Text("Kurang"), value: "Kurang"),
-  ];
+  final Map<String, dynamic> content;
+  InputCheckup(this.idSapi, {required this.content});
 
   @override
   State<InputCheckup> createState() => _InputCheckupState();
 }
 
 class _InputCheckupState extends State<InputCheckup> {
-  String nafsuMakanValue = "Baik";
   TextEditingController beratInput = new TextEditingController();
 
   TextEditingController denyutNadiInput = new TextEditingController();
@@ -56,6 +33,62 @@ class _InputCheckupState extends State<InputCheckup> {
   TextEditingController bauFesesInput = new TextEditingController();
 
   TextEditingController texturFesesInput = new TextEditingController();
+
+  List<Map<String, dynamic>> jsonFile = [];
+  CheckUpController cekup = CheckUpController();
+
+  @override
+  void initState() {
+    super.initState();
+    readWholeJson();
+  }
+
+  void reset() {
+    cekup.resetWrite([]);
+  }
+
+  void readWholeJson() {
+    cekup.jsonToDynamic().then((result) {
+      for (var item in result) {
+        setState(() {
+          jsonFile.add(item);
+        });
+      }
+    });
+    print(jsonFile);
+  }
+
+  void _getInputs() {
+    final berat = int.parse(beratInput.text);
+    final denyutNadi = denyutNadiInput.text;
+    final suhuBadan = suhuBadanInput.text;
+    final nafsuMakan = nafsuMakanInput.text;
+    final aktifTanggap = aktifTanggapInput.text;
+    final gerakTubuh = gerakTubuhInput.text;
+    final warnaFeses = warnaFesesInput.text;
+    final bauFeses = bauFesesInput.text;
+    final texturFeses = texturFesesInput.text;
+    String diagnosaDokter = "Sehat";
+    String catatan = "tidak ada catatan";
+    cekup.addCheckUp(
+        jsonFile.length + 1,
+        widget.idSapi,
+        diagnosaDokter,
+        catatan,
+        berat,
+        nafsuMakan,
+        aktifTanggap,
+        gerakTubuh,
+        warnaFeses,
+        bauFeses,
+        texturFeses,
+        suhuBadan,
+        denyutNadi,
+        jsonFile);
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
+      return ProfilSapi(content: widget.content);
+    }));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -109,7 +142,7 @@ class _InputCheckupState extends State<InputCheckup> {
                 ),
               ),
             ),
-            Padding(
+            const Padding(
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
               child: TextField(
                 // keyboardType: TextInputType.phone,
@@ -131,9 +164,9 @@ class _InputCheckupState extends State<InputCheckup> {
                 keyboardType: TextInputType.phone,
                 // textAlign: TextAlign.center,
                 controller: beratInput,
-                onChanged: (ValueKey) {
-                  data_input[6] = ValueKey;
-                },
+                // onChanged: (ValueKey) {
+                //   data_input[6] = ValueKey;
+                // },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Berat Sapi",
@@ -147,9 +180,9 @@ class _InputCheckupState extends State<InputCheckup> {
                 keyboardType: TextInputType.phone,
                 // textAlign: TextAlign.center,
                 controller: suhuBadanInput,
-                onChanged: (ValueKey) {
-                  data_input[7] = ValueKey;
-                },
+                // onChanged: (ValueKey) {
+                //   data_input[7] = ValueKey;
+                // },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Suhu Badan",
@@ -163,9 +196,9 @@ class _InputCheckupState extends State<InputCheckup> {
                 keyboardType: TextInputType.phone,
                 // textAlign: TextAlign.center,
                 controller: denyutNadiInput,
-                onChanged: (ValueKey) {
-                  data_input[8] = ValueKey;
-                },
+                // onChanged: (ValueKey) {
+                //   data_input[8] = ValueKey;
+                // },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Denyut Nadi",
@@ -176,11 +209,11 @@ class _InputCheckupState extends State<InputCheckup> {
               padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
               child: TextField(
                 // textAlign: TextAlign.center,
-                controller: aktifTanggapInput,
-                onChanged: (ValueKey) {
-                  data_input[9] = ValueKey;
-                  // usernameInput = ValueKey;
-                },
+                controller: nafsuMakanInput,
+                // onChanged: (ValueKey) {
+                //   data_input[9] = ValueKey;
+                //   // usernameInput = ValueKey;
+                // },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Nafsu Makan",
@@ -205,10 +238,10 @@ class _InputCheckupState extends State<InputCheckup> {
               child: TextField(
                 // textAlign: TextAlign.center,
                 controller: aktifTanggapInput,
-                onChanged: (ValueKey) {
-                  data_input[10] = ValueKey;
-                  // usernameInput = ValueKey;
-                },
+                // onChanged: (ValueKey) {
+                //   data_input[10] = ValueKey;
+                //   // usernameInput = ValueKey;
+                // },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Aktif dan Tanggap",
@@ -221,10 +254,10 @@ class _InputCheckupState extends State<InputCheckup> {
               child: TextField(
                 // textAlign: TextAlign.center,
                 controller: gerakTubuhInput,
-                onChanged: (ValueKey) {
-                  data_input[11] = ValueKey;
-                  // usernameInput = ValueKey;
-                },
+                // onChanged: (ValueKey) {
+                //   data_input[11] = ValueKey;
+                //   // usernameInput = ValueKey;
+                // },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Gerak Tubuh",
@@ -237,10 +270,10 @@ class _InputCheckupState extends State<InputCheckup> {
               child: TextField(
                 // textAlign: TextAlign.center,
                 controller: warnaFesesInput,
-                onChanged: (ValueKey) {
-                  data_input[12] = ValueKey;
-                  // usernameInput = ValueKey;
-                },
+                // onChanged: (ValueKey) {
+                //   data_input[12] = ValueKey;
+                //   // usernameInput = ValueKey;
+                // },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Warna Feses",
@@ -253,11 +286,11 @@ class _InputCheckupState extends State<InputCheckup> {
               child: TextField(
                 // textAlign: TextAlign.center,
                 controller: bauFesesInput,
-                onChanged: (ValueKey) {
-                  data_input[13] = ValueKey;
+                // onChanged: (ValueKey) {
+                //   data_input[13] = ValueKey;
 
-                  // usernameInput = ValueKey;
-                },
+                //   // usernameInput = ValueKey;
+                // },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Bau Feses",
@@ -270,10 +303,10 @@ class _InputCheckupState extends State<InputCheckup> {
               child: TextField(
                 // textAlign: TextAlign.center,
                 controller: texturFesesInput,
-                onChanged: (ValueKey) {
-                  data_input[14] = ValueKey;
-                  // usernameInput = ValueKey;
-                },
+                // onChanged: (ValueKey) {
+                //   data_input[14] = ValueKey;
+                //   // usernameInput = ValueKey;
+                // },
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: "Texture Feses",
@@ -283,18 +316,12 @@ class _InputCheckupState extends State<InputCheckup> {
 
             InkWell(
               onTap: () {
+                // reset;
                 bool isValidate = true;
-                for (int i = 0; i < data_input.length; i++) {
-                  if (data_input[i] == "") {
-                    isValidate = false;
-                  }
-                }
                 if (isValidate == true) {
                   var lastIdCheckup = checkup[checkup.length - 1][0];
-                  print(lastIdCheckup);
                   int idCheckup = int.parse(lastIdCheckup.toString());
                   idCheckup += 1;
-                  data_input[0] = idCheckup;
                   showDialog(
                       context: context,
                       builder: (context) {
@@ -303,27 +330,24 @@ class _InputCheckupState extends State<InputCheckup> {
                           content: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("Berat : " + data_input[6].toString()),
+                              Text("Berat : " + beratInput.text),
                               SizedBox(height: 10),
-                              Text("Suhu : " + data_input[7].toString()),
+                              Text("Suhu : " + suhuBadanInput.text),
                               SizedBox(height: 10),
-                              Text("Denyut Nadi : " + data_input[8].toString()),
+                              Text("Denyut Nadi : " + denyutNadiInput.text),
                               SizedBox(height: 10),
-                              Text("Nafsu Makan : " + data_input[9].toString()),
+                              Text("Nafsu Makan : " + nafsuMakanInput.text),
                               SizedBox(height: 10),
                               Text("Aktif dan Tanggap : " +
-                                  data_input[10].toString()),
+                                  aktifTanggapInput.text),
                               SizedBox(height: 10),
-                              Text(
-                                  "Gerak Tubuh : " + data_input[11].toString()),
+                              Text("Gerak Tubuh : " + gerakTubuhInput.text),
                               SizedBox(height: 10),
-                              Text(
-                                  "Warna Feses : " + data_input[12].toString()),
+                              Text("Warna Feses : " + warnaFesesInput.text),
                               SizedBox(height: 10),
-                              Text("Bau Feses : " + data_input[13].toString()),
+                              Text("Bau Feses : " + bauFesesInput.text),
                               SizedBox(height: 10),
-                              Text("Textur Feses : " +
-                                  data_input[14].toString()),
+                              Text("Textur Feses : " + texturFesesInput.text),
                               SizedBox(height: 10),
                             ],
                           ),
@@ -338,21 +362,13 @@ class _InputCheckupState extends State<InputCheckup> {
                                   style: TextStyle(color: Colors.blue)),
                             ),
                             FlatButton(
-                              onPressed: () {
-                                setState(() {
-                                  checkup.add(data_input);
-                                  // Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
-                                  //   return ProfilSapi(widget.idSapi.toString());
-                                  // }));
-                                });
-                              },
+                              onPressed: _getInputs,
                               child: Text("Yes",
                                   style: TextStyle(color: Colors.blue)),
                             )
                           ],
                         );
-                      }).then((value) => null);
-                  print(data_input);
+                      }).then((value) => value);
                 } else {
                   showDialog(
                       context: context,
@@ -394,85 +410,6 @@ class _InputCheckupState extends State<InputCheckup> {
           ],
         ),
       ),
-    );
-  }
-}
-
-class NafsuMakan extends StatefulWidget {
-  const NafsuMakan({Key? key}) : super(key: key);
-
-  @override
-  State<NafsuMakan> createState() => NafsuMakanState();
-}
-
-/// This is the private State class that goes with NafsuMakan.
-class NafsuMakanState extends State<NafsuMakan> {
-  String dropdownValue = 'Baik';
-
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<String>(
-      value: dropdownValue,
-      iconSize: 24,
-      elevation: 2,
-      style: const TextStyle(color: Colors.black),
-      underline: Container(
-        height: 2,
-        color: Colors.deepPurpleAccent,
-      ),
-      onChanged: (String? newValue) {
-        setState(() {
-          // print(newValue);
-          data_input[9] = newValue.toString();
-          dropdownValue = newValue!;
-        });
-      },
-      items: <String>['Baik', 'Cukup', 'Kurang']
-          .map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(
-            value,
-            style: TextStyle(fontSize: 18),
-          ),
-        );
-      }).toList(),
-    );
-  }
-}
-
-/// This is the private State class that goes with NafsuMakan.
-class AktifTanggap extends State<NafsuMakan> {
-  String dropdownValue = 'Tanggap';
-
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<String>(
-      value: dropdownValue,
-      iconSize: 24,
-      elevation: 2,
-      style: const TextStyle(color: Colors.black),
-      underline: Container(
-        height: 2,
-        color: Colors.deepPurpleAccent,
-      ),
-      onChanged: (String? newValue) {
-        setState(() {
-          // print(newValue);
-          data_input[10] = newValue.toString();
-          dropdownValue = newValue!;
-        });
-      },
-      items: <String>['Tanggap', 'Cukup', 'Kurang Tanggap']
-          .map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(
-            value,
-            style: TextStyle(fontSize: 18),
-          ),
-        );
-      }).toList(),
     );
   }
 }

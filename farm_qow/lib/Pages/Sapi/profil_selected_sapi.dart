@@ -1,11 +1,10 @@
 // ignore_for_file: file_names
 
 import 'package:farm_qow/Controller/sapi_controller.dart';
-import 'package:farm_qow/Model/model.dart';
-import 'package:farm_qow/Pages/CheckUp/CheckUp.dart';
-import 'package:farm_qow/Pages/Data%20Sapi/dataSapi.dart';
-import 'package:farm_qow/Pages/Edit%20Sapi/EditSapi.dart';
+import 'package:farm_qow/Pages/CheckUp/CheckUp_page.dart';
+import 'package:farm_qow/Pages/Sapi/edit_sapi.dart';
 import 'package:farm_qow/Pages/Input%20Checkup/inputCheckup.dart';
+import 'package:farm_qow/Pages/Sapi/sapi_landing.dart';
 import 'package:flutter/material.dart';
 
 class ProfilSapi extends StatefulWidget {
@@ -44,6 +43,7 @@ class _ProfilSapiState extends State<ProfilSapi> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     var intIdSapi = (widget.content["idProfilSapi"]);
+    int fixedIndex = jsonFile.indexOf(widget.content);
     String namaSapi = widget.content["nama"];
     String tglLahirSapi = widget.content["tglLahir"];
     String tglDatangSapi = widget.content["tglDatang"];
@@ -73,9 +73,21 @@ class _ProfilSapiState extends State<ProfilSapi> {
                 ),
                 IconButton(
                   onPressed: () {
+                    // print(jsonFile);
+                    for (var i = 0; i < jsonFile.length; i++) {
+                      final current = jsonFile[i];
+
+                      if (current["idProfilSapi"] ==
+                          widget.content["idProfilSapi"]) {
+                        fixedIndex = i;
+                      }
+                    }
                     Navigator.of(context)
                         .push(MaterialPageRoute(builder: (context) {
-                      return EditSapi(intIdSapi);
+                      return EditSapi(
+                        fixedIndex,
+                        content: widget.content,
+                      );
                     }));
                   },
                   icon: Icon(Icons.create_rounded, color: Colors.white),
@@ -194,7 +206,10 @@ class _ProfilSapiState extends State<ProfilSapi> {
                           onTap: () {
                             Navigator.of(context)
                                 .push(MaterialPageRoute(builder: (context) {
-                              return CheckUp();
+                              return CheckUp(
+                                content: widget.content,
+                                idProfilSapi: intIdSapi,
+                              );
                             }));
                           },
                           child: Card(
@@ -222,7 +237,10 @@ class _ProfilSapiState extends State<ProfilSapi> {
                           onTap: () {
                             Navigator.of(context)
                                 .push(MaterialPageRoute(builder: (context) {
-                              return CheckUp();
+                              return CheckUp(
+                                content: widget.content,
+                                idProfilSapi: intIdSapi,
+                              );
                             }));
                           },
                           child: Card(
@@ -278,7 +296,8 @@ class _ProfilSapiState extends State<ProfilSapi> {
                           onTap: () {
                             Navigator.of(context)
                                 .push(MaterialPageRoute(builder: (context) {
-                              return InputCheckup(intIdSapi);
+                              return InputCheckup(intIdSapi,
+                                  content: widget.content);
                             }));
                           },
                           child: Card(

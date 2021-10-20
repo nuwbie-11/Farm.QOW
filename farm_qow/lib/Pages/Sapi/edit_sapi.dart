@@ -1,13 +1,13 @@
 // ignore_for_file: file_names
 
 import 'package:farm_qow/Controller/sapi_controller.dart';
-import 'package:farm_qow/Model/model.dart';
-import 'package:farm_qow/Pages/Data%20Sapi/dataSapi.dart';
+import 'package:farm_qow/Pages/Sapi/sapi_landing.dart';
 import 'package:flutter/material.dart';
 
 class EditSapi extends StatefulWidget {
   int idSapi;
-  EditSapi(this.idSapi);
+  final Map<String, dynamic> content;
+  EditSapi(this.idSapi, {required this.content});
 
   @override
   State<EditSapi> createState() => _EditSapiState();
@@ -31,11 +31,11 @@ class _EditSapiState extends State<EditSapi> {
   }
 
   void change() {
-    final selectedContent = jsonFile[widget.idSapi - 1];
+    final selectedContent = jsonFile[widget.idSapi];
     selectedContent["nama"] = namaInput.text;
     selectedContent["tglDatang"] = stringTanggalDatang;
     selectedContent["jenisSapi"] = jenisInput.text;
-    jsonFile[widget.idSapi - 1] = selectedContent;
+    jsonFile[widget.idSapi] = selectedContent;
     SapiController().writeJson(jsonFile);
     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
       return HalamanDataSapi();

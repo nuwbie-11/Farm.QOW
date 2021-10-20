@@ -2,7 +2,7 @@
 
 import 'package:farm_qow/Controller/sapi_controller.dart';
 import 'package:farm_qow/Model/model.dart';
-import 'package:farm_qow/Pages/Data%20Sapi/dataSapi.dart';
+import 'package:farm_qow/Pages/Sapi/sapi_landing.dart';
 import 'package:flutter/material.dart';
 
 class TambahSapi extends StatefulWidget {
@@ -26,8 +26,6 @@ class _TambahSapiState extends State<TambahSapi> {
   var tanggalDatang = DateTime.now();
   var stringTanggalDatang = "pilih tanggal";
 
-  var data_input = [0, "", "", "", "Sehat", ""];
-
   @override
   void initState() {
     super.initState();
@@ -35,7 +33,6 @@ class _TambahSapiState extends State<TambahSapi> {
   }
 
   int _checkId(int currentId) {
-    // currentId = 1;
     bool isExist = true;
     while (isExist) {
       for (var item in jsonFile) {
@@ -59,7 +56,7 @@ class _TambahSapiState extends State<TambahSapi> {
   }
 
   bool _getInputs() {
-    int idProfilSapi = _checkId(1);
+    int idProfilSapi = _checkId(jsonFile == null ? 1 : jsonFile.length + 1);
     String namaSapi = namaInput.text;
     String jenisSapi = jenisInput.text;
     return sapi.transactSapi(idProfilSapi, namaSapi, stringTanggalDatang,
@@ -106,9 +103,6 @@ class _TambahSapiState extends State<TambahSapi> {
                 controller: namaInput,
                 // textAlign: TextAlign.center,
                 autofocus: false,
-                onChanged: (ValueKey) {
-                  data_input[1] = ValueKey;
-                },
 
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -125,9 +119,6 @@ class _TambahSapiState extends State<TambahSapi> {
                 controller: jenisInput,
                 // textAlign: TextAlign.center,
                 autofocus: false,
-                onChanged: (ValueKey) {
-                  data_input[5] = ValueKey;
-                },
 
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
@@ -157,13 +148,10 @@ class _TambahSapiState extends State<TambahSapi> {
                         setState(() {
                           stringTanggalLahir =
                               value.toString().substring(0, 10);
-                          data_input[2] = stringTanggalLahir;
                           // tanggalLahir = value;
                         });
                         // stringTanggalLahir = "halo halo";
                       });
-
-                      ;
                     },
                     child: Text("tanggal lahir"))
               ],
@@ -187,11 +175,9 @@ class _TambahSapiState extends State<TambahSapi> {
                         firstDate: DateTime(2000),
                         lastDate: DateTime(2030),
                       ).then((value) {
-                        data_input[3] = stringTanggalDatang;
                         setState(() {
                           stringTanggalDatang =
                               value.toString().substring(0, 10);
-                          data_input[3] = stringTanggalDatang;
                           // tanggalLahir = value;
                         });
                         // stringTanggalLahir = "halo halo";
@@ -205,21 +191,13 @@ class _TambahSapiState extends State<TambahSapi> {
 
             InkWell(
               onTap: () {
-                bool isValidate = true;
-
-                for (int i = 0; i < data_input.length; i++) {
-                  if (data_input[i] == "" || data_input[i] == "pilih tanggal") {
-                    isValidate = false;
-                  }
-                }
-                if (isValidate == true) {
-                  // int num = int.parse(idSapi.toString());
-                  // num += 1;
-                  // data_input[0] = num;
-
-                  // sapi.add([data_input]);
-                  // print("last id =" + sapi[sapi.length-1][0].toString());
-                  // print(data_input);
+                final _validate = namaInput.text.isEmpty ||
+                        jenisInput.text.isEmpty ||
+                        stringTanggalDatang == 'pilih tanggal' ||
+                        stringTanggalLahir == 'pilih tanggal'
+                    ? false
+                    : true;
+                if (_validate) {
                   if (_getInputs()) {
                     Navigator.of(context)
                         .pushReplacement(MaterialPageRoute(builder: (context) {
