@@ -28,4 +28,7 @@ class Sapi {
         "tglLahir": tglLahir,
         "jenisSapi": jenisSapi
       };
+
+
+  
 }

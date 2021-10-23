@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:farm_qow/Controller/sapi_controller.dart';
+import 'package:farm_qow/Model/new_model.dart';
 import 'package:farm_qow/Pages/CheckUp/CheckUp_page.dart';
 import 'package:farm_qow/Pages/Sapi/edit_sapi.dart';
 import 'package:farm_qow/Pages/Input%20Checkup/inputCheckup.dart';
@@ -327,23 +328,30 @@ class _ProfilSapiState extends State<ProfilSapi> {
                       height: 40,
                     ),
                     InkWell(
-                      onTap: () {
-                        int index = -1;
-                        print(intIdSapi);
+                      onTap: () async {
+                        List newContent = [];
+                        // print(jsonFile);
+                        NewSapiModel sapiModel = NewSapiModel();
+                        newContent = await sapiModel.fetch2List();
 
-                        for (var i = 0; i < jsonFile.length; i++) {
-                          if (jsonFile[i]["idProfilSapi"] == intIdSapi) {
-                            index = i;
-                            break;
-                          }
-                        }
-                        print(index);
-                        jsonFile.removeAt(index);
-                        SapiController().writeJson(jsonFile);
-                        Navigator.of(context).pushReplacement(
-                            MaterialPageRoute(builder: (context) {
-                          return HalamanDataSapi();
-                        }));
+                        print(newContent);
+
+                        // int index = -1;
+                        // print(intIdSapi);
+
+                        // for (var i = 0; i < jsonFile.length; i++) {
+                        //   if (jsonFile[i]["idProfilSapi"] == intIdSapi) {
+                        //     index = i;
+                        //     break;
+                        //   }
+                        // }
+                        // print(index);
+                        // jsonFile.removeAt(index);
+                        // SapiController().writeJson(jsonFile);
+                        // Navigator.of(context).pushReplacement(
+                        //     MaterialPageRoute(builder: (context) {
+                        //   return HalamanDataSapi();
+                        // }));
                       },
                       child: Container(
                         width: 220,
