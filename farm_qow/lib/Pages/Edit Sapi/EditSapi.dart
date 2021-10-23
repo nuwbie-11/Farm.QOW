@@ -1,6 +1,5 @@
 // ignore_for_file: file_names
 
-import 'package:farm_qow/Controller/sapi_controller.dart';
 import 'package:farm_qow/Model/model.dart';
 import 'package:farm_qow/Pages/Data%20Sapi/dataSapi.dart';
 import 'package:flutter/material.dart';
@@ -16,41 +15,11 @@ class EditSapi extends StatefulWidget {
 class _EditSapiState extends State<EditSapi> {
   TextEditingController namaInput = new TextEditingController();
   TextEditingController jenisInput = new TextEditingController();
-  bool isAdd = false;
-  List<Map<String, dynamic>> jsonFile = [];
 
   String namaSapiBaru = "";
   String jenisSapiBaru = "";
   var tanggalDatang = DateTime.now();
   var stringTanggalDatang = "pilih tanggal";
-
-  @override
-  void initState() {
-    super.initState();
-    readWholeJson();
-  }
-
-  void change() {
-    final selectedContent = jsonFile[widget.idSapi - 1];
-    selectedContent["nama"] = namaInput.text;
-    selectedContent["tglDatang"] = stringTanggalDatang;
-    selectedContent["jenisSapi"] = jenisInput.text;
-    jsonFile[widget.idSapi - 1] = selectedContent;
-    SapiController().writeJson(jsonFile);
-    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) {
-      return HalamanDataSapi();
-    }));
-  }
-
-  void readWholeJson() {
-    SapiController().jsonToDynamic().then((result) {
-      for (var item in result) {
-        setState(() {
-          jsonFile.add(item);
-        });
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -153,31 +122,31 @@ class _EditSapiState extends State<EditSapi> {
             ),
 
             InkWell(
-              onTap: change,
-              //   // print(namaSapiBaru);
-              //   // print(jenisSapiBaru);
-              //   // print(stringTanggalDatang);
+              onTap: () {
+                // print(namaSapiBaru);
+                // print(jenisSapiBaru);
+                // print(stringTanggalDatang);
 
-              //   for (int i = 0; i < jsonList.length; i++) {
-              //     if (jsonList[i][0] == widget.idSapi) {
-              //       print(jsonList[i]);
-              //       if (namaSapiBaru != "") {
-              //         jsonList[i][1] = namaSapiBaru;
-              //       }
-              //       if (jenisSapiBaru != "") {
-              //         jsonList[i][5] = jenisSapiBaru;
-              //       }
-              //       if (stringTanggalDatang != "") {
-              //         jsonList[i][3] = stringTanggalDatang;
-              //       }
-              //       Navigator.of(context)
-              //           .pushReplacement(MaterialPageRoute(builder: (context) {
-              //         return HalamanDataSapi();
-              //       }));
-              //       break;
-              //     }
-              //   }
-              // }
+                for (int i = 0; i < sapi.length; i++) {
+                  if (sapi[i][0] == widget.idSapi) {
+                    print(sapi[i]);
+                    if (namaSapiBaru != "") {
+                      sapi[i][1] = namaSapiBaru;
+                    }
+                    if (jenisSapiBaru != "") {
+                      sapi[i][5] = jenisSapiBaru;
+                    }
+                    if (stringTanggalDatang != "") {
+                      sapi[i][3] = stringTanggalDatang;
+                    }
+                    Navigator.of(context)
+                        .pushReplacement(MaterialPageRoute(builder: (context) {
+                      return HalamanDataSapi("A");
+                    }));
+                    break;
+                  }
+                }
+              },
               child: Container(
                 margin: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                 // width: 150,
