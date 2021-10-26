@@ -137,7 +137,7 @@ class _InputCheckupState extends State<InputCheckup> {
               child: TextField(
                 // keyboardType: TextInputType.phone,
                 // textAlign: TextAlign.center,
-                // controller: beratInput,
+                controller: sehatInput,
                 // onChanged: (ValueKey) {
                 //   data_input[6] = ValueKey;
                 // },
@@ -318,6 +318,7 @@ class _InputCheckupState extends State<InputCheckup> {
                   int idCheckup = int.parse(lastIdCheckup.toString());
                   idCheckup += 1;
                   data_input[0] = idCheckup;
+                  data_input[1] = lastIdCheckup;
                   showDialog(
                       context: context,
                       builder: (context) {
