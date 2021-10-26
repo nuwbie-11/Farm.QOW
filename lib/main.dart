@@ -1,33 +1,6 @@
 
-import 'package:farm_qow/Pages/Halaman%20Susu/HalamanSusu.dart';
 import 'package:flutter/material.dart';
-
-import 'Pages/Data Sapi/dataSapi.dart';
-
-
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatefulWidget {
-  // const MyApp({Key? key}) : super(key: key);
-
-  // This widget is the root of your application.
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  Widget build(BuildContext context) {
-    return HalamanDataSapi("");
-
-
-    return HalamanSusu();
-  }
-}
-
-// Navigator.push(context, Transition())
+import 'SplashScreen.dart';
 
 
 class Transition extends PageRouteBuilder {
@@ -70,7 +43,7 @@ class TransitionTopToBottom extends PageRouteBuilder {
           parent: animation,
           reverseCurve: Curves.fastOutSlowIn);
       return ScaleTransition(
-        alignment: Alignment.topCenter,
+        alignment: Alignment.topRight,
         scale: animation,
         child: child,
       );
@@ -93,10 +66,20 @@ class TransitionBottomToTop extends PageRouteBuilder {
           parent: animation,
           reverseCurve: Curves.fastOutSlowIn);
       return ScaleTransition(
-        alignment: Alignment.bottomCenter,
+        alignment: Alignment.bottomRight,
         scale: animation,
         child: child,
       );
     },
+  );
+}
+
+void main() {
+  runApp(
+    MaterialApp(
+      title: 'Bottom Navigation Bar',
+      // home: MyApp(0),
+      home: MyCustomWidget(),
+    ),
   );
 }

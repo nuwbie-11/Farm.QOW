@@ -1,30 +1,32 @@
 import 'package:farm_qow/Model/model.dart';
-import 'package:farm_qow/Pages/CheckUp/CheckupByYear.dart';
-import 'package:farm_qow/Pages/CheckUp/DetailCheckUp.dart';
+import 'package:farm_qow/Pages/Riwayat%20Susu/DetailSusu.dart';
 import 'package:flutter/material.dart';
 
 import '../../main.dart';
+import 'RiwayatSusuByTahun.dart';
 
-
-
-class CheckUp extends StatefulWidget {
+class RiwayatSusu extends StatefulWidget {
   int idSapi;
-  CheckUp(this.idSapi);
+  RiwayatSusu(this.idSapi);
 
   @override
-  _CheckUpState createState() => _CheckUpState();
+  _RiwayatSusuState createState() => _RiwayatSusuState();
 }
 
-class _CheckUpState extends State<CheckUp> {
+class _RiwayatSusuState extends State<RiwayatSusu> {
   @override
   Widget build(BuildContext context) {
-
-    var dataCheckup = [];
-    for(int i=0; i<checkup.length;i++){
-      if(checkup[i][1] == widget.idSapi ){
-        dataCheckup.add(checkup[i]);
+    var dataSusu = [];
+    for(int i=0; i<susu.length;i++){
+      if(susu[i][1] == widget.idSapi){
+        dataSusu.add(susu[i]);
       }
     }
+    print("result");
+    for(int i=0; i<dataSusu.length; i++){
+      print(dataSusu[i]);
+    }
+    print("result");
     return MaterialApp(
       home: Container(
         decoration: BoxDecoration(
@@ -33,31 +35,31 @@ class _CheckUpState extends State<CheckUp> {
                 fit: BoxFit.cover
             )
         ),
-
         child: Scaffold(
           backgroundColor: Colors.transparent,
           endDrawer: Drawer(
             child: Container(
-                width: 50,
-                height: 50,
-                color: Color.fromRGBO(143, 197, 255, 0.95),
-                child: ListView(
-                  children: [
-                    YearFilterAll(widget.idSapi),
-                    for(int i=21;i>16;i--)
+              width: 50,
+              height: 50,
+              color: Color.fromRGBO(143, 197, 255, 0.95),
+              child: ListView(
+                children: [
+
+                  YearFilterAll(widget.idSapi),
+                  for(int i=21;i>16;i--)
                     YearFilter(widget.idSapi,"20"+i.toString())
-              ],
-                ),
+                ],
+              ),
             ),
           ),
           appBar: AppBar(
             backgroundColor: Color.fromRGBO(143, 197, 255, 0.95),
-            elevation: 0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(20),
               ),
             ),
+
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -70,18 +72,19 @@ class _CheckUpState extends State<CheckUp> {
                       icon: Icon(Icons.arrow_back,color:Colors.white,size: 30,),
                     ),
 
-                    Text('Check Up | Semua Waktu'),
+                    Text('Riwayat Susu | Semua Waktu'),
                   ],
                 ),
               ],
             ),
           ),
+
           body: ListView(
             children: [
 
-              for(int i=dataCheckup.length-1;i>-1;i--)
-                ItemCheckup(widget.idSapi,dataCheckup[i][2],dataCheckup[i][3],dataCheckup[i][4],dataCheckup[i][14],dataCheckup[i][0])
-                // ItemCheckup('2', "3", "20021")
+              for(int i=dataSusu.length-1;i>-1;i--)
+                ItemSusu(widget.idSapi,dataSusu[i][10],dataSusu[i][11],dataSusu[i][12],dataSusu[i][3],dataSusu[i][0])
+              // ItemCheckup('2', "3", "20021")
             ],
           ),
         ),
@@ -93,36 +96,38 @@ class _CheckUpState extends State<CheckUp> {
 
 
 
-class ItemCheckup extends StatelessWidget {
-  // const ItemCheckup({Key? key}) : super(key: key);
+class ItemSusu extends StatelessWidget {
+  // const ItemSusu({Key? key}) : super(key: key);
   int idSapi;
   int tgl;
   int bulan;
   int tahun;
-  String kesehatanSapi;
-  int idCheckup;
+  String gradeSusu;
+  int idRiwayatSusu;
 
-  ItemCheckup(this.idSapi,this.tgl,this.bulan,this.tahun,this.kesehatanSapi,this.idCheckup);
+  ItemSusu(this.idSapi,this.tgl,this.bulan,this.tahun,this.gradeSusu,this.idRiwayatSusu);
 
   @override
   Widget build(BuildContext context) {
-    var bgKesehatan;
-    if(kesehatanSapi == "Sehat"){
-      bgKesehatan = Colors.green[300];
+    var bgGrade;
+    if(gradeSusu == "A"){
+      bgGrade = Colors.green[300];
     }
-    else if(kesehatanSapi == "Kurang Sehat"){
-      bgKesehatan = Colors.yellow;
+    else if(gradeSusu == "B" || gradeSusu == "B+"){
+      bgGrade = Colors.blue;
+    }
+    else if(gradeSusu == "B-"){
+      bgGrade = Colors.orangeAccent;
     }
     else{
-      bgKesehatan = Colors.redAccent;
+      bgGrade = Colors.redAccent;
     }
-
     return Builder(builder: (context){
       return InkWell(
         onTap: (){
-          Navigator.push(context, Transition(DetailChecUp(idCheckup)));
+          Navigator.push(context, Transition(DetailSusu(idRiwayatSusu)));
           // Navigator.of(context).push(MaterialPageRoute(builder: (context){
-          //   return DetailChecUp(idCheckup);
+          //   return DetailSusu(idRiwayatSusu);
           // }));
         },
         child: Container(
@@ -151,26 +156,18 @@ class ItemCheckup extends StatelessWidget {
                 width: 100,
                 height: 200,
                 decoration: BoxDecoration(
-                    color: bgKesehatan,
-                  borderRadius: BorderRadius.circular(10)
+                    color: bgGrade,
+                    borderRadius: BorderRadius.circular(10)
                 ),
 
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(kesehatanSapi,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ),
+                child: Center(child: Text(gradeSusu,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),),),
+
+          ),]
+      )),
       );
     });
   }
 }
-
 
 
 
@@ -185,9 +182,9 @@ class YearFilter extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Navigator.push(context, Transition(CheckUpByYear(idSapi, int.parse(tahun))));
+        Navigator.push(context, Transition(RiwayatSusuByTahun(idSapi, int.parse(tahun))));
         // Navigator.of(context).push(MaterialPageRoute(builder: (context){
-        //   return CheckUpByYear(idSapi, int.parse(tahun));
+        //   return RiwayatSusuByTahun(idSapi, int.parse(tahun));
         // }));
       },
       child: Container(
@@ -212,9 +209,9 @@ class YearFilterAll extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Navigator.push(context, Transition(CheckUp(idSapi)));
+        Navigator.push(context, Transition(RiwayatSusu(idSapi)));
         // Navigator.of(context).push(MaterialPageRoute(builder: (context){
-        //   return CheckUp(idSapi);
+        //   return RiwayatSusu(idSapi);
         // }));
       },
       child: Container(
@@ -222,8 +219,9 @@ class YearFilterAll extends StatelessWidget {
         width: double.infinity,
         height: 60,
         color: Colors.white,
-        child: Center(child: Text("All",style: TextStyle(fontSize: 26),),),
+        child: Center(child: Text("Semua Waktu",style: TextStyle(fontSize: 26),),),
       ),
     );
   }
 }
+

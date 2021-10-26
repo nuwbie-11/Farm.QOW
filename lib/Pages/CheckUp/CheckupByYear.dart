@@ -2,6 +2,7 @@ import 'package:farm_qow/Model/model.dart';
 import 'package:farm_qow/Pages/CheckUp/DetailCheckUp.dart';
 import 'package:flutter/material.dart';
 
+import '../../main.dart';
 import 'CheckUp.dart';
 
 
@@ -120,9 +121,10 @@ class ItemCheckup extends StatelessWidget {
     return Builder(builder: (context){
       return InkWell(
         onTap: (){
-          Navigator.of(context).push(MaterialPageRoute(builder: (context){
-            return DetailChecUp(idCheckup);
-          }));
+          Navigator.push(context, Transition(DetailChecUp(idCheckup)));
+          // Navigator.of(context).push(MaterialPageRoute(builder: (context){
+          //   return DetailChecUp(idCheckup);
+          // }));
         },
         child: Container(
           margin: const EdgeInsets.symmetric(vertical: 5,horizontal: 10),
@@ -209,9 +211,10 @@ class YearFilterAll extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Navigator.of(context).push(MaterialPageRoute(builder: (context){
-          return CheckUp(idSapi);
-        }));
+        Navigator.push(context, Transition(CheckUp(idSapi)));
+        // Navigator.of(context).push(MaterialPageRoute(builder: (context){
+        //   return CheckUp(idSapi);
+        // }));
       },
       child: Container(
         margin: EdgeInsets.only(bottom: 3),
