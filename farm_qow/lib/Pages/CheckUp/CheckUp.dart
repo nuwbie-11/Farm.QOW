@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:farm_qow/Model/model.dart';
+import 'package:farm_qow/Model/new_model.dart';
 import 'package:farm_qow/Pages/CheckUp/CheckupByYear.dart';
 import 'package:farm_qow/Pages/CheckUp/DetailCheckUp.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,24 @@ class CheckUp extends StatefulWidget {
 }
 
 class _CheckUpState extends State<CheckUp> {
+  List cekup = [];
+  NewCheckUpModel newCekup = NewCheckUpModel();
+  var mod = ModelCheckUp();
+
+  void upCheckUp() async {
+    mod.cekups = await newCekup.fetch2List();
+    setState(() {
+      cekup = mod.cekups;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    upCheckUp();
+    // mod.resetWrite();
+  }
+
   @override
   Widget build(BuildContext context) {
     var dataCheckup = [];
@@ -78,8 +97,13 @@ class _CheckUpState extends State<CheckUp> {
           body: ListView(
             children: [
               for (int i = dataCheckup.length - 1; i > -1; i--)
-                ItemCheckup(widget.idSapi, dataCheckup[i][2], dataCheckup[i][3],
-                    dataCheckup[i][4], dataCheckup[i][14], dataCheckup[i][0])
+                ItemCheckup(
+                    widget.idSapi,
+                    int.parse(dataCheckup[i][2]),
+                    int.parse(dataCheckup[i][3]),
+                    int.parse(dataCheckup[i][4]),
+                    dataCheckup[i][14],
+                    dataCheckup[i][0])
               // ItemCheckup('2', "3", "20021")
             ],
           ),

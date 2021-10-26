@@ -22,7 +22,7 @@ class _HalamanDataSapiState extends State<HalamanDataSapi> {
   // Model mod = Model();
   List sapi = [];
   NewSapiModel newSapi = NewSapiModel();
-  var mod = Model();
+  var mod = ModelSapi();
 
   Future refreshData() async {
     sapi.clear();
@@ -47,6 +47,7 @@ class _HalamanDataSapiState extends State<HalamanDataSapi> {
   Widget build(BuildContext context) {
     var dataSapi = [];
     for (int i = 0; i < sapi.length; i++) {
+      // print(sapi[i][0].toString());
       int idSapi = int.parse(sapi[i][0].toString());
       String namaSapi = sapi[i][1].toString();
       String tanggalDatang = sapi[i][3].toString();
@@ -268,6 +269,7 @@ class _HalamanDataSapiState extends State<HalamanDataSapi> {
             child: Builder(builder: (context) {
               return IconButton(
                 onPressed: () {
+                  // mod.resetWrite();
                   Navigator.push(context, TransitionBottomToTop(TambahSapi()));
                   // Navigator.of(context).push(MaterialPageRoute(builder: (context){
                   //   return TambahSapi();

@@ -1,10 +1,14 @@
+// ignore_for_file: file_names
+
 import 'package:farm_qow/Model/model.dart';
+import 'package:farm_qow/Model/new_model.dart';
 import 'package:farm_qow/Pages/Profil%20Sapi/profilSapi.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 var data_input = [
-  0,3,
+  0,
+  3,
   DateTime.now().day,
   DateTime.now().month,
   DateTime.now().year,
@@ -16,19 +20,20 @@ var data_input = [
   "",
   "",
   "",
-  "","",
+  "",
+  "",
+  "",
+  "",
 ];
-
-
 
 class InputCheckup extends StatefulWidget {
   int idSapi;
   InputCheckup(this.idSapi);
 
   List<DropdownMenuItem> nafsuMakan = [
-    DropdownMenuItem(child: Text("Baik"),value: "Baik"),
-    DropdownMenuItem(child: Text("Cukup"),value: "Cukup"),
-    DropdownMenuItem(child: Text("Kurang"),value: "Kurang"),
+    DropdownMenuItem(child: Text("Baik"), value: "Baik"),
+    DropdownMenuItem(child: Text("Cukup"), value: "Cukup"),
+    DropdownMenuItem(child: Text("Kurang"), value: "Kurang"),
   ];
 
   @override
@@ -36,7 +41,27 @@ class InputCheckup extends StatefulWidget {
 }
 
 class _InputCheckupState extends State<InputCheckup> {
+  List cekup = [];
+  NewCheckUpModel newCekup = NewCheckUpModel();
+  var mod = ModelCheckUp();
+
+  void upCheckUp() async {
+    mod.cekups = await newCekup.fetch2List();
+    setState(() {
+      cekup = mod.cekups;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    upCheckUp();
+    // mod.resetWrite();
+  }
+
   String nafsuMakanValue = "Baik";
+  TextEditingController sehatInput = new TextEditingController();
+
   TextEditingController beratInput = new TextEditingController();
 
   TextEditingController denyutNadiInput = new TextEditingController();
@@ -55,64 +80,60 @@ class _InputCheckupState extends State<InputCheckup> {
 
   TextEditingController texturFesesInput = new TextEditingController();
 
-
-
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       home: Scaffold(
-
-          endDrawer: Container(
-              padding: EdgeInsets.only(top: 40),
-              width: MediaQuery.of(context).size.width-50,
-              height: double.infinity,
-
-              decoration: BoxDecoration(
-                color: Colors.white,
-                image: DecorationImage(image: AssetImage("assets/images/inputCheckup.png"))
-              ),
-
-          ),
-
+        endDrawer: Container(
+          padding: EdgeInsets.only(top: 40),
+          width: MediaQuery.of(context).size.width - 50,
+          height: double.infinity,
+          decoration: BoxDecoration(
+              color: Colors.white,
+              image: DecorationImage(
+                  image: AssetImage("assets/images/inputCheckup.png"))),
+        ),
         appBar: AppBar(
-
           title: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
                   IconButton(
-                    onPressed: (){
+                    onPressed: () {
                       Navigator.pop(context, true);
                     },
-                    icon: Icon(Icons.arrow_back,color:Colors.white,size: 30,),
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                      size: 30,
+                    ),
                   ),
-
                   Text('Input Check Up'),
                 ],
               ),
             ],
           ),
         ),
-
         body: ListView(
           children: [
             Card(
-              margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+              margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Container(
                 height: 40,
-                padding: EdgeInsets.symmetric(horizontal: 10,vertical: 3),
-
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
                 child: Row(
                   children: [
-                    Text("nomor sapi : "+widget.idSapi.toString(),style: TextStyle(fontSize:20),),
+                    Text(
+                      "nomor sapi : " + widget.idSapi.toString(),
+                      style: TextStyle(fontSize: 20),
+                    ),
                   ],
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 3),
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
               child: TextField(
                 // keyboardType: TextInputType.phone,
                 // textAlign: TextAlign.center,
@@ -128,7 +149,7 @@ class _InputCheckupState extends State<InputCheckup> {
             ),
 
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 3),
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
               child: TextField(
                 keyboardType: TextInputType.phone,
                 // textAlign: TextAlign.center,
@@ -144,7 +165,7 @@ class _InputCheckupState extends State<InputCheckup> {
             ),
 
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 3),
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
               child: TextField(
                 keyboardType: TextInputType.phone,
                 // textAlign: TextAlign.center,
@@ -160,7 +181,7 @@ class _InputCheckupState extends State<InputCheckup> {
             ),
 
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 3),
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
               child: TextField(
                 keyboardType: TextInputType.phone,
                 // textAlign: TextAlign.center,
@@ -175,10 +196,10 @@ class _InputCheckupState extends State<InputCheckup> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 3),
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
               child: TextField(
                 // textAlign: TextAlign.center,
-                controller: aktifTanggapInput,
+                controller: nafsuMakanInput,
                 onChanged: (ValueKey) {
                   data_input[9] = ValueKey;
                   // usernameInput = ValueKey;
@@ -203,7 +224,7 @@ class _InputCheckupState extends State<InputCheckup> {
             // ),
 
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 3),
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
               child: TextField(
                 // textAlign: TextAlign.center,
                 controller: aktifTanggapInput,
@@ -219,7 +240,7 @@ class _InputCheckupState extends State<InputCheckup> {
             ),
 
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 3),
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
               child: TextField(
                 // textAlign: TextAlign.center,
                 controller: gerakTubuhInput,
@@ -235,7 +256,7 @@ class _InputCheckupState extends State<InputCheckup> {
             ),
 
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 3),
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
               child: TextField(
                 // textAlign: TextAlign.center,
                 controller: warnaFesesInput,
@@ -251,7 +272,7 @@ class _InputCheckupState extends State<InputCheckup> {
             ),
 
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 3),
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
               child: TextField(
                 // textAlign: TextAlign.center,
                 controller: bauFesesInput,
@@ -268,7 +289,7 @@ class _InputCheckupState extends State<InputCheckup> {
             ),
 
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 3),
+              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 3),
               child: TextField(
                 // textAlign: TextAlign.center,
                 controller: texturFesesInput,
@@ -284,19 +305,18 @@ class _InputCheckupState extends State<InputCheckup> {
             ),
 
             InkWell(
-              onTap: (){
+              onTap: () {
                 bool isValidate = true;
-                for(int i=0; i<data_input.length;i++){
-
-                  if(data_input[i] == ""){
+                for (int i = 0; i < data_input.length; i++) {
+                  if (data_input[i] == "") {
                     isValidate = false;
                   }
                 }
-                if(isValidate == true){
-                  var lastIdCheckup = checkup[checkup.length-1][0];
+                if (isValidate == true) {
+                  var lastIdCheckup = cekup[cekup.length - 1][0];
                   print(lastIdCheckup);
                   int idCheckup = int.parse(lastIdCheckup.toString());
-                  idCheckup +=1;
+                  idCheckup += 1;
                   data_input[0] = idCheckup;
                   showDialog(
                       context: context,
@@ -306,19 +326,28 @@ class _InputCheckupState extends State<InputCheckup> {
                           content: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("Berat : "+data_input[6].toString()),SizedBox(height:10),
-                              Text("Suhu : "+data_input[7].toString()),SizedBox(height:10),
-                              Text("Denyut Nadi : "+data_input[8].toString()),SizedBox(height:10),
-                              Text("Nafsu Makan : "+data_input[9].toString()),SizedBox(height:10),
-                              Text("Aktif dan Tanggap : "+data_input[10].toString()),SizedBox(height:10),
-                              Text("Gerak Tubuh : "+data_input[11].toString()),SizedBox(height:10),
-                              Text("Warna Feses : "+data_input[12].toString()),SizedBox(height:10),
-                              Text("Bau Feses : "+data_input[13].toString()),SizedBox(height:10),
-                              Text("Textur Feses : "+data_input[14].toString()),SizedBox(height:10),
-
-
-
-
+                              Text("Berat : " + data_input[6].toString()),
+                              SizedBox(height: 10),
+                              Text("Suhu : " + data_input[7].toString()),
+                              SizedBox(height: 10),
+                              Text("Denyut Nadi : " + data_input[8].toString()),
+                              SizedBox(height: 10),
+                              Text("Nafsu Makan : " + data_input[9].toString()),
+                              SizedBox(height: 10),
+                              Text("Aktif dan Tanggap : " +
+                                  data_input[10].toString()),
+                              SizedBox(height: 10),
+                              Text(
+                                  "Gerak Tubuh : " + data_input[11].toString()),
+                              SizedBox(height: 10),
+                              Text(
+                                  "Warna Feses : " + data_input[12].toString()),
+                              SizedBox(height: 10),
+                              Text("Bau Feses : " + data_input[13].toString()),
+                              SizedBox(height: 10),
+                              Text("Textur Feses : " +
+                                  data_input[14].toString()),
+                              SizedBox(height: 10),
                             ],
                           ),
                           actions: [
@@ -326,28 +355,30 @@ class _InputCheckupState extends State<InputCheckup> {
                               onPressed: () {
                                 setState(() {
                                   Navigator.of(context).pop(true);
-
                                 });
                               },
-                              child: Text("No", style: TextStyle(color: Colors.blue)),
+                              child: Text("No",
+                                  style: TextStyle(color: Colors.blue)),
                             ),
                             FlatButton(
                               onPressed: () {
                                 setState(() {
-                                  checkup.add(data_input);
-                                  Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
+                                  cekup.add(data_input);
+                                  mod.write(cekup);
+                                  Navigator.of(context).pushReplacement(
+                                      MaterialPageRoute(builder: (context) {
                                     return ProfilSapi(widget.idSapi.toString());
                                   }));
                                 });
                               },
-                              child: Text("Yes", style: TextStyle(color: Colors.blue)),
+                              child: Text("Yes",
+                                  style: TextStyle(color: Colors.blue)),
                             )
                           ],
                         );
                       }).then((value) => null);
-                  print(data_input);
-                }
-                else{
+                  // print(data_input);
+                } else {
                   showDialog(
                       context: context,
                       builder: (context) {
@@ -361,20 +392,28 @@ class _InputCheckupState extends State<InputCheckup> {
                                   Navigator.of(context).pop(true);
                                 });
                               },
-                              child: Text("Yes", style: TextStyle(color: Colors.blue)),
+                              child: Text("Yes",
+                                  style: TextStyle(color: Colors.blue)),
                             )
                           ],
                         );
                       }).then((value) => null);
                 }
-
               },
               child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                 // width: 150,
                 height: 40,
                 color: Colors.blue,
-                child: Center(child: Text("Simpan",style: TextStyle(color:Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),),
+                child: Center(
+                  child: Text(
+                    "Simpan",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20),
+                  ),
+                ),
               ),
             )
           ],
@@ -383,17 +422,6 @@ class _InputCheckupState extends State<InputCheckup> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
 
 class NafsuMakan extends StatefulWidget {
   const NafsuMakan({Key? key}) : super(key: key);
@@ -428,7 +456,10 @@ class NafsuMakanState extends State<NafsuMakan> {
           .map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
           value: value,
-          child: Text(value,style: TextStyle(fontSize: 18),),
+          child: Text(
+            value,
+            style: TextStyle(fontSize: 18),
+          ),
         );
       }).toList(),
     );
@@ -461,10 +492,12 @@ class AktifTanggap extends State<NafsuMakan> {
           .map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
           value: value,
-          child: Text(value,style: TextStyle(fontSize: 18),),
+          child: Text(
+            value,
+            style: TextStyle(fontSize: 18),
+          ),
         );
       }).toList(),
     );
   }
 }
-

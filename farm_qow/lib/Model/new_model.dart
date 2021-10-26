@@ -21,14 +21,36 @@ class NewSapiModel {
   }
 }
 
+// [
+//     "Id Checkup",
+//     "Id Sapi","tanggal checkup","bulancheckup","tahun checktup","berat","suhu tubuh",
+//     "denyut nadi","nafsu makan","aktif","gerak tubuh","warna feses","bau feses","testur feses","Diagnosa Dokter","catatan"
+//   ],
 class NewCheckUpModel {
-  static fetch2List() {
-    final jsonFile = CheckUpController().jsonToDynamic().then((result) {
-      List jsonFile = [];
-      for (var item in result) {
-        jsonFile.add(item);
-      }
-      return jsonFile;
-    });
+  List checkUpContent = [];
+  dynamic fetch2List() async {
+    List myList = await CheckUpController().jsonToDynamic();
+    for (var json in myList) {
+      this.checkUpContent.add([
+        json["idCheckUp"],
+        json["idProfilSapi"],
+        json['tglCheckUp'],
+        json['blncheckup'],
+        json['thnCheckup'],
+        json['beratSapi'],
+        json['suhuTubuh'],
+        json['denyutNadi'],
+        json['nafsuMakan'],
+        json['aktifTanggap'],
+        json['gerakTubuh'],
+        json['warnaFeses'],
+        json['bauFeses'],
+        json['teksturFeses'],
+        json['diagnosaDokter'],
+        json["catatan"]
+      ]);
+    }
+    // print(sapiContent);
+    return checkUpContent;
   }
 }

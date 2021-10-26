@@ -21,8 +21,9 @@ class ProfilSapi extends StatefulWidget {
 
 class _ProfilSapiState extends State<ProfilSapi> {
   List sapi = [];
+
   NewSapiModel newSapi = NewSapiModel();
-  var mod = Model();
+  var mod = ModelSapi();
 
   void upSapi() async {
     mod.sapis = await newSapi.fetch2List();
@@ -316,7 +317,7 @@ class _ProfilSapiState extends State<ProfilSapi> {
                 ),
                 InkWell(
                   onTap: () async {
-                    var mod = Model();
+                    var mod = ModelSapi();
                     // // mod.resetWrite();
                     // mod.resetWrite();
                     for (int i = 0; i < sapi.length; i++) {

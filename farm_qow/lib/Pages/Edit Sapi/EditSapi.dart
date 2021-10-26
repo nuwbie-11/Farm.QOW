@@ -16,7 +16,7 @@ class EditSapi extends StatefulWidget {
 class _EditSapiState extends State<EditSapi> {
   List sapi = [];
   NewSapiModel newSapi = NewSapiModel();
-  var mod = Model();
+  var mod = ModelSapi();
 
   void upSapi() async {
     mod.sapis = await newSapi.fetch2List();
@@ -159,7 +159,7 @@ class _EditSapiState extends State<EditSapi> {
                     }
 
                     // print(sapi);
-                    Model mod = Model();
+                    ModelSapi mod = ModelSapi();
                     mod.write(sapi);
                     Navigator.of(context)
                         .pushReplacement(MaterialPageRoute(builder: (context) {

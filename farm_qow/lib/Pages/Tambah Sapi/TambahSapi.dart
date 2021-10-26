@@ -14,7 +14,7 @@ class TambahSapi extends StatefulWidget {
 class _TambahSapiState extends State<TambahSapi> {
   List sapi = [];
   NewSapiModel newSapi = NewSapiModel();
-  var mod = Model();
+  var mod = ModelSapi();
   var idSapi = 0;
 
   void upSapi() async {
@@ -214,7 +214,7 @@ class _TambahSapiState extends State<TambahSapi> {
                       data_input[0] = num;
                       if (sapi.contains(data_input) == false) {
                         sapi.add(data_input);
-                        Model mod = Model();
+                        ModelSapi mod = ModelSapi();
                         mod.write(sapi);
                       }
                       ;
