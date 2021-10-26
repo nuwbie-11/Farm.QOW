@@ -1,24 +1,25 @@
 import 'package:farm_qow/Model/storage.dart';
-import 'package:farm_qow/Pages/Riwayat%20Susu/DetailSusu.dart';
+import 'package:farm_qow/Pages/Riwayat%20Susu/RiwayatSusuByBulan.dart';
 import 'package:flutter/material.dart';
-
 import '../../main.dart';
-import 'RiwayatSusuByTahun.dart';
+import 'DetailSusu.dart';
+import 'RiwayatSusu.dart';
 
-class RiwayatSusu extends StatefulWidget {
+class RiwayatSusuByTahun extends StatefulWidget {
   int idSapi;
-  RiwayatSusu(this.idSapi);
+  int tahun;
+  RiwayatSusuByTahun(this.idSapi, this.tahun);
 
   @override
-  _RiwayatSusuState createState() => _RiwayatSusuState();
+  _RiwayatSusuByTahunState createState() => _RiwayatSusuByTahunState();
 }
 
-class _RiwayatSusuState extends State<RiwayatSusu> {
+class _RiwayatSusuByTahunState extends State<RiwayatSusuByTahun> {
   @override
   Widget build(BuildContext context) {
     var dataSusu = [];
     for (int i = 0; i < susu.length; i++) {
-      if (susu[i][1] == widget.idSapi) {
+      if (susu[i][1] == widget.idSapi && susu[i][12] == widget.tahun) {
         dataSusu.add(susu[i]);
       }
     }
@@ -44,9 +45,9 @@ class _RiwayatSusuState extends State<RiwayatSusu> {
               color: Color.fromRGBO(143, 197, 255, 0.95),
               child: ListView(
                 children: [
-                  YearFilterAll(widget.idSapi),
-                  for (int i = 21; i > 16; i--)
-                    YearFilter(widget.idSapi, "20" + i.toString())
+                  MonthFilterAll(widget.idSapi, widget.tahun),
+                  for (int i = 1; i <= 12; i++)
+                    MonthFilter(widget.idSapi, i, widget.tahun)
                 ],
               ),
             ),
@@ -73,7 +74,7 @@ class _RiwayatSusuState extends State<RiwayatSusu> {
                         size: 30,
                       ),
                     ),
-                    Text('Riwayat Susu | Semua Waktu'),
+                    Text('Riwayat Susu | ' + widget.tahun.toString()),
                   ],
                 ),
               ],
@@ -94,7 +95,6 @@ class _RiwayatSusuState extends State<RiwayatSusu> {
 }
 
 class ItemSusu extends StatelessWidget {
-  // const ItemSusu({Key? key}) : super(key: key);
   int idSapi;
   int tgl;
   int bulan;
@@ -176,20 +176,21 @@ class ItemSusu extends StatelessWidget {
   }
 }
 
-class YearFilter extends StatelessWidget {
+class MonthFilter extends StatelessWidget {
   int idSapi;
-  String tahun;
-  YearFilter(this.idSapi, this.tahun);
-  // const YearFilter({Key? key}) : super(key: key);
+  int bulan;
+  int tahun;
+  MonthFilter(this.idSapi, this.bulan, this.tahun);
+  // const MonthFilter({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         Navigator.push(
-            context, Transition(RiwayatSusuByTahun(idSapi, int.parse(tahun))));
+            context, Transition(RiwayatSusuByBulan(idSapi, bulan, tahun)));
         // Navigator.of(context).push(MaterialPageRoute(builder: (context){
-        //   return RiwayatSusuByTahun(idSapi, int.parse(tahun));
+        //   return RiwayatSusuByBulan(idSapi, bulan,tahun);
         // }));
       },
       child: Container(
@@ -199,7 +200,7 @@ class YearFilter extends StatelessWidget {
         color: Colors.white,
         child: Center(
           child: Text(
-            tahun,
+            "Bulan " + bulan.toString(),
             style: TextStyle(fontSize: 26),
           ),
         ),
@@ -208,19 +209,20 @@ class YearFilter extends StatelessWidget {
   }
 }
 
-class YearFilterAll extends StatelessWidget {
+class MonthFilterAll extends StatelessWidget {
   int idSapi;
-  YearFilterAll(this.idSapi);
+  int tahun;
+
+  MonthFilterAll(this.idSapi, this.tahun);
   // const YearFilter({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context, Transition(RiwayatSusu(idSapi)));
-        // Navigator.of(context).push(MaterialPageRoute(builder: (context){
-        //   return RiwayatSusu(idSapi);
-        // }));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          return RiwayatSusuByTahun(idSapi, tahun);
+        }));
       },
       child: Container(
         margin: EdgeInsets.only(bottom: 3),
@@ -229,7 +231,7 @@ class YearFilterAll extends StatelessWidget {
         color: Colors.white,
         child: Center(
           child: Text(
-            "Semua Waktu",
+            "Semua Bulan",
             style: TextStyle(fontSize: 26),
           ),
         ),

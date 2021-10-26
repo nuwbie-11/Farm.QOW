@@ -1,27 +1,29 @@
 import 'package:farm_qow/Model/storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class DetailChecUp extends StatefulWidget {
-  int idCheckup;
-  DetailChecUp(this.idCheckup);
+class DetailSusu extends StatefulWidget {
+  // const DetailSusu({Key? key}) : super(key: key);
+  int idRiwayatSusu;
+  DetailSusu(this.idRiwayatSusu);
 
   @override
-  _DetailChecUpState createState() => _DetailChecUpState();
+  _DetailSusuState createState() => _DetailSusuState();
 }
 
-class _DetailChecUpState extends State<DetailChecUp> {
+class _DetailSusuState extends State<DetailSusu> {
   @override
   Widget build(BuildContext context) {
-    var dataCheckup;
-    for (int i = 0; i < checkup.length; i++) {
-      if (checkup[i][0] == widget.idCheckup) {
-        dataCheckup = (checkup[i]);
+    var dataSusu;
+    for (int i = 0; i < susu.length; i++) {
+      if (susu[i][0] == widget.idRiwayatSusu) {
+        dataSusu = (susu[i]);
         break;
         // break;
       }
     }
-    print(dataCheckup);
+    print("ini data susu");
+    print(dataSusu);
+    print("ini data susu");
     return MaterialApp(
       home: Container(
         decoration: BoxDecoration(
@@ -34,7 +36,6 @@ class _DetailChecUpState extends State<DetailChecUp> {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
             backgroundColor: Color.fromRGBO(143, 197, 255, 0.95),
-            elevation: 0,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
                 bottom: Radius.circular(20),
@@ -55,7 +56,7 @@ class _DetailChecUpState extends State<DetailChecUp> {
                         size: 30,
                       ),
                     ),
-                    Text('Detail Checkup'),
+                    Text('Detail Riwayat Susu'),
                   ],
                 ),
               ],
@@ -85,7 +86,7 @@ class _DetailChecUpState extends State<DetailChecUp> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    for (int i = 0; i < dataCheckup.length; i++)
+                    for (int i = 0; i < dataSusu.length; i++)
                       Column(
                         children: [
                           Row(
@@ -97,7 +98,7 @@ class _DetailChecUpState extends State<DetailChecUp> {
                                     width: 20,
                                     // color: Colors.green,
                                     child: Text(
-                                      checkup[0][i].toString(),
+                                      susu[0][i].toString(),
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 18),
@@ -108,7 +109,7 @@ class _DetailChecUpState extends State<DetailChecUp> {
                                   child: Container(
                                     // color: Colors.blue,
                                     child: Text(
-                                      ":  " + dataCheckup[i].toString(),
+                                      ":  " + dataSusu[i].toString(),
                                       style: TextStyle(fontSize: 18),
                                     ),
                                   )),

@@ -1,12 +1,11 @@
 import 'package:farm_qow/Model/storage.dart';
-import 'package:farm_qow/Pages/MainPage/Halaman%20Susu/HalamanSusu.dart';
 import 'package:farm_qow/Pages/MainPage/MainPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 var data_input_susu = [
-  "id sapi",
-  "",
+  "id susu",
+  sapi[0][0],
   "",
   "A+",
   "",
@@ -20,15 +19,12 @@ var data_input_susu = [
   DateTime.now().year,
 ];
 
-class InputSusu extends StatefulWidget {
-  int idSapi;
-  InputSusu(this.idSapi);
-
+class InputSusuById extends StatefulWidget {
   @override
-  State<InputSusu> createState() => _InputSusuState();
+  State<InputSusuById> createState() => _InputSusuByIdState();
 }
 
-class _InputSusuState extends State<InputSusu> {
+class _InputSusuByIdState extends State<InputSusuById> {
   TextEditingController jumlahSusuInput = new TextEditingController();
   TextEditingController fatInput = new TextEditingController();
   TextEditingController snfInput = new TextEditingController();
@@ -39,8 +35,6 @@ class _InputSusuState extends State<InputSusu> {
 
   @override
   Widget build(BuildContext context) {
-    data_input_susu[1] = widget.idSapi;
-
     return MaterialApp(
       home: Container(
         decoration: BoxDecoration(
@@ -99,17 +93,22 @@ class _InputSusuState extends State<InputSusu> {
                 Card(
                   margin: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
                   child: Container(
-                    height: 40,
+                    // height: 40,
                     padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "nomor sapi : " + widget.idSapi.toString(),
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ],
-                    ),
+
+                    child: Padding(
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Id Sapi",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            IdSapiInput(),
+                          ],
+                        )),
                   ),
                 ),
                 Padding(
@@ -219,7 +218,10 @@ class _InputSusuState extends State<InputSusu> {
                 ),
                 InkWell(
                   onTap: () {
-                    data_input_susu[1] = widget.idSapi;
+                    var lastIdSusu = susu[susu.length - 1][0];
+                    int idSusu = int.parse(lastIdSusu.toString());
+                    idSusu += 1;
+                    data_input_susu[0] = idSusu;
                     bool isValidate = true;
                     for (int i = 0; i < data_input_susu.length - 1; i++) {
                       print(data_input_susu[i]);
@@ -228,10 +230,7 @@ class _InputSusuState extends State<InputSusu> {
                       }
                     }
                     if (isValidate == true) {
-                      var lastIdSusu = susu[susu.length - 1][0];
-                      int idCheckup = int.parse(lastIdSusu.toString());
-                      idCheckup += 1;
-                      data_input_susu[0] = idCheckup;
+                      print(data_input_susu[0]);
 
                       if (double.parse(data_input_susu[4].toString()) >= 4 &&
                           double.parse(data_input_susu[5].toString()) >= 7.8 &&
@@ -321,14 +320,13 @@ class _InputSusuState extends State<InputSusu> {
                                 ),
                                 FlatButton(
                                   onPressed: () {
-                                    setState(() {
-                                      susu.add(data_input_susu);
-                                    });
-                                    print("result");
+                                    susu.add(data_input_susu);
+
+                                    print("result susu");
                                     for (int i = 0; i < susu.length; i++) {
                                       print(susu[i]);
                                     }
-                                    print("result");
+                                    print("result susu");
                                     data_input_susu = [
                                       "id sapi",
                                       sapi[0][0],
@@ -399,6 +397,58 @@ class _InputSusuState extends State<InputSusu> {
           ),
         ),
       ),
+    );
+  }
+}
+
+class IdSapiInput extends StatefulWidget {
+  // const IdSapiInput({Key? key}) : super(key: key);
+
+  @override
+  State<IdSapiInput> createState() => IdSapiInputState();
+}
+
+/// This is the private State class that goes with IdSapiInput.
+class IdSapiInputState extends State<IdSapiInput> {
+  String dropdownValue = sapi[0][0].toString();
+
+  @override
+  Widget build(BuildContext context) {
+    var listIdSapi = [];
+    for (int i = 0; i < sapi.length; i++) {
+      listIdSapi.add(sapi[i][0].toString());
+    }
+    // print(listIdSapi);
+
+    return DropdownButton<String>(
+      value: dropdownValue,
+      iconSize: 24,
+      elevation: 2,
+      style: const TextStyle(color: Colors.black),
+      underline: Container(
+        height: 2,
+        color: Colors.deepPurpleAccent,
+      ),
+      onChanged: (String? newValue) {
+        setState(() {
+          // print(newValue);
+          data_input_susu[1] = int.parse(newValue.toString());
+          dropdownValue = newValue.toString();
+        });
+      },
+      items: <String>[
+        for (int i = 0; i < sapi.length; i++) sapi[i][0].toString(),
+
+        // sapi[0][0].toString(),sapi[1][0].toString(),sapi[2][0].toString()
+      ].map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(
+            value,
+            style: TextStyle(fontSize: 18),
+          ),
+        );
+      }).toList(),
     );
   }
 }

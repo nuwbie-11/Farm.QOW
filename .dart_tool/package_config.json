@@ -2,6 +2,12 @@
   "configVersion": 2,
   "packages": [
     {
+      "name": "animated_text_kit",
+      "rootUri": "file:///C:/Users/intel/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/animated_text_kit-4.2.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "async",
       "rootUri": "file:///C:/Users/intel/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/async-2.8.1",
       "packageUri": "lib/",
@@ -81,9 +87,9 @@
     },
     {
       "name": "intl",
-      "rootUri": "file:///C:/Users/intel/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/intl-0.15.7",
+      "rootUri": "file:///C:/Users/intel/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/intl-0.17.0",
       "packageUri": "lib/",
-      "languageVersion": "2.0"
+      "languageVersion": "2.12"
     },
     {
       "name": "lints",
@@ -194,7 +200,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2021-10-23T01:33:55.907091Z",
+  "generated": "2021-10-26T11:04:50.657938Z",
   "generator": "pub",
   "generatorVersion": "2.14.0"
 }

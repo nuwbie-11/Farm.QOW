@@ -2,9 +2,12 @@
 
 import 'package:farm_qow/Model/model.dart';
 import 'package:farm_qow/Model/new_model.dart';
+import 'package:farm_qow/Model/storage.dart';
 import 'package:farm_qow/Pages/CheckUp/CheckupByYear.dart';
 import 'package:farm_qow/Pages/CheckUp/DetailCheckUp.dart';
 import 'package:flutter/material.dart';
+
+import '../../main.dart';
 
 class CheckUp extends StatefulWidget {
   int idSapi;
@@ -15,14 +18,14 @@ class CheckUp extends StatefulWidget {
 }
 
 class _CheckUpState extends State<CheckUp> {
-  List cekup = [];
-  NewCheckUpModel newCekup = NewCheckUpModel();
+  List checkup = [];
+  NewCheckUpModel newcheckup = NewCheckUpModel();
   var mod = ModelCheckUp();
 
   void upCheckUp() async {
-    mod.cekups = await newCekup.fetch2List();
+    mod.cekups = await newcheckup.fetch2List();
     setState(() {
-      cekup = mod.cekups;
+      checkup = mod.cekups;
     });
   }
 
@@ -36,9 +39,9 @@ class _CheckUpState extends State<CheckUp> {
   @override
   Widget build(BuildContext context) {
     var dataCheckup = [];
-    for (int i = 0; i < cekup.length; i++) {
-      if (cekup[i][1] == widget.idSapi) {
-        dataCheckup.add(cekup[i]);
+    for (int i = 0; i < checkup.length; i++) {
+      if (checkup[i][1] == widget.idSapi) {
+        dataCheckup.add(checkup[i]);
       }
     }
     return MaterialApp(
@@ -139,9 +142,10 @@ class ItemCheckup extends StatelessWidget {
     return Builder(builder: (context) {
       return InkWell(
         onTap: () {
-          Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-            return DetailChecUp(idCheckup);
-          }));
+          Navigator.push(context, Transition(DetailChecUp(idCheckup)));
+          // Navigator.of(context).push(MaterialPageRoute(builder: (context){
+          //   return DetailChecUp(idCheckup);
+          // }));
         },
         child: Container(
           margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
@@ -210,9 +214,11 @@ class YearFilter extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-          return CheckUpByYear(idSapi, int.parse(tahun));
-        }));
+        Navigator.push(
+            context, Transition(CheckUpByYear(idSapi, int.parse(tahun))));
+        // Navigator.of(context).push(MaterialPageRoute(builder: (context){
+        //   return CheckUpByYear(idSapi, int.parse(tahun));
+        // }));
       },
       child: Container(
         margin: EdgeInsets.only(bottom: 3),
@@ -239,9 +245,10 @@ class YearFilterAll extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-          return CheckUp(idSapi);
-        }));
+        Navigator.push(context, Transition(CheckUp(idSapi)));
+        // Navigator.of(context).push(MaterialPageRoute(builder: (context){
+        //   return CheckUp(idSapi);
+        // }));
       },
       child: Container(
         margin: EdgeInsets.only(bottom: 3),
