@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:farm_qow/Model/model.dart';
+import 'package:farm_qow/Model/new_model.dart';
 import 'package:farm_qow/Pages/Halaman%20Susu/HalamanSusu.dart';
 import 'package:farm_qow/Pages/Profil%20Sapi/profilSapi.dart';
 import 'package:farm_qow/Pages/SearchHalamanSapi/SearchHalamanSapi.dart';
@@ -18,6 +19,30 @@ class HalamanDataSapi extends StatefulWidget {
 }
 
 class _HalamanDataSapiState extends State<HalamanDataSapi> {
+  // Model mod = Model();
+  List sapi = [];
+  NewSapiModel newSapi = NewSapiModel();
+  var mod = Model();
+
+  Future refreshData() async {
+    sapi.clear();
+    await Future.delayed(Duration(seconds: 2));
+    upSapi();
+  }
+
+  void upSapi() async {
+    mod.sapis = await newSapi.fetch2List();
+    setState(() {
+      sapi = mod.sapis;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    upSapi();
+  }
+
   @override
   Widget build(BuildContext context) {
     var dataSapi = [];
@@ -256,19 +281,22 @@ class _HalamanDataSapiState extends State<HalamanDataSapi> {
               );
             }),
           ),
-          body: ListView(
-            children: [
-              SizedBox(
-                height: 20,
-              ),
-              for (int i = dataSapi.length - 1; i > -1; i--)
-                // Text(sapi[i][0].toString()),
-                ItemDataSapi(
-                    dataSapi[i][0].toString(),
-                    dataSapi[i][1].toString(),
-                    dataSapi[i][2].toString(),
-                    dataSapi[i][3].toString()),
-            ],
+          body: RefreshIndicator(
+            onRefresh: refreshData,
+            child: ListView(
+              children: [
+                SizedBox(
+                  height: 20,
+                ),
+                for (int i = dataSapi.length - 1; i > -1; i--)
+                  // Text(sapi[i][0].toString()),
+                  ItemDataSapi(
+                      dataSapi[i][0].toString(),
+                      dataSapi[i][1].toString(),
+                      dataSapi[i][2].toString(),
+                      dataSapi[i][3].toString()),
+              ],
+            ),
           ),
         ),
       ),

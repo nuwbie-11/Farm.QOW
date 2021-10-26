@@ -1,3 +1,7 @@
+import 'package:farm_qow/Controller/sapi_controller.dart';
+import 'package:farm_qow/Model/new_model.dart';
+import 'package:farm_qow/Model/sapi_model.dart';
+
 var sapi = [
   [1, "Yusrian", "17-07-2020", "17-07-2020", "Sehat", "sapi jersey"],
   [2, "Hilmi", "20-10-2020", "20-10-2020", "Kurang Sehat", "sapi Perah"],
@@ -61,3 +65,253 @@ var susu = [
   [19, 2, 13, "A", 5, 8.4, 3.2, 6, 11.2, 4, 3, 2, 2021],
   [20, 3, 13, "C", 2, 5, 1, 3.89, 9.99, 2, 3, 2, 2021],
 ];
+
+var cekup = [
+  [
+    "Id Checkup",
+    "Id Sapi",
+    "tanggal checkup",
+    "bulancheckup",
+    "tahun checktup",
+    "berat",
+    "suhu tubuh",
+    "denyut nadi",
+    "nafsu makan",
+    "aktif",
+    "gerak tubuh",
+    "warna feses",
+    "bau feses",
+    "testur feses",
+    "Diagnosa Dokter",
+    "catatan"
+  ],
+  [
+    1,
+    1,
+    11,
+    1,
+    2020,
+    500,
+    38,
+    60,
+    "Baik",
+    "Tanggap",
+    "normal",
+    "HijauPucat",
+    "busuk",
+    "SangatKasar",
+    "Sehat",
+    "Bisakosong"
+  ],
+  [
+    2,
+    1,
+    12,
+    1,
+    2020,
+    600,
+    39,
+    60,
+    "Cukup",
+    "Cukup",
+    "pincang",
+    "HijauPekat",
+    "tidakberbautanah",
+    "Kasar",
+    "Tidak Sehat",
+    "tidakada"
+  ],
+  [
+    3,
+    2,
+    11,
+    2,
+    2020,
+    500,
+    38,
+    62,
+    "Kurang",
+    "kurangtanggap",
+    "Tidak Bisa Berdiri",
+    "Coklat",
+    "agakberbautanah",
+    "Agakhalus",
+    "Sehat",
+    "tidakada"
+  ],
+  [
+    4,
+    2,
+    12,
+    2,
+    2020,
+    500,
+    39,
+    63,
+    "Baik",
+    "Tanggap",
+    "normal",
+    "Coklatkehitaman",
+    "berbautanah",
+    "halus",
+    "Sehat",
+    "Bisakosong"
+  ],
+  [
+    5,
+    2,
+    13,
+    2,
+    2020,
+    500,
+    39,
+    64,
+    "Cukup",
+    "Cukup",
+    "pincang",
+    "Hitam",
+    "sangatberbautanah",
+    "sangatHalus",
+    "Sehat",
+    "tidakada"
+  ],
+  [
+    6,
+    3,
+    1,
+    3,
+    2021,
+    500,
+    38,
+    65,
+    "Kurang",
+    "kurangtanggap",
+    "Tidak Bisa Berdiri",
+    "HijauPucat",
+    "busuk",
+    "SangatKasar",
+    "Sehat",
+    "tidakada"
+  ],
+  [
+    7,
+    4,
+    1,
+    3,
+    2021,
+    500,
+    38,
+    66,
+    "Baik",
+    "Tanggap",
+    "normal",
+    "HijauPekat",
+    "tidakberbautanah",
+    "Kasar",
+    "Sehat",
+    "Bisakosong"
+  ],
+  [
+    8,
+    5,
+    2,
+    3,
+    2021,
+    500,
+    38,
+    67,
+    "Cukup",
+    "Cukup",
+    "pincang",
+    "Coklat",
+    "agakberbautanah",
+    "Agakhalus",
+    "Tidak Sehat",
+    "tidakada"
+  ],
+  [
+    9,
+    6,
+    4,
+    4,
+    2021,
+    500,
+    38.5,
+    68,
+    "Kurang",
+    "kurangtanggap",
+    "Tidak Bisa Berdiri",
+    "Coklatkehitaman",
+    "berbautanah",
+    "halus",
+    "Sehat",
+    "tidakada"
+  ],
+  [
+    10,
+    6,
+    5,
+    4,
+    2021,
+    500,
+    38.2,
+    69,
+    "baik",
+    "Tanggap",
+    "normal",
+    "Hitam",
+    "sangatberbautanah",
+    "sangatHalus",
+    "Sehat",
+    "Bisakosong"
+  ],
+];
+
+class Model {
+  List _sapis = [];
+  NewSapiModel newSapi = NewSapiModel();
+
+  List get sapis => _sapis;
+
+  set sapis(List value) {
+    _sapis = value;
+  }
+
+  Future<List> fetch2List() async {
+    return await newSapi.fetch2List();
+  }
+
+  void resetWrite() {
+    List<Map<String, dynamic>> items = [];
+    Map<String, dynamic> map;
+    for (var item in sapi) {
+      Sapi saps = Sapi(
+          idSapi: int.parse(item[0].toString()),
+          nama: item[1].toString(),
+          tglDatang: item[2].toString(),
+          tglLahir: item[3].toString(),
+          jenisSapi: item[5].toString());
+      items.add(saps.toJson());
+    }
+    // print(items);
+    SapiController sapiC = SapiController();
+    sapiC.writeJson(items);
+  }
+
+  void write(currentSapi) {
+    List<Map<String, dynamic>> items = [];
+    Map<String, dynamic> map;
+    for (var item in currentSapi) {
+      Sapi saps = Sapi(
+          idSapi: int.parse(item[0].toString()),
+          nama: item[1].toString(),
+          tglDatang: item[2].toString(),
+          tglLahir: item[3].toString(),
+          jenisSapi: item[4].toString());
+      items.add(saps.toJson());
+    }
+    // print(items);
+    SapiController sapiC = SapiController();
+    sapiC.writeJson(items);
+  }
+}

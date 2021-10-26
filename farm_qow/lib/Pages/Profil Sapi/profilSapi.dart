@@ -1,13 +1,14 @@
 // ignore_for_file: file_names
 
 import 'package:farm_qow/Model/model.dart';
+import 'package:farm_qow/Model/new_model.dart';
 import 'package:farm_qow/Pages/CheckUp/CheckUp.dart';
 import 'package:farm_qow/Pages/Data%20Sapi/dataSapi.dart';
 import 'package:farm_qow/Pages/Edit%20Sapi/EditSapi.dart';
 import 'package:farm_qow/Pages/Input%20Checkup/inputCheckup.dart';
 import 'package:flutter/material.dart';
 
-class ProfilSapi extends StatelessWidget {
+class ProfilSapi extends StatefulWidget {
   String idSapi;
   // String namaSapi;
   // String tglLahirSapi;
@@ -15,12 +16,34 @@ class ProfilSapi extends StatelessWidget {
   ProfilSapi(this.idSapi);
 
   @override
+  State<ProfilSapi> createState() => _ProfilSapiState();
+}
+
+class _ProfilSapiState extends State<ProfilSapi> {
+  List sapi = [];
+  NewSapiModel newSapi = NewSapiModel();
+  var mod = Model();
+
+  void upSapi() async {
+    mod.sapis = await newSapi.fetch2List();
+    setState(() {
+      sapi = mod.sapis;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    upSapi();
+  }
+
+  @override
   Widget build(BuildContext context) {
     var profilSapi;
-    var intIdSapi = int.parse(idSapi);
+    var intIdSapi = int.parse(widget.idSapi);
     for (int i = 0; i < sapi.length; i++) {
       print(sapi[i][0]);
-      print(idSapi);
+      print(widget.idSapi);
       if (sapi[i][0] == intIdSapi) {
         profilSapi = sapi[i];
         break;
@@ -32,8 +55,8 @@ class ProfilSapi extends StatelessWidget {
     String namaSapi = profilSapi[1];
     String tglLahirSapi = profilSapi[2];
     String tglDatangSapi = profilSapi[3];
-    String kesehatanSapi = profilSapi[4];
-    String jenisSapi = profilSapi[5];
+    String kesehatanSapi = "Sehat";
+    String jenisSapi = profilSapi[4];
     return MaterialApp(
         home: Scaffold(
       appBar: AppBar(
@@ -90,7 +113,7 @@ class ProfilSapi extends StatelessWidget {
                           width: 20,
                         ),
                         Text(
-                          "#" + idSapi.toString(),
+                          "#" + widget.idSapi.toString(),
                           style: TextStyle(fontSize: 25),
                         ),
                       ],
@@ -292,13 +315,17 @@ class ProfilSapi extends StatelessWidget {
                   height: 40,
                 ),
                 InkWell(
-                  onTap: () {
+                  onTap: () async {
+                    var mod = Model();
+                    // // mod.resetWrite();
+                    // mod.resetWrite();
                     for (int i = 0; i < sapi.length; i++) {
                       if (sapi[i][0] == intIdSapi) {
                         sapi.removeAt(i);
+                        mod.write(sapi);
                         Navigator.of(context).pushReplacement(
                             MaterialPageRoute(builder: (context) {
-                          return HalamanDataSapi("A");
+                          return HalamanDataSapi("");
                         }));
                         break;
                       }

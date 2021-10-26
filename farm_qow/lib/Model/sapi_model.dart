@@ -26,9 +26,7 @@ class Sapi {
         "nama": nama,
         "tglDatang": tglDatang,
         "tglLahir": tglLahir,
+        "kesehatanSapi": "sehat",
         "jenisSapi": jenisSapi
       };
-
-
-  
 }

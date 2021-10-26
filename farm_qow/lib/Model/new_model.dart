@@ -2,6 +2,7 @@ import 'package:farm_qow/Controller/checkup_controller.dart';
 import 'package:farm_qow/Controller/sapi_controller.dart';
 
 class NewSapiModel {
+  // [1, "Yusrian", "17-07-2020", "17-07-2020", "Sehat", "sapi jersey"],
   List sapiContent = [];
 
   dynamic fetch2List() async {
@@ -15,11 +16,12 @@ class NewSapiModel {
         item["jenisSapi"]
       ]);
     }
+    // print(sapiContent);
     return sapiContent;
   }
 }
 
-class NewControllerModel {
+class NewCheckUpModel {
   static fetch2List() {
     final jsonFile = CheckUpController().jsonToDynamic().then((result) {
       List jsonFile = [];

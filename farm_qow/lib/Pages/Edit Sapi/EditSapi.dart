@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:farm_qow/Model/model.dart';
+import 'package:farm_qow/Model/new_model.dart';
 import 'package:farm_qow/Pages/Data%20Sapi/dataSapi.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,23 @@ class EditSapi extends StatefulWidget {
 }
 
 class _EditSapiState extends State<EditSapi> {
+  List sapi = [];
+  NewSapiModel newSapi = NewSapiModel();
+  var mod = Model();
+
+  void upSapi() async {
+    mod.sapis = await newSapi.fetch2List();
+    setState(() {
+      sapi = mod.sapis;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    upSapi();
+  }
+
   TextEditingController namaInput = new TextEditingController();
   TextEditingController jenisInput = new TextEditingController();
 
@@ -134,14 +152,18 @@ class _EditSapiState extends State<EditSapi> {
                       sapi[i][1] = namaSapiBaru;
                     }
                     if (jenisSapiBaru != "") {
-                      sapi[i][5] = jenisSapiBaru;
+                      sapi[i][4] = jenisSapiBaru;
                     }
                     if (stringTanggalDatang != "") {
                       sapi[i][3] = stringTanggalDatang;
                     }
+
+                    // print(sapi);
+                    Model mod = Model();
+                    mod.write(sapi);
                     Navigator.of(context)
                         .pushReplacement(MaterialPageRoute(builder: (context) {
-                      return HalamanDataSapi("A");
+                      return HalamanDataSapi("");
                     }));
                     break;
                   }
