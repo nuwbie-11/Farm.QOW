@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 
+import 'package:farm_qow/Controller/sapi_controller.dart';
 import 'package:farm_qow/Model/model.dart';
-import 'package:farm_qow/Model/new_model.dart';
 import 'package:farm_qow/Model/storage.dart';
 import 'package:farm_qow/Pages/MainPage/Data%20Sapi/dataSapi.dart';
 import 'package:farm_qow/Pages/MainPage/MainPage.dart';
@@ -17,11 +17,10 @@ class EditSapi extends StatefulWidget {
 
 class _EditSapiState extends State<EditSapi> {
   List sapi = [];
-  NewSapiModel newSapi = NewSapiModel();
   var mod = ModelSapi();
 
   void upSapi() async {
-    mod.sapis = await newSapi.fetch2List();
+    mod.sapis = await SapiController().fetch2List();
     setState(() {
       sapi = mod.sapis;
     });

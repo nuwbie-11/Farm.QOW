@@ -1,13 +1,17 @@
+import 'dart:ffi';
+
 import 'package:farm_qow/Controller/checkup_controller.dart';
 import 'package:farm_qow/Controller/sapi_controller.dart';
+import 'package:farm_qow/Controller/susu_controller.dart';
 import 'package:farm_qow/Model/checkup_model.dart';
-import 'package:farm_qow/Model/new_model.dart';
 import 'package:farm_qow/Model/sapi_model.dart';
 import 'package:farm_qow/Model/storage.dart';
+import 'package:farm_qow/Model/susu_model.dart';
+
+import 'storage.dart';
 
 class ModelSapi {
   List _sapis = [];
-  NewSapiModel newSapi = NewSapiModel();
 
   List get sapis => _sapis;
 
@@ -16,7 +20,7 @@ class ModelSapi {
   }
 
   Future<List> fetch2List() async {
-    return await newSapi.fetch2List();
+    return await SapiController().fetch2List();
   }
 
   void resetWrite() {
@@ -74,7 +78,6 @@ class ModelCheckUp {
     "catatan"
   ];
   List _cekups = [];
-  NewCheckUpModel newCheckUp = NewCheckUpModel();
 
   List get cekups => _cekups;
 
@@ -83,7 +86,7 @@ class ModelCheckUp {
   }
 
   Future<List> fetch2List() async {
-    return await newCheckUp.fetch2List();
+    return await CheckUpController().fetch2List();
   }
 
   void resetWrite() {
@@ -141,5 +144,71 @@ class ModelCheckUp {
     // print(items);
     CheckUpController checkupC = CheckUpController();
     checkupC.writeJson(items);
+  }
+}
+
+class ModelSusu {
+  List _susus = [];
+
+  List get susus => _susus;
+
+  set susus(List value) {
+    _susus = value;
+  }
+
+  Future<List> fetch2List() async {
+    return await SusuController().fetch2List();
+  }
+
+  void resetWrite() {
+    List<Map<String, dynamic>> items = [];
+    Map<String, dynamic> map;
+    for (var item in susu) {
+      Susu sus = Susu(
+          idSusu: int.parse(item[0].toString()),
+          idProfilSapi: int.parse(item[1].toString()),
+          jumlahSusu: int.parse(item[2].toString()),
+          grade: (item[3].toString()),
+          fat: double.parse(item[4].toString()),
+          snf: double.parse(item[5].toString()),
+          density: double.parse(item[6].toString()),
+          lactose: double.parse(item[7].toString()),
+          solids: double.parse(item[8].toString()),
+          protein: double.parse(item[9].toString()),
+          tgl: int.parse(item[10].toString()),
+          bln: int.parse(item[11].toString()),
+          thn: int.parse(item[12].toString()));
+      items.add(sus.toJson());
+    }
+    // print(items);
+    SusuController susuC = SusuController();
+    susuC.writeJson(items);
+  }
+
+  void write(current) {
+    List<Map<String, dynamic>> items = [];
+    Map<String, dynamic> map;
+    for (var item in current) {
+      print(item);
+      Susu sus = Susu(
+          idSusu: int.parse(item[0].toString()),
+          idProfilSapi: int.parse(item[1].toString()),
+          jumlahSusu: int.parse(item[2].toString()),
+          grade: (item[3].toString()),
+          fat: double.parse(item[4].toString()),
+          snf: double.parse(item[5].toString()),
+          density: double.parse(item[6].toString()),
+          lactose: double.parse(item[7].toString()),
+          solids: double.parse(item[8].toString()),
+          protein: double.parse(item[9].toString()),
+          tgl: int.parse(item[10].toString()),
+          bln: int.parse(item[11].toString()),
+          thn: int.parse(item[12].toString()));
+
+      items.add(sus.toJson());
+    }
+    // print(items);
+    SusuController susuC = SusuController();
+    susuC.writeJson(items);
   }
 }

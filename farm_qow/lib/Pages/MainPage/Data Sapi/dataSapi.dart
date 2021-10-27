@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
+import 'package:farm_qow/Controller/checkup_controller.dart';
+import 'package:farm_qow/Controller/sapi_controller.dart';
 import 'package:farm_qow/Model/model.dart';
-import 'package:farm_qow/Model/new_model.dart';
 import 'package:farm_qow/Model/storage.dart';
 
 import 'package:farm_qow/Pages/Profil%20Sapi/profilSapi.dart';
@@ -19,26 +20,30 @@ class HalamanDataSapi extends StatefulWidget {
 class _HalamanDataSapiState extends State<HalamanDataSapi> {
   // Model mod = Model();
   List sapi = [];
-  NewSapiModel newSapi = NewSapiModel();
   var mod = ModelSapi();
+
+  List checkup = [];
+  var modC = ModelCheckUp();
 
   Future refreshData() async {
     sapi.clear();
     await Future.delayed(Duration(seconds: 2));
-    upSapi();
+    upContent();
   }
 
-  void upSapi() async {
-    mod.sapis = await newSapi.fetch2List();
+  void upContent() async {
+    mod.sapis = await SapiController().fetch2List();
+    modC.cekups = await CheckUpController().fetch2List();
     setState(() {
       sapi = mod.sapis;
+      checkup = modC.cekups;
     });
   }
 
   @override
   void initState() {
     super.initState();
-    upSapi();
+    upContent();
   }
 
   @override

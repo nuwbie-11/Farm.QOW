@@ -1,4 +1,9 @@
+// ignore_for_file: file_names
+
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:farm_qow/Controller/sapi_controller.dart';
+import 'package:farm_qow/Controller/susu_controller.dart';
+import 'package:farm_qow/Model/model.dart';
 import 'package:farm_qow/Model/storage.dart';
 import '../../Input Susu/InputSusu.dart';
 import 'package:farm_qow/Pages/Input%20Susu/InputSusuById.dart';
@@ -12,6 +17,34 @@ class HalamanSusu extends StatefulWidget {
 }
 
 class _HalamanSusuState extends State<HalamanSusu> {
+  List sapi = [];
+  var mod = ModelSapi();
+
+  List susu = [];
+  var modS = ModelSusu();
+
+  Future refreshData() async {
+    sapi.clear();
+    await Future.delayed(Duration(seconds: 2));
+    upContent();
+  }
+
+  void upContent() async {
+    modS.susus = await SusuController().fetch2List();
+    mod.sapis = await SapiController().fetch2List();
+    setState(() {
+      sapi = mod.sapis;
+      susu = modS.susus;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    upContent();
+    // modS.resetWrite();
+  }
+
   @override
   Widget build(BuildContext context) {
     var dataSapi = [];
