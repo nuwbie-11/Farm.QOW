@@ -1,4 +1,4 @@
-import 'package:farm_qow/Model/storage.dart';
+import 'package:farm_qow/Model/model.dart';
 import 'package:farm_qow/Pages/Riwayat%20Susu/DetailSusu.dart';
 import 'package:flutter/material.dart';
 
@@ -17,13 +17,13 @@ class _RiwayatSusuState extends State<RiwayatSusu> {
   @override
   Widget build(BuildContext context) {
     var dataSusu = [];
-    for (int i = 0; i < susu.length; i++) {
-      if (susu[i][1] == widget.idSapi) {
+    for(int i=0; i<susu.length;i++){
+      if(susu[i][1] == widget.idSapi){
         dataSusu.add(susu[i]);
       }
     }
     print("result");
-    for (int i = 0; i < dataSusu.length; i++) {
+    for(int i=0; i<dataSusu.length; i++){
       print(dataSusu[i]);
     }
     print("result");
@@ -31,10 +31,10 @@ class _RiwayatSusuState extends State<RiwayatSusu> {
       home: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage(
-                  "assets/bg/bg5.jpg",
-                ),
-                fit: BoxFit.cover)),
+                image: AssetImage("assets/bg/bg5.jpg",),
+                fit: BoxFit.cover
+            )
+        ),
         child: Scaffold(
           backgroundColor: Colors.transparent,
           endDrawer: Drawer(
@@ -44,9 +44,10 @@ class _RiwayatSusuState extends State<RiwayatSusu> {
               color: Color.fromRGBO(143, 197, 255, 0.95),
               child: ListView(
                 children: [
+
                   YearFilterAll(widget.idSapi),
-                  for (int i = 21; i > 16; i--)
-                    YearFilter(widget.idSapi, "20" + i.toString())
+                  for(int i=21;i>16;i--)
+                    YearFilter(widget.idSapi,"20"+i.toString())
                 ],
               ),
             ),
@@ -58,32 +59,31 @@ class _RiwayatSusuState extends State<RiwayatSusu> {
                 bottom: Radius.circular(20),
               ),
             ),
+
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
                     IconButton(
-                      onPressed: () {
+                      onPressed: (){
                         Navigator.pop(context, true);
                       },
-                      icon: Icon(
-                        Icons.arrow_back,
-                        color: Colors.white,
-                        size: 30,
-                      ),
+                      icon: Icon(Icons.arrow_back,color:Colors.white,size: 30,),
                     ),
+
                     Text('Riwayat Susu | Semua Waktu'),
                   ],
                 ),
               ],
             ),
           ),
+
           body: ListView(
             children: [
-              for (int i = dataSusu.length - 1; i > -1; i--)
-                ItemSusu(widget.idSapi, dataSusu[i][10], dataSusu[i][11],
-                    dataSusu[i][12], dataSusu[i][3], dataSusu[i][0])
+
+              for(int i=dataSusu.length-1;i>-1;i--)
+                ItemSusu(widget.idSapi,dataSusu[i][10],dataSusu[i][11],dataSusu[i][12],dataSusu[i][3],dataSusu[i][0])
               // ItemCheckup('2', "3", "20021")
             ],
           ),
@@ -92,6 +92,9 @@ class _RiwayatSusuState extends State<RiwayatSusu> {
     );
   }
 }
+
+
+
 
 class ItemSusu extends StatelessWidget {
   // const ItemSusu({Key? key}) : super(key: key);
@@ -102,92 +105,84 @@ class ItemSusu extends StatelessWidget {
   String gradeSusu;
   int idRiwayatSusu;
 
-  ItemSusu(this.idSapi, this.tgl, this.bulan, this.tahun, this.gradeSusu,
-      this.idRiwayatSusu);
+  ItemSusu(this.idSapi,this.tgl,this.bulan,this.tahun,this.gradeSusu,this.idRiwayatSusu);
 
   @override
   Widget build(BuildContext context) {
     var bgGrade;
-    if (gradeSusu == "A") {
+    if(gradeSusu == "A"){
       bgGrade = Colors.green[300];
-    } else if (gradeSusu == "B" || gradeSusu == "B+") {
+    }
+    else if(gradeSusu == "B" || gradeSusu == "B+"){
       bgGrade = Colors.blue;
-    } else if (gradeSusu == "B-") {
+    }
+    else if(gradeSusu == "B-"){
       bgGrade = Colors.orangeAccent;
-    } else {
+    }
+    else{
       bgGrade = Colors.redAccent;
     }
-    return Builder(builder: (context) {
+    return Builder(builder: (context){
       return InkWell(
-        onTap: () {
+        onTap: (){
           Navigator.push(context, Transition(DetailSusu(idRiwayatSusu)));
           // Navigator.of(context).push(MaterialPageRoute(builder: (context){
           //   return DetailSusu(idRiwayatSusu);
           // }));
         },
         child: Container(
-            margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-            padding: EdgeInsets.all(10),
-            width: double.infinity,
-            height: 70,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(15),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 5,
-                  blurRadius: 7,
-                  offset: Offset(0, 3), // changes position of shadow
+          margin: const EdgeInsets.symmetric(vertical: 5,horizontal: 10),
+          padding: EdgeInsets.all(10),
+          width: double.infinity,
+          height: 70,
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(15),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(0, 3), // changes position of shadow
+              ),
+            ],
+          ),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(tgl.toString()+"/".toString()+bulan.toString()+"/"+tahun.toString(),style: TextStyle(fontSize: 22),),
+              Container(
+                width: 100,
+                height: 200,
+                decoration: BoxDecoration(
+                    color: bgGrade,
+                    borderRadius: BorderRadius.circular(10)
                 ),
-              ],
-            ),
-            child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    tgl.toString() +
-                        "/".toString() +
-                        bulan.toString() +
-                        "/" +
-                        tahun.toString(),
-                    style: TextStyle(fontSize: 22),
-                  ),
-                  Container(
-                    width: 100,
-                    height: 200,
-                    decoration: BoxDecoration(
-                        color: bgGrade,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Center(
-                      child: Text(
-                        gradeSusu,
-                        style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white),
-                      ),
-                    ),
-                  ),
-                ])),
+
+                child: Center(child: Text(gradeSusu,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),),),
+
+          ),]
+      )),
       );
     });
   }
 }
 
+
+
+
 class YearFilter extends StatelessWidget {
   int idSapi;
   String tahun;
-  YearFilter(this.idSapi, this.tahun);
+  YearFilter(this.idSapi,this.tahun);
   // const YearFilter({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.push(
-            context, Transition(RiwayatSusuByTahun(idSapi, int.parse(tahun))));
+      onTap: (){
+        Navigator.push(context, Transition(RiwayatSusuByTahun(idSapi, int.parse(tahun))));
         // Navigator.of(context).push(MaterialPageRoute(builder: (context){
         //   return RiwayatSusuByTahun(idSapi, int.parse(tahun));
         // }));
@@ -197,16 +192,13 @@ class YearFilter extends StatelessWidget {
         width: double.infinity,
         height: 60,
         color: Colors.white,
-        child: Center(
-          child: Text(
-            tahun,
-            style: TextStyle(fontSize: 26),
-          ),
-        ),
+        child: Center(child: Text(tahun,style: TextStyle(fontSize: 26),),),
       ),
     );
   }
 }
+
+
 
 class YearFilterAll extends StatelessWidget {
   int idSapi;
@@ -216,7 +208,7 @@ class YearFilterAll extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
+      onTap: (){
         Navigator.push(context, Transition(RiwayatSusu(idSapi)));
         // Navigator.of(context).push(MaterialPageRoute(builder: (context){
         //   return RiwayatSusu(idSapi);
@@ -227,13 +219,9 @@ class YearFilterAll extends StatelessWidget {
         width: double.infinity,
         height: 60,
         color: Colors.white,
-        child: Center(
-          child: Text(
-            "Semua Waktu",
-            style: TextStyle(fontSize: 26),
-          ),
-        ),
+        child: Center(child: Text("Semua Waktu",style: TextStyle(fontSize: 26),),),
       ),
     );
   }
 }
+

@@ -1,13 +1,11 @@
-// ignore_for_file: file_names
-
-import 'package:farm_qow/Controller/checkup_controller.dart';
 import 'package:farm_qow/Model/model.dart';
-import 'package:farm_qow/Model/storage.dart';
 import 'package:farm_qow/Pages/CheckUp/CheckupByYear.dart';
 import 'package:farm_qow/Pages/CheckUp/DetailCheckUp.dart';
 import 'package:flutter/material.dart';
 
 import '../../main.dart';
+
+
 
 class CheckUp extends StatefulWidget {
   int idSapi;
@@ -18,28 +16,12 @@ class CheckUp extends StatefulWidget {
 }
 
 class _CheckUpState extends State<CheckUp> {
-  List checkup = [];
-  var mod = ModelCheckUp();
-
-  void upCheckUp() async {
-    mod.cekups = await CheckUpController().fetch2List();
-    setState(() {
-      checkup = mod.cekups;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    upCheckUp();
-    // mod.resetWrite();
-  }
-
   @override
   Widget build(BuildContext context) {
+
     var dataCheckup = [];
-    for (int i = 0; i < checkup.length; i++) {
-      if (checkup[i][1] == widget.idSapi) {
+    for(int i=0; i<checkup.length;i++){
+      if(checkup[i][1] == widget.idSapi ){
         dataCheckup.add(checkup[i]);
       }
     }
@@ -47,24 +29,25 @@ class _CheckUpState extends State<CheckUp> {
       home: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage(
-                  "assets/bg/bg5.jpg",
-                ),
-                fit: BoxFit.cover)),
+                image: AssetImage("assets/bg/bg5.jpg",),
+                fit: BoxFit.cover
+            )
+        ),
+
         child: Scaffold(
           backgroundColor: Colors.transparent,
           endDrawer: Drawer(
             child: Container(
-              width: 50,
-              height: 50,
-              color: Color.fromRGBO(143, 197, 255, 0.95),
-              child: ListView(
-                children: [
-                  YearFilterAll(widget.idSapi),
-                  for (int i = 21; i > 16; i--)
-                    YearFilter(widget.idSapi, "20" + i.toString())
-                ],
-              ),
+                width: 50,
+                height: 50,
+                color: Color.fromRGBO(143, 197, 255, 0.95),
+                child: ListView(
+                  children: [
+                    YearFilterAll(widget.idSapi),
+                    for(int i=21;i>16;i--)
+                    YearFilter(widget.idSapi,"20"+i.toString())
+              ],
+                ),
             ),
           ),
           appBar: AppBar(
@@ -81,15 +64,12 @@ class _CheckUpState extends State<CheckUp> {
                 Row(
                   children: [
                     IconButton(
-                      onPressed: () {
+                      onPressed: (){
                         Navigator.pop(context, true);
                       },
-                      icon: Icon(
-                        Icons.arrow_back,
-                        color: Colors.white,
-                        size: 30,
-                      ),
+                      icon: Icon(Icons.arrow_back,color:Colors.white,size: 30,),
                     ),
+
                     Text('Check Up | Semua Waktu'),
                   ],
                 ),
@@ -98,15 +78,10 @@ class _CheckUpState extends State<CheckUp> {
           ),
           body: ListView(
             children: [
-              for (int i = dataCheckup.length - 1; i > -1; i--)
-                ItemCheckup(
-                    widget.idSapi,
-                    int.parse(dataCheckup[i][2]),
-                    int.parse(dataCheckup[i][3]),
-                    int.parse(dataCheckup[i][4]),
-                    dataCheckup[i][14],
-                    dataCheckup[i][0])
-              // ItemCheckup('2', "3", "20021")
+
+              for(int i=dataCheckup.length-1;i>-1;i--)
+                ItemCheckup(widget.idSapi,dataCheckup[i][2],dataCheckup[i][3],dataCheckup[i][4],dataCheckup[i][14],dataCheckup[i][0])
+                // ItemCheckup('2', "3", "20021")
             ],
           ),
         ),
@@ -114,6 +89,9 @@ class _CheckUpState extends State<CheckUp> {
     );
   }
 }
+
+
+
 
 class ItemCheckup extends StatelessWidget {
   // const ItemCheckup({Key? key}) : super(key: key);
@@ -124,30 +102,31 @@ class ItemCheckup extends StatelessWidget {
   String kesehatanSapi;
   int idCheckup;
 
-  ItemCheckup(this.idSapi, this.tgl, this.bulan, this.tahun, this.kesehatanSapi,
-      this.idCheckup);
+  ItemCheckup(this.idSapi,this.tgl,this.bulan,this.tahun,this.kesehatanSapi,this.idCheckup);
 
   @override
   Widget build(BuildContext context) {
     var bgKesehatan;
-    if (kesehatanSapi == "Sehat") {
+    if(kesehatanSapi == "Sehat"){
       bgKesehatan = Colors.green[300];
-    } else if (kesehatanSapi == "Kurang Sehat") {
+    }
+    else if(kesehatanSapi == "Kurang Sehat"){
       bgKesehatan = Colors.yellow;
-    } else {
+    }
+    else{
       bgKesehatan = Colors.redAccent;
     }
 
-    return Builder(builder: (context) {
+    return Builder(builder: (context){
       return InkWell(
-        onTap: () {
+        onTap: (){
           Navigator.push(context, Transition(DetailChecUp(idCheckup)));
           // Navigator.of(context).push(MaterialPageRoute(builder: (context){
           //   return DetailChecUp(idCheckup);
           // }));
         },
         child: Container(
-          margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+          margin: const EdgeInsets.symmetric(vertical: 5,horizontal: 10),
           padding: EdgeInsets.all(10),
           width: double.infinity,
           height: 70,
@@ -167,31 +146,20 @@ class ItemCheckup extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                tgl.toString() +
-                    "/".toString() +
-                    bulan.toString() +
-                    "/" +
-                    tahun.toString(),
-                style: TextStyle(fontSize: 22),
-              ),
+              Text(tgl.toString()+"/".toString()+bulan.toString()+"/"+tahun.toString(),style: TextStyle(fontSize: 22),),
               Container(
                 width: 100,
                 height: 200,
                 decoration: BoxDecoration(
                     color: bgKesehatan,
-                    borderRadius: BorderRadius.circular(10)),
+                  borderRadius: BorderRadius.circular(10)
+                ),
+
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text(
-                      kesehatanSapi,
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white),
-                    ),
+                    Text(kesehatanSapi,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),),
                   ],
                 ),
               )
@@ -203,18 +171,21 @@ class ItemCheckup extends StatelessWidget {
   }
 }
 
+
+
+
+
 class YearFilter extends StatelessWidget {
   int idSapi;
   String tahun;
-  YearFilter(this.idSapi, this.tahun);
+  YearFilter(this.idSapi,this.tahun);
   // const YearFilter({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        Navigator.push(
-            context, Transition(CheckUpByYear(idSapi, int.parse(tahun))));
+      onTap: (){
+        Navigator.push(context, Transition(CheckUpByYear(idSapi, int.parse(tahun))));
         // Navigator.of(context).push(MaterialPageRoute(builder: (context){
         //   return CheckUpByYear(idSapi, int.parse(tahun));
         // }));
@@ -224,16 +195,13 @@ class YearFilter extends StatelessWidget {
         width: double.infinity,
         height: 60,
         color: Colors.white,
-        child: Center(
-          child: Text(
-            tahun,
-            style: TextStyle(fontSize: 26),
-          ),
-        ),
+        child: Center(child: Text(tahun,style: TextStyle(fontSize: 26),),),
       ),
     );
   }
 }
+
+
 
 class YearFilterAll extends StatelessWidget {
   int idSapi;
@@ -243,7 +211,7 @@ class YearFilterAll extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
+      onTap: (){
         Navigator.push(context, Transition(CheckUp(idSapi)));
         // Navigator.of(context).push(MaterialPageRoute(builder: (context){
         //   return CheckUp(idSapi);
@@ -254,12 +222,7 @@ class YearFilterAll extends StatelessWidget {
         width: double.infinity,
         height: 60,
         color: Colors.white,
-        child: Center(
-          child: Text(
-            "All",
-            style: TextStyle(fontSize: 26),
-          ),
-        ),
+        child: Center(child: Text("All",style: TextStyle(fontSize: 26),),),
       ),
     );
   }

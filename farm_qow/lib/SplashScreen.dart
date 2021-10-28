@@ -1,8 +1,13 @@
+
 // import these Packages in pubspec.yaml file.
 // dependencies:
 //
 
+
+
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:farm_qow/Login.dart';
+import 'package:farm_qow/Model/model.dart';
 import 'package:farm_qow/Pages/MainPage/MainPage.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +64,7 @@ class _SecondPageState extends State<SecondPage> {
       setState(() {
         Navigator.of(context).pushReplacement(
           ThisIsFadeRoute(
-            page: MyApp(0, ""),
+            page: user_login.length == 0? LoginPage() : MyApp(0),
             // route: ThirdPage(),
           ),
         );
@@ -93,8 +98,8 @@ class _SecondPageState extends State<SecondPage> {
               height: _d
                   ? 0
                   : _a
-                      ? _h / 2
-                      : 20,
+                  ? _h / 2
+                  : 20,
               width: 20,
               // color: Colors.deepPurpleAccent,
             ),
@@ -103,27 +108,27 @@ class _SecondPageState extends State<SecondPage> {
                   seconds: _d
                       ? 1
                       : _c
-                          ? 2
-                          : 0),
+                      ? 2
+                      : 0),
               curve: Curves.fastLinearToSlowEaseIn,
               height: _d
                   ? _h
+
                   : _c
-                      ? 80
-                      : 20,
+                  ? 80
+                  : 20,
               width: _d
                   ? _w
                   : _c
-                      ? 200
-                      : 20,
+                  ? 200
+                  : 20,
               decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("assets/images/lc_n.png"),
-                      fit: BoxFit.cover),
+                  image: DecorationImage(image: AssetImage("assets/images/lc_n.png"),fit: BoxFit.cover),
                   // color: _b ? Colors.white : Colors.transparent,
                   // shape: _c? BoxShape.rectangle : BoxShape.circle,
                   borderRadius:
-                      _d ? BorderRadius.only() : BorderRadius.circular(30)),
+                  _d ? BorderRadius.only() : BorderRadius.circular(30)),
+
             ),
           ],
         ),
@@ -137,23 +142,23 @@ class ThisIsFadeRoute extends PageRouteBuilder {
 
   ThisIsFadeRoute({required this.page})
       : super(
-          pageBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-          ) =>
-              page,
-          transitionsBuilder: (
-            BuildContext context,
-            Animation<double> animation,
-            Animation<double> secondaryAnimation,
-            Widget child,
-          ) =>
-              FadeTransition(
-            opacity: animation,
-            child: page,
-          ),
-        );
+    pageBuilder: (
+        BuildContext context,
+        Animation<double> animation,
+        Animation<double> secondaryAnimation,
+        ) =>
+    page,
+    transitionsBuilder: (
+        BuildContext context,
+        Animation<double> animation,
+        Animation<double> secondaryAnimation,
+        Widget child,
+        ) =>
+        FadeTransition(
+          opacity: animation,
+          child: page,
+        ),
+  );
 }
 
 // class ThirdPage extends StatelessWidget {
