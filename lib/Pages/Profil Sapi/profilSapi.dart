@@ -3,7 +3,7 @@ import 'package:farm_qow/Pages/CheckUp/CheckUp.dart';
 import 'package:farm_qow/Pages/Edit%20Sapi/EditSapi.dart';
 import 'package:farm_qow/Pages/Input%20Checkup/inputCheckup.dart';
 import 'package:farm_qow/Pages/Input%20Susu/InputSusu.dart';
-import 'package:farm_qow/Pages/MainPage/Data%20Sapi/dataSapi.dart';
+import 'package:farm_qow/Pages/MainPage/MainPage.dart';
 import 'package:farm_qow/Pages/Riwayat%20Susu/RiwayatSusu.dart';
 import 'package:flutter/material.dart';
 
@@ -78,10 +78,30 @@ class _ProfilSapiState extends State<ProfilSapi> {
                 ),
                 IconButton(
                   onPressed: (){
-                    Navigator.push(context, TransitionTopToBottom(EditSapi(intIdSapi)));
-                    // Navigator.of(context).push(MaterialPageRoute(builder: (context){
-                    //   return EditSapi(intIdSapi);
-                    // }));
+                    if(user_login[0] == "manager"){
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Text("Anda Buakan Pegawai !"),
+                              content: Text(""),
+                              actions: [
+                                FlatButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      Navigator.of(context).pop(true);
+                                    });
+                                  },
+                                  child: Text("Yes", style: TextStyle(color: Colors.blue)),
+                                )
+                              ],
+                            );
+                          }).then((value) => null);
+                    }
+                    else{
+                      Navigator.push(context, TransitionTopToBottom(EditSapi(intIdSapi)));
+                    }
+
                   },
                   icon: Icon(Icons.create_rounded,color:Colors.white),
                 )
@@ -233,10 +253,32 @@ class _ProfilSapiState extends State<ProfilSapi> {
                       children: [
                         InkWell(
                           onTap: (){
-                            Navigator.push(context, Transition(InputSusu(int.parse(widget.idSapi))));
-                            // Navigator.of(context).push(MaterialPageRoute(builder: (context){
-                            //   return InputSusu(int.parse(widget.idSapi));
-                            // }));
+                            if(user_login[0] == "manager"){
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text("Anda Buakan Pegawai !"),
+                                      content: Text(""),
+                                      actions: [
+                                        FlatButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              Navigator.of(context).pop(true);
+                                            });
+                                          },
+                                          child: Text("Yes", style: TextStyle(color: Colors.blue)),
+                                        )
+                                      ],
+                                    );
+                                  }).then((value) => null);
+                            }
+                            else{
+                              Navigator.push(context, Transition(InputSusu(int.parse(widget.idSapi))));
+                            }
+
+
+                            // Navi
                           },
                           child: Container(
                             decoration: BoxDecoration(
@@ -261,10 +303,29 @@ class _ProfilSapiState extends State<ProfilSapi> {
 
                         InkWell(
                           onTap: (){
-                            Navigator.push(context, Transition(InputCheckup(intIdSapi)));
-                            // Navigator.of(context).push(MaterialPageRoute(builder: (context){
-                            //   return InputCheckup(intIdSapi);
-                            // }));
+                            if(user_login[0] == "manager"){
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text("Anda Buakan Pegawai !"),
+                                      content: Text(""),
+                                      actions: [
+                                        FlatButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              Navigator.of(context).pop(true);
+                                            });
+                                          },
+                                          child: Text("Yes", style: TextStyle(color: Colors.blue)),
+                                        )
+                                      ],
+                                    );
+                                  }).then((value) => null);
+                            }
+                            else{
+                              Navigator.push(context, Transition(InputCheckup(intIdSapi)));
+                            }
                           },
                           child: Container(
                             decoration: BoxDecoration(
@@ -293,38 +354,83 @@ class _ProfilSapiState extends State<ProfilSapi> {
                     ),
                     InkWell(
                       onTap: (){
-                        showDialog(
-                            context: context,
-                            builder: (context){
-                              return AlertDialog(
-                                content: Text("Apakah anda yakin akan menghapus data tersebut ?"),
-                                actions: [
-                                  FlatButton(
-                                      onPressed: (){
-                                        setState(() {
-                                          Navigator.of(context).pop(false);
-                                        });
-                                      },
-                                      child: Text("Tidak")
-                                  ),
-                                  FlatButton(
-                                      onPressed: (){
-                                        setState(() {
-                                          for(int i=0; i<sapi.length;i++){
-                                            if(sapi[i][0] == intIdSapi){
-                                              sapi.removeAt(i);
 
-                                              Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){return HalamanDataSapi("");}));
-                                              // break;
-                                            }
-                                          }
+                        if(user_login[0] == "manager"){
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Text("Anda Buakan Pegawai !"),
+                                  content: Text(""),
+                                  actions: [
+                                    FlatButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          Navigator.of(context).pop(true);
                                         });
                                       },
-                                      child: Text("Oke")
-                                  ),
-                                ],
-                              );
-                            });
+                                      child: Text("Yes", style: TextStyle(color: Colors.blue)),
+                                    )
+                                  ],
+                                );
+                              }).then((value) => null);
+                        }
+                        else{
+                          showDialog(
+                              context: context,
+                              builder: (context){
+                                return AlertDialog(
+                                  content: Text("Apakah anda yakin akan menghapus data tersebut ?"),
+                                  actions: [
+                                    FlatButton(
+                                        onPressed: (){
+                                          Navigator.of(context).pop();
+
+                                        },
+                                        child: Text("Tidak")
+                                    ),
+                                    FlatButton(
+                                        onPressed: (){
+                                          setState(() {
+                                            removeDataCheckup(){
+                                              for(int i=0; i<checkup.length;i++){
+                                                if(checkup[i][1] == intIdSapi){
+                                                  checkup.removeAt(i);
+                                                  removeDataCheckup();
+                                                }
+                                              }
+                                            }
+
+                                            removeDataSusu(){
+                                              for(int i=0; i<susu.length;i++){
+                                                if(susu[i][1] == intIdSapi){
+                                                  susu.removeAt(i);
+                                                  removeDataSusu();
+                                                }
+                                              }
+                                            }
+                                            removeDataCheckup();removeDataSusu();
+
+                                            for(int i=0; i<sapi.length;i++){
+                                              if(sapi[i][0] == intIdSapi){
+                                                sapi.removeAt(i);
+
+                                                Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){return MyApp(0);}));
+                                                // break;
+                                              }
+                                            }
+                                          });
+                                        },
+                                        child: Text("Oke")
+                                    ),
+                                  ],
+                                );
+                              });
+                        }
+
+
+
+
 
                       },
                       child: Container(

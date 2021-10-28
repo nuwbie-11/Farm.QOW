@@ -1,3 +1,5 @@
+import 'package:farm_qow/Login.dart';
+import 'package:farm_qow/Model/model.dart';
 import 'package:farm_qow/Pages/Input%20Susu/InputSusuById.dart';
 import 'package:farm_qow/Pages/Tambah%20Sapi/TambahSapi.dart';
 import 'package:flutter/material.dart';
@@ -55,23 +57,31 @@ class MyAppState extends State<MyApp> {
                       backgroundColor: Colors.blue,
                     ),
                     SizedBox(height: 20,),
-                    Text("Yuk Sri",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 28,color: Colors.blue))
+                    Text(user_login[0] == "manager" ? "manager" : user_login[0][0],style: TextStyle(fontWeight: FontWeight.bold,fontSize: 28,color: Colors.blue))
                   ],
                 ),
-                Container(
-                  width: double.infinity,
-                  height: 60,
-                  margin: EdgeInsets.symmetric(horizontal: 40,vertical: 30),
-                  color: Colors.white,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(Icons.logout_outlined,size: 40,),
-                      Text("Logout",style: TextStyle(fontSize: 27),)
-                    ],
+                GestureDetector(
+                  onTap: (){
+                    user_login = [];
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
+                      return LoginPage();
+                    }));
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 60,
+                    margin: EdgeInsets.symmetric(horizontal: 40,vertical: 30),
+                    color: Colors.white,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.logout_outlined,size: 40,),
+                        Text("Logout",style: TextStyle(fontSize: 27),)
+                      ],
+                    ),
+
+
                   ),
-
-
                 )
               ],
             ),
@@ -124,12 +134,36 @@ class MyAppState extends State<MyApp> {
           Builder(builder: (context){
             return IconButton(
               onPressed: (){
-                if(widget.currentIndex == 0){
-                  Navigator.push(context, TransitionBottomToTop(TambahSapi()));
+                if(user_login[0] == "manager"){
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          title: Text("Anda Buakan Pegawai !"),
+                          content: Text(""),
+                          actions: [
+                            FlatButton(
+                              onPressed: () {
+                                setState(() {
+                                  Navigator.of(context).pop(true);
+                                });
+                              },
+                              child: Text("Yes", style: TextStyle(color: Colors.blue)),
+                            )
+                          ],
+                        );
+                      }).then((value) => null);
                 }
-                else if(widget.currentIndex == 1){
-                  Navigator.push(context, TransitionBottomToTop(InputSusuById()));
+                else{
+                  if(widget.currentIndex == 0){
+                    Navigator.push(context, TransitionBottomToTop(TambahSapi()));
+                  }
+                  else if(widget.currentIndex == 1){
+                    Navigator.push(context, TransitionBottomToTop(InputSusuById()));
+                  }
                 }
+
+
 
 
               },

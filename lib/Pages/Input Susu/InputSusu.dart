@@ -1,5 +1,4 @@
 import 'package:farm_qow/Model/model.dart';
-import 'package:farm_qow/Pages/MainPage/Halaman%20Susu/HalamanSusu.dart';
 import 'package:farm_qow/Pages/MainPage/MainPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -271,7 +270,7 @@ class _InputSusuState extends State<InputSusu> {
                           context: context,
                           builder: (context) {
                             return AlertDialog(
-                              title: Text("Data Input Checkup"),
+                              title: Text("Data Input Pemerahan Susu"),
                               content: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [

@@ -1,5 +1,6 @@
 import 'package:farm_qow/Model/model.dart';
 import 'package:farm_qow/Pages/MainPage/Data%20Sapi/dataSapi.dart';
+import 'package:farm_qow/Pages/MainPage/MainPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -362,7 +363,7 @@ class _InputCheckupState extends State<InputCheckup> {
                                       ];
 
                                       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
-                                        return HalamanDataSapi("");
+                                        return MyApp(0);
                                       }));
                                   },
                                   child: Text("Ya", style: TextStyle(color: Colors.blue)),

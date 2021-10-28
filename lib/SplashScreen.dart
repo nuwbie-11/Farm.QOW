@@ -6,6 +6,8 @@
 
 
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:farm_qow/Login.dart';
+import 'package:farm_qow/Model/model.dart';
 import 'package:farm_qow/Pages/MainPage/MainPage.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +64,7 @@ class _SecondPageState extends State<SecondPage> {
       setState(() {
         Navigator.of(context).pushReplacement(
           ThisIsFadeRoute(
-            page: MyApp(0),
+            page: user_login.length == 0? LoginPage() : MyApp(0),
             // route: ThirdPage(),
           ),
         );
