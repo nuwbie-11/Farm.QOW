@@ -3,7 +3,7 @@ import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
 
-class CheckUpController {
+class SusuController {
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
 
@@ -12,7 +12,7 @@ class CheckUpController {
 
   Future<File> get _localFile async {
     final path = await _localPath;
-    final file = File(path + "/" + "checkup.json");
+    final file = File(path + "/" + "susu.json");
     return file;
   }
 
@@ -48,39 +48,28 @@ class CheckUpController {
     return res;
   }
 
-  bool _checkExist(id, jsonFile) {
-    for (var item in jsonFile) {
-      if (id == item["idCheckUp"]) {
-        return false;
-      }
-    }
-    return true;
-  }
+  List susuContent = [];
 
-  List checkUpContent = [];
   dynamic fetch2List() async {
     List myList = await jsonToDynamic();
     for (var item in myList) {
-      this.checkUpContent.add([
-        item["idCheckUp"],
+      this.susuContent.add([
+        item["idSusu"],
         item["idProfilSapi"],
-        item['tglCheckUp'],
-        item['blncheckup'],
-        item['thnCheckup'],
-        item['beratSapi'],
-        item['suhuTubuh'],
-        item['denyutNadi'],
-        item['nafsuMakan'],
-        item['aktifTanggap'],
-        item['gerakTubuh'],
-        item['warnaFeses'],
-        item['bauFeses'],
-        item['teksturFeses'],
-        item['diagnosaDokter'],
-        item["catatan"]
+        item["jumlahSusu"],
+        item["grade"],
+        item["fat"],
+        item["snf"],
+        item["density"],
+        item["lactose"],
+        item["solids"],
+        item["protein"],
+        item["tgl"],
+        item["bln"],
+        item["thn"]
       ]);
     }
     // print(sapiContent);
-    return checkUpContent;
+    return susuContent;
   }
 }

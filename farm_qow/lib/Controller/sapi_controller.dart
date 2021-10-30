@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:farm_qow/Model/sapi_model.dart';
 import 'package:path_provider/path_provider.dart';
 
 class SapiController {
@@ -49,54 +48,20 @@ class SapiController {
     return res;
   }
 
-  bool _checkExist(id, jsonFile) {
-    for (var item in jsonFile) {
-      if (id == item["idProfilSapi"]) {
-        return false;
-      }
+  List sapiContent = [];
+
+  dynamic fetch2List() async {
+    List myList = await jsonToDynamic();
+    for (var item in myList) {
+      this.sapiContent.add([
+        item["idProfilSapi"],
+        item["nama"],
+        item["tglDatang"],
+        item["tglLahir"],
+        item["jenisSapi"]
+      ]);
     }
-    return true;
-  }
-
-  bool transactSapi(id, String nama, String tglDatang, String tglLahir,
-      String jenisSapi, List<Map<String, dynamic>> jsonFile) {
-    if (_checkExist(id, jsonFile)) {
-      Sapi sapi = Sapi(
-          idSapi: id,
-          nama: nama,
-          tglDatang: tglDatang,
-          tglLahir: tglLahir,
-          jenisSapi: jenisSapi);
-      Map<String, dynamic> jsonContent = sapi.toJson();
-      jsonFile.add(jsonContent);
-      writeJson(jsonFile);
-      return true;
-    }
-    return false;
-  }
-
-  dynamic fetchAll() {
-    dynamic jsonFile = [];
-    final jsonContent = jsonToDynamic().then((result) {
-      for (var item in result) {
-        jsonFile.add(item);
-        return jsonFile;
-      }
-    });
-    return jsonContent;
-  }
-
-  dynamic fetchWhereId(int idProfilSapi) {
-    dynamic jsonFile = [];
-    final jsonContent = jsonToDynamic().then((result) {
-      for (var item in result) {
-        if (item["idProfilSapi"] == idProfilSapi) {
-          jsonFile.add(item);
-          // print(jsonFile);
-          return jsonFile;
-        }
-      }
-    });
-    return jsonContent;
+    // print(sapiContent);
+    return sapiContent;
   }
 }
