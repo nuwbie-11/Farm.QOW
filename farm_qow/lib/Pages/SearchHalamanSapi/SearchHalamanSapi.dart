@@ -13,27 +13,29 @@ class SearchHalamanSapi extends StatelessWidget {
       home: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-                image: AssetImage("assets/bg/bg5.jpg",),
-                fit: BoxFit.cover
-            )
-        ),
+                image: AssetImage(
+                  "assets/bg/bg5.jpg",
+                ),
+                fit: BoxFit.cover)),
         child: Scaffold(
           backgroundColor: Colors.transparent,
           // backgroundColor: Color.fromRGBO(143, 197, 255, 0.95),
           body: Column(
-
             children: [
-              SizedBox(height: 50,),
+              SizedBox(
+                height: 50,
+              ),
               Container(
                 color: Colors.white,
                 child: TextField(
                   // textAlign: TextAlign.center,
                   autofocus: true,
-                  onChanged: (ValueKey){
+                  onChanged: (ValueKey) {
                     searchInput = ValueKey.toString();
                   },
                   onSubmitted: (ValueKey) {
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
+                    Navigator.of(context)
+                        .pushReplacement(MaterialPageRoute(builder: (context) {
                       return HalamanDataSapi(ValueKey.toString());
                     }));
                   },
@@ -45,16 +47,16 @@ class SearchHalamanSapi extends StatelessWidget {
                       size: 30,
                     ),
                     suffixIcon: IconButton(
-                      onPressed: (){
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
+                      onPressed: () {
+                        Navigator.of(context).pushReplacement(
+                            MaterialPageRoute(builder: (context) {
                           return MyApp(0);
                         }));
                       },
                       icon: Icon(Icons.search),
                     ),
                     border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(30)
-                    ),
+                        borderRadius: BorderRadius.circular(30)),
                     hintText: "Search",
                   ),
                 ),

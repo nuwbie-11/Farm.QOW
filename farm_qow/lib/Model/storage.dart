@@ -1,3 +1,5 @@
+var user_login = [];
+
 var sapi = [
   [1, "Yusrian", "2020-07-17", "2020-07-17", "sapi jersey"],
   [2, "Hilmi", "2020-10-20", "2020-10-20", "sapi Perah"],
@@ -209,21 +211,21 @@ var checkup = [
 ];
 
 var susu = [
-  // [
-  //   "idSusu",
-  //   "idProfilSapi",
-  //   "Jumlah Susu",
-  //   "Grade",
-  //   "Fat",
-  //   "SNF",
-  //   "Density ",
-  //   "Lactose",
-  //   "Solids",
-  //   "Protein",
-  //   "tgl",
-  //   "bln",
-  //   "thn"
-  // ],
+  [
+    "idSusu",
+    "idProfilSapi",
+    "Jumlah Susu",
+    "Grade",
+    "Fat",
+    "SNF",
+    "Density ",
+    "Lactose",
+    "Solids",
+    "Protein",
+    "tgl",
+    "bln",
+    "thn"
+  ],
   [1, 1, 15, "B+", 4, 6, 0.8, 3.79, 8, 2.3, 13, 1, 2020],
   [2, 1, 16, "A", 4, 8, 3.2, 6, 11.2, 3, 13, 1, 2020],
   [3, 2, 17, "A", 4, 8, 3.2, 6, 11.2, 3.2, 14, 1, 2020],
