@@ -18,7 +18,336 @@ class InputCheckup extends StatefulWidget {
 class _InputCheckupState extends State<InputCheckup> {
   TextEditingController beratInput = new TextEditingController();
 
+<<<<<<< Updated upstream
   TextEditingController denyutNadiInput = new TextEditingController();
+=======
+    return MaterialApp(
+      home: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(
+                  "assets/bg/bg5.jpg",
+                ),
+                fit: BoxFit.cover)),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          endDrawer: Container(
+            padding: EdgeInsets.only(top: 40),
+            width: MediaQuery.of(context).size.width - 50,
+            height: double.infinity,
+            decoration: BoxDecoration(
+                color: Colors.white,
+                image: DecorationImage(
+                    image: AssetImage("assets/images/inputCheckup.png"))),
+          ),
+          appBar: AppBar(
+            backgroundColor: Color.fromRGBO(143, 197, 255, 0.95),
+            elevation: 0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                bottom: Radius.circular(20),
+              ),
+            ),
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: Colors.white,
+                        size: 30,
+                      ),
+                    ),
+                    Text('Input Check Up'),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          body: Container(
+            margin: EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+                color: Color.fromRGBO(255, 255, 255, 0.8),
+                border: Border.all(color: Colors.blue, width: 1)),
+            child: ListView(
+              children: [
+                Card(
+                  margin: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                  child: Container(
+                    height: 40,
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "nomor sapi : " + widget.idSapi.toString(),
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Diagnosa Dokter",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        Kesehatan(),
+                      ],
+                    )),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                  child: TextField(
+                    keyboardType: TextInputType.phone,
+                    // textAlign: TextAlign.center,
+                    controller: beratInput,
+                    onChanged: (ValueKey) {
+                      data_input[5] = ValueKey;
+                    },
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "Berat Sapi(Kg)",
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                  child: TextField(
+                    keyboardType: TextInputType.phone,
+                    // textAlign: TextAlign.center,
+                    controller: suhuBadanInput,
+                    onChanged: (ValueKey) {
+                      data_input[6] = ValueKey;
+                    },
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "Suhu Badan(celcius)",
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                  child: TextField(
+                    keyboardType: TextInputType.phone,
+                    // textAlign: TextAlign.center,
+                    controller: denyutNadiInput,
+                    onChanged: (ValueKey) {
+                      data_input[7] = ValueKey;
+                    },
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "Denyut Nadi(BPM)",
+                    ),
+                  ),
+                ),
+                Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Nafsu Makan",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        NafsuMakan(),
+                      ],
+                    )),
+                Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Aktif Tanggap",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        AktifTanggap(),
+                      ],
+                    )),
+                Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Gerak Tubuh",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        GerakTubuh(),
+                      ],
+                    )),
+                Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Warna Feses",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        WarnaFeses(),
+                      ],
+                    )),
+                Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Bau Feses",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        BauFeses(),
+                      ],
+                    )),
+                Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          "Texture Feses",
+                          style: TextStyle(fontSize: 20),
+                        ),
+                        TexsturFeses(),
+                      ],
+                    )),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                  child: TextField(
+                    // textAlign: TextAlign.center,
+                    controller: catatanInput,
+                    onChanged: (ValueKey) {
+                      data_input[15] = ValueKey;
+                      // usernameInput = ValueKey;
+                    },
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: "Catatan",
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: () {
+                    bool isValidate = true;
+                    for (int i = 1; i < data_input.length - 1; i++) {
+                      // print(data_input[i]);
+                      if (data_input[i] == "" || data_input[i] == 0) {
+                        isValidate = false;
+                      }
+                    }
+                    if (isValidate == true) {
+                      print(checkup);
+                      var lastIdCheckup = checkup.length == 0
+                          ? 0
+                          : checkup[checkup.length - 1][0];
+                      int idCheckup = int.parse(lastIdCheckup.toString());
+                      idCheckup += 1;
+                      data_input[0] = idCheckup;
+                      showDialog(
+                          context: context,
+                          builder: (context) {
+                            return AlertDialog(
+                              title: Text("Apakah Data Sudah Benar?"),
+                              content: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("id checkup : " +
+                                      data_input[0].toString()),
+                                  SizedBox(height: 10),
+                                  Text("id sapi : " + data_input[1].toString()),
+                                  SizedBox(height: 10),
+                                  Text("tanggal : " + data_input[2].toString()),
+                                  SizedBox(height: 10),
+                                  Text("bulan : " + data_input[3].toString()),
+                                  SizedBox(height: 10),
+                                  Text("tahun : " + data_input[4].toString()),
+                                  SizedBox(height: 10),
+                                  Text("Diagnosa Dokter : " +
+                                      data_input[14].toString()),
+                                  SizedBox(height: 10),
+                                  Text("Berat : " +
+                                      data_input[5].toString() +
+                                      " Kg"),
+                                  SizedBox(height: 10),
+                                  Text("Suhu : " +
+                                      data_input[6].toString() +
+                                      " Celcious"),
+                                  SizedBox(height: 10),
+                                  Text("Denyut Nadi : " +
+                                      data_input[7].toString() +
+                                      " BPM"),
+                                  SizedBox(height: 10),
+                                  Text("Nafsu Makan : " +
+                                      data_input[8].toString()),
+                                  SizedBox(height: 10),
+                                  Text("Aktif dan Tanggap : " +
+                                      data_input[9].toString()),
+                                  SizedBox(height: 10),
+                                  Text("Gerak Tubuh : " +
+                                      data_input[10].toString()),
+                                  SizedBox(height: 10),
+                                  Text("Warna Feses : " +
+                                      data_input[11].toString()),
+                                  SizedBox(height: 10),
+                                  Text("Bau Feses : " +
+                                      data_input[12].toString()),
+                                  SizedBox(height: 10),
+                                  Text("Textur Feses : " +
+                                      data_input[13].toString()),
+                                  SizedBox(height: 10),
+                                  Text(
+                                      "Catatan : " + data_input[15].toString()),
+                                  SizedBox(height: 10),
+                                ],
+                              ),
+                              actions: [
+                                FlatButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      Navigator.of(context).pop(true);
+                                    });
+                                  },
+                                  child: Text("Kembali",
+                                      style: TextStyle(color: Colors.blue)),
+                                ),
+                                FlatButton(
+                                  onPressed: () {
+                                    checkup.add(data_input);
+                                    mod.write(checkup);
+                                    print("result");
+                                    for (int i = 0; i < checkup.length; i++) {
+                                      print(checkup[i]);
+                                    }
+                                    print("result");
+                                    data_input = [
+                                      0,
+                                      3,
+                                      DateTime.now().day,
+                                      DateTime.now().month,
+                                      DateTime.now().year,
+                                      0,
+                                      0,
+                                      0,
+                                      "Baik",
+                                      "Tanggap",
+                                      "Normal",
+                                      "Hijau Pucat",
+                                      "Busuk",
+                                      "Kasar",
+                                      "Sehat",
+                                      "tidak ada"
+                                    ];
+>>>>>>> Stashed changes
 
   TextEditingController suhuBadanInput = new TextEditingController();
 
