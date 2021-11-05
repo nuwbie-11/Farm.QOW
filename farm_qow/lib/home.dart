@@ -12,16 +12,16 @@ class _HomeState extends State<Home> {
     return showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text("U Sure Wanna Exit?"),
-        content: Text("Need to login again Later"),
+        title: const Text("U Sure Wanna Exit?"),
+        content: const Text("Need to login again Later"),
         actions: [
           FlatButton(
             onPressed: () => Navigator.pop(context, true),
-            child: Text("Yes"),
+            child: const Text("Yes"),
           ),
           FlatButton(
             onPressed: () => Navigator.pop(context, false),
-            child: Text("No"),
+            child: const Text("No"),
           )
         ],
       ),
@@ -39,7 +39,7 @@ class _HomeState extends State<Home> {
       child: MaterialApp(
         home: Scaffold(
           appBar: AppBar(
-            title: Text("Home"),
+            title: const Text("Home"),
           ),
         ),
       ),

@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 import 'package:farm_qow/Controller/checkup_controller.dart';
 import 'package:farm_qow/Controller/sapi_controller.dart';
-import 'package:farm_qow/Model/model.dart';
 import 'package:farm_qow/Model/storage.dart';
 
 import 'package:farm_qow/Pages/Profil%20Sapi/profilSapi.dart';
@@ -20,10 +19,8 @@ class HalamanDataSapi extends StatefulWidget {
 class _HalamanDataSapiState extends State<HalamanDataSapi> {
   // Model mod = Model();
   List sapi = [];
-  var mod = ModelSapi();
 
   List checkup = [];
-  var modC = ModelCheckUp();
 
   Future refreshData() async {
     sapi.clear();
@@ -32,11 +29,11 @@ class _HalamanDataSapiState extends State<HalamanDataSapi> {
   }
 
   void upContent() async {
-    mod.sapis = await SapiController().fetch2List();
-    modC.cekups = await CheckUpController().fetch2List();
+    final sapiTemp = await SapiController().getDataSapi();
+    final tempCheckUp = await CheckUpController().getDataCheckUp();
     setState(() {
-      sapi = mod.sapis;
-      checkup = modC.cekups;
+      sapi = sapiTemp;
+      checkup = tempCheckUp;
     });
   }
 
@@ -153,20 +150,6 @@ class ItemDataSapi extends StatelessWidget {
                     child: Text(
                       kesehatanSapi,
                       style: TextStyle(color: Colors.white),
-                    ),
-                  ),
-                )
-              else if (kesehatanSapi == 'Kurang Sehat')
-                Container(
-                  width: 80,
-                  height: 30,
-                  decoration: BoxDecoration(
-                      color: Colors.amber,
-                      borderRadius: BorderRadius.circular(20)),
-                  child: Center(
-                    child: Text(
-                      kesehatanSapi,
-                      style: TextStyle(fontSize: 10, color: Colors.white),
                     ),
                   ),
                 )

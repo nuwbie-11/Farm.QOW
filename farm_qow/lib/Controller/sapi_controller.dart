@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:farm_qow/Model/sapi_model.dart';
 import 'package:path_provider/path_provider.dart';
 
 class SapiController {
@@ -16,44 +17,25 @@ class SapiController {
     return file;
   }
 
-  Future<String> jsonAsString() async {
-    try {
-      final file = await _localFile;
-      final content = await file.readAsString();
-      return content;
-    } catch (e) {
-      print(e);
-    }
-    return '[]';
-  }
-
-  Future<File> writeJson(List<Map<String, dynamic>> jsonFile) async {
+  Future<File> simpan(List<Map<String, dynamic>> jsonFile) async {
     final file = await _localFile;
     if (file.existsSync()) {
       // Write the file
-      print("object");
       return file.writeAsString(jsonEncode(jsonFile));
     }
-    print(file.existsSync());
     file.create();
     return file.writeAsString(jsonEncode(jsonFile));
   }
 
-  dynamic jsonToDynamic() {
-    dynamic res = jsonAsString().then((result) {
-      // print("from whole : $result");
-      final res = jsonDecode(result);
-      return res;
-    });
-    return res;
-  }
-
   List sapiContent = [];
 
-  dynamic fetch2List() async {
-    List myList = await jsonToDynamic();
-    for (var item in myList) {
-      this.sapiContent.add([
+  dynamic getDataSapi() async {
+    final file = await _localFile;
+    final content = await file.readAsString();
+    final res = jsonDecode(content);
+    // List myList = await jsonToDynamic();
+    for (var item in res) {
+      sapiContent.add([
         item["idProfilSapi"],
         item["nama"],
         item["tglDatang"],
@@ -63,5 +45,21 @@ class SapiController {
     }
     // print(sapiContent);
     return sapiContent;
+  }
+
+  void write(currentSapi) {
+    List<Map<String, dynamic>> items = [];
+    for (var item in currentSapi) {
+      Sapi saps = Sapi(
+          idSapi: int.parse(item[0].toString()),
+          nama: item[1].toString(),
+          tglDatang: item[2].toString(),
+          tglLahir: item[3].toString(),
+          jenisSapi: item[4].toString());
+      items.add(saps.toJson());
+    }
+    // print(items);
+
+    simpan(items);
   }
 }

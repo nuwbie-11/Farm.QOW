@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:farm_qow/Controller/sapi_controller.dart';
-import 'package:farm_qow/Model/model.dart';
 import 'package:farm_qow/Model/storage.dart';
 import 'package:farm_qow/Pages/MainPage/Data%20Sapi/dataSapi.dart';
 import 'package:farm_qow/Pages/MainPage/MainPage.dart';
@@ -14,13 +13,12 @@ class TambahSapi extends StatefulWidget {
 
 class _TambahSapiState extends State<TambahSapi> {
   List sapi = [];
-  var mod = ModelSapi();
   var idSapi = 0;
 
   void upSapi() async {
-    mod.sapis = await SapiController().fetch2List();
+    final sapiTemp = await SapiController().getDataSapi();
     setState(() {
-      sapi = mod.sapis;
+      sapi = sapiTemp;
       idSapi = sapi[sapi.length - 1][0];
     });
   }
@@ -218,8 +216,7 @@ class _TambahSapiState extends State<TambahSapi> {
                           print(data_input);
                           if (sapi.contains(data_input) == false) {
                             sapi.add(data_input);
-                            ModelSapi mod = ModelSapi();
-                            mod.write(sapi);
+                            SapiController().write(sapi);
                           }
                           ;
                           data_input = [0, "", "", "", ""];

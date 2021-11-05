@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:farm_qow/Controller/checkup_controller.dart';
-import 'package:farm_qow/Model/model.dart';
 import 'package:farm_qow/Model/storage.dart';
 import 'package:farm_qow/Pages/CheckUp/CheckupByYear.dart';
 import 'package:farm_qow/Pages/CheckUp/DetailCheckUp.dart';
@@ -19,12 +18,11 @@ class CheckUp extends StatefulWidget {
 
 class _CheckUpState extends State<CheckUp> {
   List checkup = [];
-  var mod = ModelCheckUp();
 
   void upCheckUp() async {
-    mod.cekups = await CheckUpController().fetch2List();
+    final tempCheckUp = await CheckUpController().getDataCheckUp();
     setState(() {
-      checkup = mod.cekups;
+      checkup = tempCheckUp;
     });
   }
 

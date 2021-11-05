@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:farm_qow/Controller/susu_controller.dart';
-import 'package:farm_qow/Model/model.dart';
 import 'package:farm_qow/Model/storage.dart';
 import 'package:farm_qow/Pages/Riwayat%20Susu/DetailSusu.dart';
 import 'package:flutter/material.dart';
@@ -19,13 +18,11 @@ class RiwayatSusu extends StatefulWidget {
 
 class _RiwayatSusuState extends State<RiwayatSusu> {
   List susu = [];
-  var modS = ModelSusu();
 
   void upContent() async {
-    modS.susus = await SusuController().fetch2List();
-
+    final tempSusu = await SusuController().getDataSusu();
     setState(() {
-      susu = modS.susus;
+      susu = tempSusu;
     });
   }
 

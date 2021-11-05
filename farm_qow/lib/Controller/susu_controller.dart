@@ -1,9 +1,25 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:farm_qow/Model/susu_model.dart';
 import 'package:path_provider/path_provider.dart';
 
 class SusuController {
+  static List header = [
+    "idSusu",
+    "idProfilSapi",
+    "Jumlah Susu",
+    "Grade",
+    "Fat",
+    "SNF",
+    "Density ",
+    "Lactose",
+    "Solids",
+    "Protein",
+    "tgl",
+    "bln",
+    "thn"
+  ];
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
 
@@ -16,44 +32,24 @@ class SusuController {
     return file;
   }
 
-  Future<String> jsonAsString() async {
-    try {
-      final file = await _localFile;
-      final content = await file.readAsString();
-      return content;
-    } catch (e) {
-      print(e);
-    }
-    return '[]';
-  }
-
-  Future<File> writeJson(List<Map<String, dynamic>> jsonFile) async {
+  Future<File> simpan(List<Map<String, dynamic>> jsonFile) async {
     final file = await _localFile;
     if (file.existsSync()) {
       // Write the file
-      print("object");
       return file.writeAsString(jsonEncode(jsonFile));
     }
-    print(file.existsSync());
     file.create();
     return file.writeAsString(jsonEncode(jsonFile));
   }
 
-  dynamic jsonToDynamic() {
-    dynamic res = jsonAsString().then((result) {
-      // print("from whole : $result");
-      final res = jsonDecode(result);
-      return res;
-    });
-    return res;
-  }
-
   List susuContent = [];
 
-  dynamic fetch2List() async {
-    List myList = await jsonToDynamic();
-    for (var item in myList) {
-      this.susuContent.add([
+  dynamic getDataSusu() async {
+    final file = await _localFile;
+    final content = await file.readAsString();
+    final res = jsonDecode(content);
+    for (var item in res) {
+      susuContent.add([
         item["idSusu"],
         item["idProfilSapi"],
         item["jumlahSusu"],
@@ -71,5 +67,29 @@ class SusuController {
     }
     // print(sapiContent);
     return susuContent;
+  }
+
+  void write(current) {
+    List<Map<String, dynamic>> items = [];
+    for (var item in current) {
+      Susu sus = Susu(
+          idSusu: int.parse(item[0].toString()),
+          idProfilSapi: int.parse(item[1].toString()),
+          jumlahSusu: int.parse(item[2].toString()),
+          grade: (item[3].toString()),
+          fat: double.parse(item[4].toString()),
+          snf: double.parse(item[5].toString()),
+          density: double.parse(item[6].toString()),
+          lactose: double.parse(item[7].toString()),
+          solids: double.parse(item[8].toString()),
+          protein: double.parse(item[9].toString()),
+          tgl: int.parse(item[10].toString()),
+          bln: int.parse(item[11].toString()),
+          thn: int.parse(item[12].toString()));
+
+      items.add(sus.toJson());
+    }
+    // print(items);
+    simpan(items);
   }
 }

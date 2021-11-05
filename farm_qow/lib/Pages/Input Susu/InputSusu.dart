@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:farm_qow/Controller/susu_controller.dart';
-import 'package:farm_qow/Model/model.dart';
 import 'package:farm_qow/Model/storage.dart';
 import 'package:farm_qow/Pages/MainPage/Halaman%20Susu/HalamanSusu.dart';
 import 'package:farm_qow/Pages/MainPage/MainPage.dart';
@@ -34,13 +33,12 @@ class InputSusu extends StatefulWidget {
 
 class _InputSusuState extends State<InputSusu> {
   List susu = [];
-  var modS = ModelSusu();
 
   void upContent() async {
-    modS.susus = await SusuController().fetch2List();
+    final tempSusu = await SusuController().getDataSusu();
 
     setState(() {
-      susu = modS.susus;
+      susu = tempSusu;
     });
   }
 
@@ -249,7 +247,8 @@ class _InputSusuState extends State<InputSusu> {
                       }
                     }
                     if (isValidate == true) {
-                      var lastIdSusu = susu[susu.length - 1][0];
+                      var lastIdSusu =
+                          susu.length == 0 ? 0 : susu[susu.length - 1][0];
                       int idCheckup = int.parse(lastIdSusu.toString());
                       idCheckup += 1;
                       data_input_susu[0] = idCheckup;
@@ -349,7 +348,7 @@ class _InputSusuState extends State<InputSusu> {
                                     for (int i = 0; i < susu.length; i++) {
                                       print(susu[i]);
                                     }
-                                    modS.write(susu);
+                                    SusuController().write(susu);
                                     print("result");
                                     data_input_susu = [
                                       "id sapi",

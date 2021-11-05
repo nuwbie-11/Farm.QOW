@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:farm_qow/Controller/sapi_controller.dart';
-import 'package:farm_qow/Model/model.dart';
 import 'package:farm_qow/Model/storage.dart';
 import 'package:farm_qow/Pages/CheckUp/CheckUp.dart';
 import 'package:farm_qow/Pages/Edit%20Sapi/EditSapi.dart';
@@ -28,12 +27,10 @@ class ProfilSapi extends StatefulWidget {
 class _ProfilSapiState extends State<ProfilSapi> {
   List sapi = [];
 
-  var mod = ModelSapi();
-
   void upSapi() async {
-    mod.sapis = await SapiController().fetch2List();
+    final tempSapi = await SapiController().getDataSapi();
     setState(() {
-      sapi = mod.sapis;
+      sapi = tempSapi;
     });
   }
 
@@ -394,7 +391,7 @@ class _ProfilSapiState extends State<ProfilSapi> {
                                         for (int i = 0; i < sapi.length; i++) {
                                           if (sapi[i][0] == intIdSapi) {
                                             sapi.removeAt(i);
-                                            mod.write(sapi);
+                                            SapiController().write(sapi);
                                             Navigator.of(context)
                                                 .pushReplacement(
                                                     MaterialPageRoute(

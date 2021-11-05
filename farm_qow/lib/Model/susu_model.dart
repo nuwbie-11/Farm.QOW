@@ -1,19 +1,3 @@
-// [
-//   "idSusu",
-//   "idProfilSapi",
-//   "Jumlah Susu",
-//   "Grade",
-//   "Fat",
-//   "SNF",
-//   "Density ",
-//   "Lactose",
-//   "Solids",
-//   "Protein",
-//   "tgl",
-//   "bln",
-//   "thn"
-// ];
-
 import 'dart:ffi';
 
 class Susu {

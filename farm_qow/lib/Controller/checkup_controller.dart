@@ -1,9 +1,28 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:farm_qow/Model/checkup_model.dart';
 import 'package:path_provider/path_provider.dart';
 
 class CheckUpController {
+  List header = [
+    "Id Checkup",
+    "Id Sapi",
+    "tanggal checkup",
+    "bulancheckup",
+    "tahun checktup",
+    "berat",
+    "suhu tubuh",
+    "denyut nadi",
+    "nafsu makan",
+    "aktif",
+    "gerak tubuh",
+    "warna feses",
+    "bau feses",
+    "testur feses",
+    "Diagnosa Dokter",
+    "catatan"
+  ];
   Future<String> get _localPath async {
     final directory = await getApplicationDocumentsDirectory();
 
@@ -16,52 +35,25 @@ class CheckUpController {
     return file;
   }
 
-  Future<String> jsonAsString() async {
-    try {
-      final file = await _localFile;
-      final content = await file.readAsString();
-      return content;
-    } catch (e) {
-      print(e);
-    }
-    return '[]';
-  }
-
-  Future<File> writeJson(List<Map<String, dynamic>> jsonFile) async {
+  Future<File> simpan(List<Map<String, dynamic>> jsonFile) async {
     final file = await _localFile;
     if (file.existsSync()) {
       // Write the file
-      print("object");
       return file.writeAsString(jsonEncode(jsonFile));
     }
-    print(file.existsSync());
     file.create();
     return file.writeAsString(jsonEncode(jsonFile));
   }
 
-  dynamic jsonToDynamic() {
-    dynamic res = jsonAsString().then((result) {
-      // print("from whole : $result");
-      final res = jsonDecode(result);
-      return res;
-    });
-    return res;
-  }
-
-  bool _checkExist(id, jsonFile) {
-    for (var item in jsonFile) {
-      if (id == item["idCheckUp"]) {
-        return false;
-      }
-    }
-    return true;
-  }
-
   List checkUpContent = [];
-  dynamic fetch2List() async {
-    List myList = await jsonToDynamic();
-    for (var item in myList) {
-      this.checkUpContent.add([
+  dynamic getDataCheckUp() async {
+    final file = await _localFile;
+    final content = await file.readAsString();
+    final res = jsonDecode(content);
+    // print(res);
+
+    for (var item in res) {
+      checkUpContent.add([
         item["idCheckUp"],
         item["idProfilSapi"],
         item['tglCheckUp'],
@@ -82,5 +74,32 @@ class CheckUpController {
     }
     // print(sapiContent);
     return checkUpContent;
+  }
+
+  void write(current) {
+    List<Map<String, dynamic>> items = [];
+    for (var item in current) {
+      CheckUp saps = CheckUp(
+          idCheckup: int.parse(item[0].toString()),
+          idProfilSapi: int.parse(item[1].toString()),
+          diagnosaDokter: item[14].toString(),
+          catatan: item[15].toString(),
+          beratSapi: int.parse(item[5].toString()),
+          nafsuMakan: item[8].toString(),
+          aktifTanggap: item[9].toString(),
+          gerakTubuh: item[10].toString(),
+          warnaFeses: item[11].toString(),
+          bauFeses: item[12].toString(),
+          teksturFeses: item[13].toString(),
+          suhuTubuh: item[6].toString(),
+          denyutNadi: item[7].toString(),
+          tglCheckUp: item[2].toString(),
+          blncheckup: item[3].toString(),
+          thnCheckup: item[4].toString());
+      items.add(saps.toJson());
+    }
+    // print(items);
+
+    simpan(items);
   }
 }

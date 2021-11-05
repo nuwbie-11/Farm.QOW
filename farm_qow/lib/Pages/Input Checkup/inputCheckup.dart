@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:farm_qow/Controller/checkup_controller.dart';
-import 'package:farm_qow/Model/model.dart';
 import 'package:farm_qow/Model/storage.dart';
 import 'package:farm_qow/Pages/MainPage/Data%20Sapi/dataSapi.dart';
 import 'package:farm_qow/Pages/MainPage/MainPage.dart';
@@ -43,12 +42,11 @@ class InputCheckup extends StatefulWidget {
 
 class _InputCheckupState extends State<InputCheckup> {
   List checkup = [];
-  var mod = ModelCheckUp();
 
   void upCheckUp() async {
-    mod.cekups = await CheckUpController().fetch2List();
+    final tempCheckUp = await CheckUpController().getDataCheckUp();
     setState(() {
-      checkup = mod.cekups;
+      checkup = tempCheckUp;
     });
   }
 
@@ -293,7 +291,9 @@ class _InputCheckupState extends State<InputCheckup> {
                       }
                     }
                     if (isValidate == true) {
-                      var lastIdCheckup = checkup[checkup.length - 1][0];
+                      var lastIdCheckup = checkup.length == 0
+                          ? 0
+                          : checkup[checkup.length - 1][0];
                       int idCheckup = int.parse(lastIdCheckup.toString());
                       idCheckup += 1;
                       data_input[0] = idCheckup;
@@ -367,7 +367,7 @@ class _InputCheckupState extends State<InputCheckup> {
                                 FlatButton(
                                   onPressed: () {
                                     checkup.add(data_input);
-                                    mod.write(checkup);
+                                    CheckUpController().write(checkup);
                                     print("result");
                                     for (int i = 0; i < checkup.length; i++) {
                                       print(checkup[i]);

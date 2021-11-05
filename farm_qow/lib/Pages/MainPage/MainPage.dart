@@ -1,5 +1,6 @@
+// ignore_for_file: file_names
+
 import 'package:farm_qow/Login.dart';
-import 'package:farm_qow/Model/model.dart';
 import 'package:farm_qow/Model/storage.dart';
 import 'package:farm_qow/Pages/Input%20Susu/InputSusuById.dart';
 import 'package:farm_qow/Pages/Tambah%20Sapi/TambahSapi.dart';

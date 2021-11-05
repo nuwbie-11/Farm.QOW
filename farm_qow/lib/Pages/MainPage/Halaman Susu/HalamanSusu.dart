@@ -3,7 +3,6 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:farm_qow/Controller/sapi_controller.dart';
 import 'package:farm_qow/Controller/susu_controller.dart';
-import 'package:farm_qow/Model/model.dart';
 import 'package:farm_qow/Model/storage.dart';
 import '../../Input Susu/InputSusu.dart';
 import 'package:farm_qow/Pages/Input%20Susu/InputSusuById.dart';
@@ -18,10 +17,8 @@ class HalamanSusu extends StatefulWidget {
 
 class _HalamanSusuState extends State<HalamanSusu> {
   List sapi = [];
-  var mod = ModelSapi();
 
   List susu = [];
-  var modS = ModelSusu();
 
   Future refreshData() async {
     sapi.clear();
@@ -30,11 +27,11 @@ class _HalamanSusuState extends State<HalamanSusu> {
   }
 
   void upContent() async {
-    modS.susus = await SusuController().fetch2List();
-    mod.sapis = await SapiController().fetch2List();
+    final tempSusu = await SusuController().getDataSusu();
+    final tempSapi = await SapiController().getDataSapi();
     setState(() {
-      sapi = mod.sapis;
-      susu = modS.susus;
+      sapi = tempSapi;
+      susu = tempSusu;
     });
   }
 

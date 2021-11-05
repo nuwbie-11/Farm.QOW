@@ -1,10 +1,7 @@
-// import these Packages in pubspec.yaml file.
-// dependencies:
-//
+// ignore_for_file: file_names
 
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:farm_qow/Login.dart';
-import 'package:farm_qow/Model/model.dart';
 import 'package:farm_qow/Pages/MainPage/MainPage.dart';
 import 'package:flutter/animation.dart';
 import 'package:flutter/material.dart';
