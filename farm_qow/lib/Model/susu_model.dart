@@ -1,34 +1,52 @@
-import 'dart:ffi';
+import 'dart:io';
+
+import 'package:path_provider/path_provider.dart';
 
 class Susu {
-  int idSusu;
-  int idProfilSapi;
-  int jumlahSusu;
-  String grade;
-  double fat;
-  double snf;
-  double density;
-  double lactose;
-  double solids;
-  double protein;
-  int tgl;
-  int bln;
-  int thn;
+  int? idSusu;
+  int? idProfilSapi;
+  int? jumlahSusu;
+  String? grade;
+  double? fat;
+  double? snf;
+  double? density;
+  double? lactose;
+  double? solids;
+  double? protein;
+  int? tgl;
+  int? bln;
+  int? thn;
 
   Susu(
-      {required this.idSusu,
-      required this.idProfilSapi,
-      required this.jumlahSusu,
-      required this.grade,
-      required this.fat,
-      required this.snf,
-      required this.density,
-      required this.lactose,
-      required this.solids,
-      required this.protein,
-      required this.tgl,
-      required this.bln,
-      required this.thn});
+      {this.idSusu,
+      this.idProfilSapi,
+      this.jumlahSusu,
+      this.grade,
+      this.fat,
+      this.snf,
+      this.density,
+      this.lactose,
+      this.solids,
+      this.protein,
+      this.tgl,
+      this.bln,
+      this.thn});
+  Future<String> get localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+
+    return directory.path;
+  }
+
+  Future<File> get localFile async {
+    final path = await localPath;
+    final file = File(path + "/" + "susu.json");
+    if (file.existsSync()) {
+      // print(file.existsSync());
+      return file;
+    }
+    file.create();
+    return file;
+  }
 
   factory Susu.fromJson(Map<String, dynamic> json) {
     return Susu(

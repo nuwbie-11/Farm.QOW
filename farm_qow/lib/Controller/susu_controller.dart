@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:farm_qow/Model/susu_model.dart';
-import 'package:path_provider/path_provider.dart';
 
 class SusuController {
+  Susu susu = Susu();
   static List header = [
     "idSusu",
     "idProfilSapi",
@@ -20,20 +20,9 @@ class SusuController {
     "bln",
     "thn"
   ];
-  Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
-
-    return directory.path;
-  }
-
-  Future<File> get _localFile async {
-    final path = await _localPath;
-    final file = File(path + "/" + "susu.json");
-    return file;
-  }
 
   Future<File> simpan(List<Map<String, dynamic>> jsonFile) async {
-    final file = await _localFile;
+    final file = await susu.localFile;
     if (file.existsSync()) {
       // Write the file
       return file.writeAsString(jsonEncode(jsonFile));
@@ -45,9 +34,9 @@ class SusuController {
   List susuContent = [];
 
   dynamic getDataSusu() async {
-    final file = await _localFile;
+    final file = await susu.localFile;
     final content = await file.readAsString();
-    final res = jsonDecode(content);
+    final res = content == '' ? [] : jsonDecode(content);
     for (var item in res) {
       susuContent.add([
         item["idSusu"],

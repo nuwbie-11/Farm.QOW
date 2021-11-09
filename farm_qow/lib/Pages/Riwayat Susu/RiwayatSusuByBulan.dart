@@ -1,4 +1,6 @@
-import 'package:farm_qow/Model/storage.dart';
+// ignore_for_file: file_names
+
+import 'package:farm_qow/Controller/susu_controller.dart';
 
 import 'package:flutter/material.dart';
 
@@ -17,6 +19,21 @@ class RiwayatSusuByBulan extends StatefulWidget {
 }
 
 class _RiwayatSusuByBulanState extends State<RiwayatSusuByBulan> {
+  List susu = [];
+
+  void upContent() async {
+    final tempSusu = await SusuController().getDataSusu();
+    setState(() {
+      susu = tempSusu;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    upContent();
+  }
+
   @override
   Widget build(BuildContext context) {
     var dataSusu = [];

@@ -1,7 +1,6 @@
 // ignore_for_file: file_names
 
 import 'package:farm_qow/Controller/susu_controller.dart';
-import 'package:farm_qow/Model/storage.dart';
 import 'package:farm_qow/Pages/MainPage/Halaman%20Susu/HalamanSusu.dart';
 import 'package:farm_qow/Pages/MainPage/MainPage.dart';
 import 'package:flutter/cupertino.dart';
@@ -352,7 +351,7 @@ class _InputSusuState extends State<InputSusu> {
                                     print("result");
                                     data_input_susu = [
                                       "id sapi",
-                                      sapi[0][0],
+                                      0,
                                       "",
                                       "A+",
                                       "",

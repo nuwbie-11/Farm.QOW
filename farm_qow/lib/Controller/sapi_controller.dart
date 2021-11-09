@@ -5,20 +5,10 @@ import 'package:farm_qow/Model/sapi_model.dart';
 import 'package:path_provider/path_provider.dart';
 
 class SapiController {
-  Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
-
-    return directory.path;
-  }
-
-  Future<File> get _localFile async {
-    final path = await _localPath;
-    final file = File(path + "/" + "sapi.json");
-    return file;
-  }
+  Sapi sapi = Sapi();
 
   Future<File> simpan(List<Map<String, dynamic>> jsonFile) async {
-    final file = await _localFile;
+    final file = await sapi.localFile;
     if (file.existsSync()) {
       // Write the file
       return file.writeAsString(jsonEncode(jsonFile));
@@ -30,9 +20,9 @@ class SapiController {
   List sapiContent = [];
 
   dynamic getDataSapi() async {
-    final file = await _localFile;
+    final file = await sapi.localFile;
     final content = await file.readAsString();
-    final res = jsonDecode(content);
+    final res = content == '' ? [] : jsonDecode(content);
     // List myList = await jsonToDynamic();
     for (var item in res) {
       sapiContent.add([

@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:path_provider/path_provider.dart';
+
 class CheckUp {
   int? idCheckup;
   int? idProfilSapi;
@@ -17,22 +21,38 @@ class CheckUp {
   String? thnCheckup;
 
   CheckUp(
-      {required this.idCheckup,
-      required this.idProfilSapi,
-      required this.diagnosaDokter,
-      required this.catatan,
-      required this.beratSapi,
-      required this.nafsuMakan,
-      required this.aktifTanggap,
-      required this.gerakTubuh,
-      required this.warnaFeses,
-      required this.bauFeses,
-      required this.teksturFeses,
-      required this.suhuTubuh,
-      required this.denyutNadi,
-      required this.tglCheckUp,
-      required this.blncheckup,
-      required this.thnCheckup});
+      {this.idCheckup,
+      this.idProfilSapi,
+      this.diagnosaDokter,
+      this.catatan,
+      this.beratSapi,
+      this.nafsuMakan,
+      this.aktifTanggap,
+      this.gerakTubuh,
+      this.warnaFeses,
+      this.bauFeses,
+      this.teksturFeses,
+      this.suhuTubuh,
+      this.denyutNadi,
+      this.tglCheckUp,
+      this.blncheckup,
+      this.thnCheckup});
+  Future<String> get localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+
+    return directory.path;
+  }
+
+  Future<File> get localFile async {
+    final path = await localPath;
+    final file = File(path + "/" + "checkup.json");
+    if (file.existsSync()) {
+      // print(file.existsSync());
+      return file;
+    }
+    file.create();
+    return file;
+  }
 
   factory CheckUp.fromJson(Map<String, dynamic> json) {
     return CheckUp(

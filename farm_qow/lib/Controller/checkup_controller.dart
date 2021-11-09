@@ -5,7 +5,8 @@ import 'package:farm_qow/Model/checkup_model.dart';
 import 'package:path_provider/path_provider.dart';
 
 class CheckUpController {
-  List header = [
+  CheckUp check = CheckUp();
+  static List header = [
     "Id Checkup",
     "Id Sapi",
     "tanggal checkup",
@@ -23,20 +24,25 @@ class CheckUpController {
     "Diagnosa Dokter",
     "catatan"
   ];
-  Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
+  // Future<String> get _localPath async {
+  //   final directory = await getApplicationDocumentsDirectory();
 
-    return directory.path;
-  }
+  //   return directory.path;
+  // }
 
-  Future<File> get _localFile async {
-    final path = await _localPath;
-    final file = File(path + "/" + "checkup.json");
-    return file;
-  }
+  // Future<File> get _localFile async {
+  //   final path = await _localPath;
+  //   final file = File(path + "/" + "checkup.json");
+  //   if (file.existsSync()) {
+  //     // print(file.existsSync());
+  //     return file;
+  //   }
+  //   file.create();
+  //   return file;
+  // }
 
   Future<File> simpan(List<Map<String, dynamic>> jsonFile) async {
-    final file = await _localFile;
+    final file = await check.localFile;
     if (file.existsSync()) {
       // Write the file
       return file.writeAsString(jsonEncode(jsonFile));
@@ -47,9 +53,10 @@ class CheckUpController {
 
   List checkUpContent = [];
   dynamic getDataCheckUp() async {
-    final file = await _localFile;
+    final file = await check.localFile;
     final content = await file.readAsString();
-    final res = jsonDecode(content);
+    // print(content == '');
+    final res = content == '' ? [] : jsonDecode(content);
     // print(res);
 
     for (var item in res) {

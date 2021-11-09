@@ -1,4 +1,6 @@
-import 'package:farm_qow/Model/storage.dart';
+// ignore_for_file: file_names
+
+import 'package:farm_qow/Controller/checkup_controller.dart';
 import 'package:farm_qow/Pages/CheckUp/DetailCheckUp.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +17,22 @@ class CheckUpByYear extends StatefulWidget {
 }
 
 class _CheckUpByYearState extends State<CheckUpByYear> {
+  List checkup = [];
+
+  void upCheckUp() async {
+    final tempCheckUp = await CheckUpController().getDataCheckUp();
+    setState(() {
+      checkup = tempCheckUp;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    upCheckUp();
+    // mod.resetWrite();
+  }
+
   @override
   Widget build(BuildContext context) {
     var dataCheckup = [];

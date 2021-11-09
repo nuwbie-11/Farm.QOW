@@ -1,4 +1,6 @@
-import 'package:farm_qow/Model/storage.dart';
+// ignore_for_file: file_names
+
+import 'package:farm_qow/Controller/checkup_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +13,22 @@ class DetailChecUp extends StatefulWidget {
 }
 
 class _DetailChecUpState extends State<DetailChecUp> {
+  List checkup = [];
+
+  void upCheckUp() async {
+    final tempCheckUp = await CheckUpController().getDataCheckUp();
+    setState(() {
+      checkup = tempCheckUp;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    upCheckUp();
+    // mod.resetWrite();
+  }
+
   @override
   Widget build(BuildContext context) {
     var dataCheckup;
@@ -97,7 +115,7 @@ class _DetailChecUpState extends State<DetailChecUp> {
                                     width: 20,
                                     // color: Colors.green,
                                     child: Text(
-                                      checkup[0][i].toString(),
+                                      CheckUpController.header[i].toString(),
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 18),
