@@ -21,7 +21,7 @@ class _DetailChecUpState extends State<DetailChecUp> {
         // break;
       }
     }
-    print(dataCheckup);
+    List<String> name = ["Id Checkup","Id Sapi","tanggal checkup","bulancheckup","tahun checktup","berat","suhu tubuh","denyut nadi","nafsu makan","aktif","gerak tubuh","warna feses","bau feses","testur feses","Diagnosa Dokter","catatan"];
     return MaterialApp(
       home: Container(
         decoration: BoxDecoration(
@@ -94,7 +94,7 @@ class _DetailChecUpState extends State<DetailChecUp> {
                                 child: Container(
                                   width: 20,
                                   // color: Colors.green,
-                                  child: Text(checkup[0][i].toString(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
+                                  child: Text(name[i].toString(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
                                 )
                               ),
                               Flexible(

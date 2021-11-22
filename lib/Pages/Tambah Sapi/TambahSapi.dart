@@ -54,7 +54,7 @@ class _TambahSapiState extends State<TambahSapi> {
                   children: [
                     IconButton(
                       onPressed: (){
-
+                        data_input = [0,"","","",""];
                         Navigator.of(context).pop();
                       },
                       icon: Icon(Icons.arrow_back,color:Colors.white,size: 30,),
@@ -185,7 +185,6 @@ class _TambahSapiState extends State<TambahSapi> {
                       onTap: (){
                         bool isValidate = true;
 
-                        print("result");
                         for(int i=0;i<data_input.length;i++){
                           if(data_input[i] == "" || data_input[i] == "pilih tanggal" ){
                             isValidate = false;

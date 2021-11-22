@@ -26,6 +26,10 @@ class _CheckUpByYearState extends State<CheckUpByYear> {
         dataCheckup.add(checkup[i]);
       }
     }
+    List<Checkup> listCheckup = [
+      for (int i = 0; i < dataCheckup.length; i++)
+        Checkup(dataCheckup[i][0], dataCheckup[i][1], dataCheckup[i][2], dataCheckup[i][3], dataCheckup[i][4], dataCheckup[i][5], dataCheckup[i][6], dataCheckup[i][7], dataCheckup[i][8], dataCheckup[i][9], dataCheckup[i][10], dataCheckup[i][11], dataCheckup[i][12], dataCheckup[i][13], dataCheckup[i][14], dataCheckup[i][15]),
+    ];
     return MaterialApp(
       home: Container(
         decoration: BoxDecoration(
@@ -80,8 +84,8 @@ class _CheckUpByYearState extends State<CheckUpByYear> {
           body: ListView(
             children: [
 
-              for(int i=dataCheckup.length-1;i>-1;i--)
-                ItemCheckup(widget.idSapi,dataCheckup[i][2],dataCheckup[i][3],dataCheckup[i][4],dataCheckup[i][14],dataCheckup[i][0])
+              for(int i=listCheckup.length-1;i>-1;i--)
+                ItemCheckup(widget.idSapi,listCheckup[i].tanggal,listCheckup[i].bulan,listCheckup[i].tahun,listCheckup[i].diagnosaDokter,listCheckup[i].idCheckup)
               // ItemCheckup('2', "3", "20021")
             ],
           ),

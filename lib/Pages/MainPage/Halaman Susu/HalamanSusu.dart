@@ -17,6 +17,12 @@ class _HalamanSusuState extends State<HalamanSusu> {
   @override
   Widget build(BuildContext context) {
     var dataSapi = [];
+    int totalSusu = 0;
+    int gradeA = 0;
+    int gradeBplus = 0;
+    int gradeBmin = 0;
+    int gradeC = 0;
+
 
     for(int i=0;i<sapi.length;i++){
       var sapiValue = [0,"",""];
@@ -27,6 +33,19 @@ class _HalamanSusuState extends State<HalamanSusu> {
       for(int i=0;i<susu.length;i++){
         if(susu[i][1] == getIdSapi && susu[i][10] == DateTime.now().day && susu[i][11] == DateTime.now().month && susu[i][12] == DateTime.now().year  ){
           dataSusu.add(susu[i][2]);
+          totalSusu += int.parse(susu[i][2].toString());
+          if(susu[i][3] == "A"){
+            gradeA += int.parse(susu[i][2].toString());
+          }
+          else if(susu[i][3] == "B+"){
+            gradeBplus += int.parse(susu[i][2].toString());
+          }
+          else if(susu[i][3] == "B-"){
+            gradeBmin += int.parse(susu[i][2].toString());
+          }
+          else{
+            gradeC +=int.parse(susu[i][2].toString());
+          }
         }
       }
 
@@ -42,6 +61,21 @@ class _HalamanSusuState extends State<HalamanSusu> {
       children: [
 
         SizedBox(height: 20,),
+        Card(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Total Susu : "+totalSusu.toString() + " liter",style: TextStyle(fontSize: 25),),
+              Text("Grade A : "+gradeA.toString(),style: TextStyle(fontSize: 25),),
+              Text("Grade B+ : "+gradeBplus.toString(),style: TextStyle(fontSize: 25),),
+              Text("Grade B- : "+gradeBmin.toString(),style: TextStyle(fontSize: 25),),
+              Text("Grade C : "+gradeC.toString(),style: TextStyle(fontSize: 25),),
+
+            ],
+          ),
+        ),
+        SizedBox(height: 20,),
+
         for(int i=dataSapi.length-1;i>-1;i--)
           ItemDataSapi(
             dataSapi[i][0].toString(),
@@ -67,6 +101,13 @@ class ItemDataSapi extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Builder(builder: (context){
+
+      int totalSusu = 0;
+      for(int i=0; i<dataSusu.length;i++){
+
+        totalSusu += int.parse(dataSusu[i]);
+      }
+
       return InkWell(
         onTap: (){
           Navigator.of(context).push(MaterialPageRoute(builder: (context){
@@ -114,12 +155,14 @@ class ItemDataSapi extends StatelessWidget {
               if(dataSusu.length == 0)
                 Text("belum diperah",style: TextStyle(fontSize: 18),)
               else
-                Column(
-                  children: [
-                    for(int j=0; j<dataSusu.length; j++)
-                      Text(dataSusu[j].toString() + " liter ",style: TextStyle(fontSize: 18),)
-                  ],
-                )
+                Text(totalSusu.toString() + " liter ",style: TextStyle(fontSize: 18),)
+
+                // Column(
+                //   children: [
+                //     for(int j=0; j<dataSusu.length; j++)
+                //       Text(dataSusu[j].toString() + " liter ",style: TextStyle(fontSize: 18),)
+                //   ],
+                // )
 
 
 

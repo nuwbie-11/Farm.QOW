@@ -5,6 +5,27 @@ import 'package:flutter/material.dart';
 
 import '../../main.dart';
 
+class Checkup{
+  var idCheckup;
+  var idSapi;
+  var tanggal;
+  var bulan;
+  var tahun;
+  var berat;
+  var suhuTubuh;
+  var denyutNadi;
+  var nafsuMakan;
+  var aktifTanggap;
+  var gerakTubuh;
+  var warnaFeses;
+  var bauFeses;
+  var texturFeses;
+  var diagnosaDokter;
+  var catatan;
+
+  Checkup(this.idCheckup,this.idSapi,this.tanggal,this.bulan,this.tahun,this.berat,this.suhuTubuh,this.denyutNadi,this.nafsuMakan,this.aktifTanggap,this.gerakTubuh,this.warnaFeses,this.bauFeses,this.texturFeses,this.diagnosaDokter,this.catatan);
+}
+
 
 
 class CheckUp extends StatefulWidget {
@@ -25,6 +46,12 @@ class _CheckUpState extends State<CheckUp> {
         dataCheckup.add(checkup[i]);
       }
     }
+
+    List<Checkup> listCheckup = [
+      for (int i = 0; i < dataCheckup.length; i++)
+        Checkup(dataCheckup[i][0], dataCheckup[i][1], dataCheckup[i][2], dataCheckup[i][3], dataCheckup[i][4], dataCheckup[i][5], dataCheckup[i][6], dataCheckup[i][7], dataCheckup[i][8], dataCheckup[i][9], dataCheckup[i][10], dataCheckup[i][11], dataCheckup[i][12], dataCheckup[i][13], dataCheckup[i][14], dataCheckup[i][15]),
+    ];
+
     return MaterialApp(
       home: Container(
         decoration: BoxDecoration(
@@ -76,11 +103,15 @@ class _CheckUpState extends State<CheckUp> {
               ],
             ),
           ),
+
+
+
+
           body: ListView(
             children: [
 
-              for(int i=dataCheckup.length-1;i>-1;i--)
-                ItemCheckup(widget.idSapi,dataCheckup[i][2],dataCheckup[i][3],dataCheckup[i][4],dataCheckup[i][14],dataCheckup[i][0])
+              for(int i=listCheckup.length-1;i>-1;i--)
+                ItemCheckup(widget.idSapi,listCheckup[i].tanggal,listCheckup[i].bulan,listCheckup[i].tahun,listCheckup[i].diagnosaDokter,listCheckup[i].idCheckup)
                 // ItemCheckup('2', "3", "20021")
             ],
           ),
