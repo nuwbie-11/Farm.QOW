@@ -234,7 +234,7 @@ class _EditSapiState extends State<EditSapi> {
                       if (stringTanggalDatang != "pilih tanggal") {
                         sapi[i][3] = stringTanggalDatang;
                       }
-                      SapiController().write(sapi);
+                      SapiController().simpan(sapi);
                       namaSapiBaru = "";
                       jenisSapiBaru = "";
 

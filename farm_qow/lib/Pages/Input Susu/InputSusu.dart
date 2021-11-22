@@ -347,7 +347,7 @@ class _InputSusuState extends State<InputSusu> {
                                     for (int i = 0; i < susu.length; i++) {
                                       print(susu[i]);
                                     }
-                                    SusuController().write(susu);
+                                    SusuController().simpan(susu);
                                     print("result");
                                     data_input_susu = [
                                       "id sapi",

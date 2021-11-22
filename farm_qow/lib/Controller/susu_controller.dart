@@ -21,16 +21,6 @@ class SusuController {
     "thn"
   ];
 
-  Future<File> simpan(List<Map<String, dynamic>> jsonFile) async {
-    final file = await susu.localFile;
-    if (file.existsSync()) {
-      // Write the file
-      return file.writeAsString(jsonEncode(jsonFile));
-    }
-    file.create();
-    return file.writeAsString(jsonEncode(jsonFile));
-  }
-
   List susuContent = [];
 
   dynamic getDataSusu() async {
@@ -58,7 +48,7 @@ class SusuController {
     return susuContent;
   }
 
-  void write(current) {
+  void simpan(current) {
     List<Map<String, dynamic>> items = [];
     for (var item in current) {
       Susu sus = Susu(
@@ -79,6 +69,6 @@ class SusuController {
       items.add(sus.toJson());
     }
     // print(items);
-    simpan(items);
+    susu.write(items);
   }
 }

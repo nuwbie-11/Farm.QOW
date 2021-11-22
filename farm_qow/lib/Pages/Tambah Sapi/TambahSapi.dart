@@ -216,7 +216,7 @@ class _TambahSapiState extends State<TambahSapi> {
                           print(data_input);
                           if (sapi.contains(data_input) == false) {
                             sapi.add(data_input);
-                            SapiController().write(sapi);
+                            SapiController().simpan(sapi);
                           }
                           ;
                           data_input = [0, "", "", "", ""];

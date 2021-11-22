@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
@@ -26,6 +27,16 @@ class Sapi {
     }
     file.create();
     return file;
+  }
+
+  Future<File> write(List<Map<String, dynamic>> jsonFile) async {
+    final file = await localFile;
+    if (file.existsSync()) {
+      // Write the file
+      return file.writeAsString(jsonEncode(jsonFile));
+    }
+    file.create();
+    return file.writeAsString(jsonEncode(jsonFile));
   }
 
   factory Sapi.fromJson(Map<String, dynamic> json) {

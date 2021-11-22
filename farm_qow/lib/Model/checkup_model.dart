@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
@@ -52,6 +53,16 @@ class CheckUp {
     }
     file.create();
     return file;
+  }
+
+  Future<File> write(List<Map<String, dynamic>> jsonFile) async {
+    final file = await localFile;
+    if (file.existsSync()) {
+      // Write the file
+      return file.writeAsString(jsonEncode(jsonFile));
+    }
+    file.create();
+    return file.writeAsString(jsonEncode(jsonFile));
   }
 
   factory CheckUp.fromJson(Map<String, dynamic> json) {

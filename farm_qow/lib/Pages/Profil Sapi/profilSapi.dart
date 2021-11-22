@@ -391,7 +391,7 @@ class _ProfilSapiState extends State<ProfilSapi> {
                                         for (int i = 0; i < sapi.length; i++) {
                                           if (sapi[i][0] == intIdSapi) {
                                             sapi.removeAt(i);
-                                            SapiController().write(sapi);
+                                            SapiController().simpan(sapi);
                                             Navigator.of(context)
                                                 .pushReplacement(
                                                     MaterialPageRoute(

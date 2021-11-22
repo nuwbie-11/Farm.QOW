@@ -7,16 +7,6 @@ import 'package:path_provider/path_provider.dart';
 class SapiController {
   Sapi sapi = Sapi();
 
-  Future<File> simpan(List<Map<String, dynamic>> jsonFile) async {
-    final file = await sapi.localFile;
-    if (file.existsSync()) {
-      // Write the file
-      return file.writeAsString(jsonEncode(jsonFile));
-    }
-    file.create();
-    return file.writeAsString(jsonEncode(jsonFile));
-  }
-
   List sapiContent = [];
 
   dynamic getDataSapi() async {
@@ -37,7 +27,7 @@ class SapiController {
     return sapiContent;
   }
 
-  void write(currentSapi) {
+  void simpan(currentSapi) {
     List<Map<String, dynamic>> items = [];
     for (var item in currentSapi) {
       Sapi saps = Sapi(
@@ -50,6 +40,6 @@ class SapiController {
     }
     // print(items);
 
-    simpan(items);
+    sapi.write(items);
   }
 }

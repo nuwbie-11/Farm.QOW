@@ -24,32 +24,6 @@ class CheckUpController {
     "Diagnosa Dokter",
     "catatan"
   ];
-  // Future<String> get _localPath async {
-  //   final directory = await getApplicationDocumentsDirectory();
-
-  //   return directory.path;
-  // }
-
-  // Future<File> get _localFile async {
-  //   final path = await _localPath;
-  //   final file = File(path + "/" + "checkup.json");
-  //   if (file.existsSync()) {
-  //     // print(file.existsSync());
-  //     return file;
-  //   }
-  //   file.create();
-  //   return file;
-  // }
-
-  Future<File> simpan(List<Map<String, dynamic>> jsonFile) async {
-    final file = await check.localFile;
-    if (file.existsSync()) {
-      // Write the file
-      return file.writeAsString(jsonEncode(jsonFile));
-    }
-    file.create();
-    return file.writeAsString(jsonEncode(jsonFile));
-  }
 
   List checkUpContent = [];
   dynamic getDataCheckUp() async {
@@ -83,7 +57,7 @@ class CheckUpController {
     return checkUpContent;
   }
 
-  void write(current) {
+  void simpan(current) {
     List<Map<String, dynamic>> items = [];
     for (var item in current) {
       CheckUp saps = CheckUp(
@@ -107,6 +81,6 @@ class CheckUpController {
     }
     // print(items);
 
-    simpan(items);
+    check.write(items);
   }
 }

@@ -365,7 +365,7 @@ class _InputCheckupState extends State<InputCheckup> {
                                 FlatButton(
                                   onPressed: () {
                                     checkup.add(data_input);
-                                    CheckUpController().write(checkup);
+                                    CheckUpController().simpan(checkup);
                                     print("result");
                                     for (int i = 0; i < checkup.length; i++) {
                                       print(checkup[i]);
