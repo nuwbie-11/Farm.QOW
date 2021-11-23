@@ -66,7 +66,7 @@ class MyAppState extends State<MyApp> {
                       height: 20,
                     ),
                     Text(
-                        user_login[0] == "manager"
+                        user_login[8] == "manager"
                             ? "manager"
                             : user_login[0][0],
                         style: TextStyle(

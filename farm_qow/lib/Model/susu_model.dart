@@ -46,6 +46,7 @@ class Susu {
       return file;
     }
     file.create();
+    file.writeAsString("");
     return file;
   }
 

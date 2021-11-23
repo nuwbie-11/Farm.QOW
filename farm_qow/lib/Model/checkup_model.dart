@@ -52,6 +52,7 @@ class CheckUp {
       return file;
     }
     file.create();
+    file.writeAsString("");
     return file;
   }
 
