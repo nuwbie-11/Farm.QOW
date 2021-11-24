@@ -45,6 +45,11 @@ class _HalamanSusuState extends State<HalamanSusu> {
   @override
   Widget build(BuildContext context) {
     var dataSapi = [];
+    int totalSusu = 0;
+    int gradeA = 0;
+    int gradeBplus = 0;
+    int gradeBmin = 0;
+    int gradeC = 0;
 
     for (int i = 0; i < sapi.length; i++) {
       var sapiValue = [0, "", ""];
@@ -58,6 +63,16 @@ class _HalamanSusuState extends State<HalamanSusu> {
             susu[i][11] == DateTime.now().month &&
             susu[i][12] == DateTime.now().year) {
           dataSusu.add(susu[i][2]);
+          totalSusu += int.parse(susu[i][2].toString());
+          if (susu[i][3] == "A") {
+            gradeA += int.parse(susu[i][2].toString());
+          } else if (susu[i][3] == "B+") {
+            gradeBplus += int.parse(susu[i][2].toString());
+          } else if (susu[i][3] == "B-") {
+            gradeBmin += int.parse(susu[i][2].toString());
+          } else {
+            gradeC += int.parse(susu[i][2].toString());
+          }
         }
       }
 
@@ -71,6 +86,36 @@ class _HalamanSusuState extends State<HalamanSusu> {
     }
     return ListView(
       children: [
+        SizedBox(
+          height: 20,
+        ),
+        Card(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Total Susu : " + totalSusu.toString() + " liter",
+                style: TextStyle(fontSize: 25),
+              ),
+              Text(
+                "Grade A : " + gradeA.toString(),
+                style: TextStyle(fontSize: 25),
+              ),
+              Text(
+                "Grade B+ : " + gradeBplus.toString(),
+                style: TextStyle(fontSize: 25),
+              ),
+              Text(
+                "Grade B- : " + gradeBmin.toString(),
+                style: TextStyle(fontSize: 25),
+              ),
+              Text(
+                "Grade C : " + gradeC.toString(),
+                style: TextStyle(fontSize: 25),
+              ),
+            ],
+          ),
+        ),
         SizedBox(
           height: 20,
         ),

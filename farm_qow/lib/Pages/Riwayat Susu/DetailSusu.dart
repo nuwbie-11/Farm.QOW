@@ -40,9 +40,7 @@ class _DetailSusuState extends State<DetailSusu> {
         // break;
       }
     }
-    print("ini data susu");
-    print(dataSusu);
-    print("ini data susu");
+
     return MaterialApp(
       home: Container(
         decoration: BoxDecoration(

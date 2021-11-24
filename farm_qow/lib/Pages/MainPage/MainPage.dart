@@ -1,8 +1,9 @@
 // ignore_for_file: file_names
 
-import 'package:farm_qow/Login.dart';
 import 'package:farm_qow/Model/storage.dart';
 import 'package:farm_qow/Pages/Input%20Susu/InputSusuById.dart';
+import 'package:farm_qow/Pages/MainPage/Akun/PreviewAkun.dart';
+import 'package:farm_qow/Pages/MainPage/Laporan/laporan.dart';
 import 'package:farm_qow/Pages/Tambah%20Sapi/TambahSapi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -31,6 +32,14 @@ class MyAppState extends State<MyApp> {
       thisPage = Center(
         child: HalamanSusu(),
       );
+    } else if (widget.currentIndex == 2) {
+      thisPage = Center(
+        child: Laporan(),
+      );
+    } else if (widget.currentIndex == 3) {
+      thisPage = Center(
+        child: PreviewAkun(),
+      );
     }
 
     return Container(
@@ -42,150 +51,53 @@ class MyAppState extends State<MyApp> {
               fit: BoxFit.cover)),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        endDrawer: Drawer(
-          child: Container(
-            width: 50,
-            height: 50,
-            decoration: BoxDecoration(
-                color: Color.fromRGBO(143, 197, 255, 0.95),
-                image: DecorationImage(
-                    image: AssetImage("assets/bg/bg5.jpg"), fit: BoxFit.cover)),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  children: [
-                    SizedBox(
-                      height: 60,
+        floatingActionButton: widget.currentIndex < 2
+            ? FloatingActionButton(
+                elevation: 0,
+                onPressed: () {},
+                child: Builder(builder: (context) {
+                  return IconButton(
+                    onPressed: () {
+                      print(user_login);
+                      if (widget.currentIndex == 0) {
+                        if (user_login[8] == false) {
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Text("Warning"),
+                                  content: Text("Anda Bukan Manager !"),
+                                  actions: [
+                                    FlatButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          Navigator.of(context).pop(true);
+                                        });
+                                      },
+                                      child: Text("Yes",
+                                          style: TextStyle(color: Colors.blue)),
+                                    )
+                                  ],
+                                );
+                              }).then((value) => null);
+                        } else {
+                          Navigator.push(
+                              context, TransitionBottomToTop(TambahSapi()));
+                        }
+                      } else if (widget.currentIndex == 1) {
+                        Navigator.push(
+                            context, TransitionBottomToTop(InputSusuById()));
+                      }
+                    },
+                    icon: Icon(
+                      Icons.add,
+                      color: Colors.white,
+                      size: 30,
                     ),
-                    CircleAvatar(
-                      radius: 70,
-                      backgroundColor: Colors.blue,
-                    ),
-                    SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                        user_login[8] == "manager"
-                            ? "manager"
-                            : user_login[0][0],
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 28,
-                            color: Colors.blue))
-                  ],
-                ),
-                GestureDetector(
-                  onTap: () {
-                    user_login = [];
-                    Navigator.of(context)
-                        .pushReplacement(MaterialPageRoute(builder: (context) {
-                      return LoginPage();
-                    }));
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    height: 60,
-                    margin: EdgeInsets.symmetric(horizontal: 40, vertical: 30),
-                    color: Colors.white,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          Icons.logout_outlined,
-                          size: 40,
-                        ),
-                        Text(
-                          "Logout",
-                          style: TextStyle(fontSize: 27),
-                        )
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            ),
-          ),
-        ),
-        appBar: AppBar(
-            backgroundColor: Color.fromRGBO(143, 197, 255, 0.95),
-            elevation: 0,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.vertical(
-                bottom: Radius.circular(20),
-              ),
-            ),
-            title: Builder(builder: (context) {
-              return InkWell(
-                onTap: () {
-                  // Navigator.push(context, TransitionTopToBottom(SearchHalamanSapi()));
-                },
-                child: Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Farm.QOW'),
-                      // AnimatedTextKit(
-                      //   animatedTexts: [
-                      //     WavyAnimatedText('Farm.QOW')
-                      //   ],
-                      //   repeatForever: true,
-                      //   isRepeatingAnimation: true,
-                      // ),
-                      Row(
-                        children: [
-                          Icon(Icons.search),
-                        ],
-                      )
-                    ],
-                  ),
-                ),
-              );
-            })),
-        floatingActionButton: FloatingActionButton(
-          elevation: 0,
-          onPressed: () {},
-          child: Builder(builder: (context) {
-            return IconButton(
-              onPressed: () {
-                if (user_login[0] == "manager") {
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return AlertDialog(
-                          title: Text("Anda Buakan Pegawai !"),
-                          content: Text(""),
-                          actions: [
-                            FlatButton(
-                              onPressed: () {
-                                setState(() {
-                                  Navigator.of(context).pop(true);
-                                });
-                              },
-                              child: Text("Yes",
-                                  style: TextStyle(color: Colors.blue)),
-                            )
-                          ],
-                        );
-                      }).then((value) => null);
-                } else {
-                  if (widget.currentIndex == 0) {
-                    Navigator.push(
-                        context, TransitionBottomToTop(TambahSapi()));
-                  } else if (widget.currentIndex == 1) {
-                    Navigator.push(
-                        context, TransitionBottomToTop(InputSusuById()));
-                  }
-                }
-              },
-              icon: Icon(
-                Icons.add,
-                color: Colors.white,
-                size: 30,
-              ),
-            );
-          }),
-        ),
+                  );
+                }),
+              )
+            : null,
         body: thisPage,
         bottomNavigationBar: Container(
           height: displayWidth * .155,
@@ -312,7 +224,7 @@ class MyAppState extends State<MyApp> {
   List<String> listOfStrings = [
     'Sapi',
     'Susu',
-    'Settings',
-    'Account',
+    'Laporan',
+    'Akun',
   ];
 }

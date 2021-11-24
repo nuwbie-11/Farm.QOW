@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:farm_qow/Controller/susu_controller.dart';
-import 'package:farm_qow/Pages/MainPage/Halaman%20Susu/HalamanSusu.dart';
+import 'package:farm_qow/Model/storage.dart';
 import 'package:farm_qow/Pages/MainPage/MainPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +20,7 @@ var data_input_susu = [
   DateTime.now().day,
   DateTime.now().month,
   DateTime.now().year,
+  user_login[0],
 ];
 
 class InputSusu extends StatefulWidget {
@@ -343,12 +344,10 @@ class _InputSusuState extends State<InputSusu> {
                                     setState(() {
                                       susu.add(data_input_susu);
                                     });
-                                    print("result");
-                                    for (int i = 0; i < susu.length; i++) {
-                                      print(susu[i]);
-                                    }
+                                    print(data_input_susu);
+                                    print(user_login);
                                     SusuController().simpan(susu);
-                                    print("result");
+
                                     data_input_susu = [
                                       "id sapi",
                                       0,
@@ -363,12 +362,13 @@ class _InputSusuState extends State<InputSusu> {
                                       DateTime.now().day,
                                       DateTime.now().month,
                                       DateTime.now().year,
+                                      user_login[0]
                                     ];
 
-                                    Navigator.of(context).pushReplacement(
-                                        MaterialPageRoute(builder: (context) {
-                                      return MyApp(1);
-                                    }));
+                                    // Navigator.of(context).pushReplacement(
+                                    //     MaterialPageRoute(builder: (context) {
+                                    //   return MyApp(1);
+                                    // }));
                                   },
                                   child: Text("Iya",
                                       style: TextStyle(color: Colors.blue)),

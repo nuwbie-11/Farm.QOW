@@ -6,6 +6,8 @@ import 'package:farm_qow/Model/user_model.dart';
 import 'package:farm_qow/Pages/MainPage/MainPage.dart';
 import 'package:flutter/material.dart';
 
+User userLogin = User();
+
 class LoginPage extends StatefulWidget {
   // const LoginPage({Key? key}) : super(key: key);
 
@@ -17,9 +19,9 @@ class _LoginPageState extends State<LoginPage> {
   List user_account = [];
   User userLogin = User();
   void upUser() async {
-    final tempCheckUp = await UserController().getDataUser();
+    final tempUser = await UserController().getDataUser();
     setState(() {
-      user_account = tempCheckUp;
+      user_account = tempUser;
     });
   }
 
@@ -27,7 +29,6 @@ class _LoginPageState extends State<LoginPage> {
   void initState() {
     super.initState();
     upUser();
-    // mod.resetWrite();
   }
 
   var obsuced = true;
@@ -104,7 +105,7 @@ class _LoginPageState extends State<LoginPage> {
                     onPressed: () {
                       print(nikInput);
                       print(passwordInput);
-                      print(user_account);
+                      print("USERS : $user_account");
                       if (nikInput == "3510161111000000" &&
                           passwordInput == "admin123") {
                         var getDataUser = user_account[0];
@@ -120,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
                         userLogin.agama = getDataUser[9];
 
                         user_login = user_account[0];
-                        print(user_login);
+
                         Navigator.of(context).pushReplacement(
                             MaterialPageRoute(builder: (context) {
                           return MyApp(

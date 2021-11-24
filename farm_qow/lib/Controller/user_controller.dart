@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:farm_qow/Model/storage.dart';
 import 'package:farm_qow/Model/user_model.dart';
 
 class UserController {
@@ -21,7 +22,7 @@ class UserController {
   dynamic getDataUser() async {
     final file = await user.localFile;
     final content = await file.readAsString();
-    final res = content == '' ? _loadAdmin() : jsonDecode(content);
+    final res = content == '' ? populateUser() : jsonDecode(content);
     // List myList = await jsonToDynamic();
     // print(res);
     for (var item in res) {
@@ -38,28 +39,28 @@ class UserController {
         item["agama"],
       ]);
     }
-    // print(sapiContent);
     return userContent;
   }
 
-  void simpan(currentSapi) {
+  void simpan(currentData) {
     List<Map<String, dynamic>> items = [];
-    for (var item in currentSapi) {
+    for (var item in currentData) {
+      print("iterate : $item");
       User userC = User(
-        nik: item['nik'],
-        nama: item['nama'],
-        tanggalLahir: item["tanggal Lahir"],
-        tempatLahir: item["tempat Lahir"],
-        jenisKelamin: item["jenis Kelamin"],
-        alamat: item["alamat"],
-        statusKawin: item["status Kawin"],
-        password: item["password"],
-        isAdmin: item["isAdmin"],
-        agama: item["agama"],
+        nik: item[0],
+        nama: item[1],
+        tanggalLahir: item[2],
+        tempatLahir: item[3],
+        jenisKelamin: item[4],
+        alamat: item[5],
+        statusKawin: item[6],
+        password: item[7],
+        isAdmin: item[8],
+        agama: item[9],
       );
       items.add(userC.toJson());
     }
-    // print(items);
+    print(items);
 
     user.write(items);
   }
@@ -81,5 +82,27 @@ class UserController {
     ];
     simpan(admin);
     return admin;
+  }
+
+  dynamic populateUser() {
+    List ps = [];
+    for (var item in pegawai) {
+      // var temp = {
+      //   "nik": item[0],
+      //   "nama": item[1],
+      //   "tanggal Lahir": item[2],
+      //   "tempat Lahir": item[3],
+      //   "jenis Kelamin": item[4],
+      //   "alamat": item[5],
+      //   "status Kawin": item[6],
+      //   "password": item[7],
+      //   "isAdmin": item[8],
+      //   "agama": item[9]
+      // };
+      // print("Value is : $temp");
+      ps.add(item);
+    }
+    simpan(ps);
+    return ps;
   }
 }

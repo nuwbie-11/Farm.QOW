@@ -17,6 +17,7 @@ class Susu {
   int? tgl;
   int? bln;
   int? thn;
+  dynamic? petugas;
 
   Susu(
       {this.idSusu,
@@ -31,7 +32,8 @@ class Susu {
       this.protein,
       this.tgl,
       this.bln,
-      this.thn});
+      this.thn,
+      this.petugas});
   Future<String> get localPath async {
     final directory = await getApplicationDocumentsDirectory();
 
@@ -74,7 +76,8 @@ class Susu {
         protein: json["protein"],
         tgl: json["tgl"],
         bln: json["bln"],
-        thn: json["thn"]);
+        thn: json["thn"],
+        petugas: json["petugas"]);
   }
 
   Map<String, dynamic> toJson() => {
@@ -91,5 +94,6 @@ class Susu {
         "tgl": tgl,
         "bln": bln,
         "thn": thn,
+        "petugas": petugas
       };
 }

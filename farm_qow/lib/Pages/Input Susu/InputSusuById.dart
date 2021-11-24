@@ -1,5 +1,7 @@
 // ignore_for_file: file_names
 
+import 'package:farm_qow/Controller/sapi_controller.dart';
+import 'package:farm_qow/Controller/susu_controller.dart';
 import 'package:farm_qow/Model/storage.dart';
 import 'package:farm_qow/Pages/MainPage/MainPage.dart';
 import 'package:flutter/cupertino.dart';
@@ -7,7 +9,7 @@ import 'package:flutter/material.dart';
 
 var data_input_susu = [
   "id susu",
-  sapi[0][0],
+  '',
   "",
   "A+",
   "",
@@ -27,6 +29,23 @@ class InputSusuById extends StatefulWidget {
 }
 
 class _InputSusuByIdState extends State<InputSusuById> {
+  List susu = [];
+  List sapi = [];
+  void upContent() async {
+    final tempSusu = await SusuController().getDataSusu();
+    final sapiTemp = await SapiController().getDataSapi();
+    setState(() {
+      susu = tempSusu;
+      sapi = sapiTemp;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    upContent();
+  }
+
   TextEditingController jumlahSusuInput = new TextEditingController();
   TextEditingController fatInput = new TextEditingController();
   TextEditingController snfInput = new TextEditingController();
@@ -412,7 +431,21 @@ class IdSapiInput extends StatefulWidget {
 
 /// This is the private State class that goes with IdSapiInput.
 class IdSapiInputState extends State<IdSapiInput> {
-  String dropdownValue = sapi[0][0].toString();
+  List sapi = [];
+  String dropdownValue = "";
+  void upContent() async {
+    final sapiTemp = await SapiController().getDataSapi();
+    setState(() {
+      sapi = sapiTemp;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    upContent();
+    String dropdownValue = sapi[0][0].toString();
+  }
 
   @override
   Widget build(BuildContext context) {

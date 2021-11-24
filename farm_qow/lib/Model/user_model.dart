@@ -35,7 +35,6 @@ class User {
 
   Future<File> get localFile async {
     final path = await localPath;
-    bool isExist = false;
     final file = File(path + "/" + "user.json");
 
     if (file.existsSync()) {

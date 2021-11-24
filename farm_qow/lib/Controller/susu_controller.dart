@@ -1,6 +1,6 @@
 import 'dart:convert';
-import 'dart:io';
 
+import 'package:farm_qow/Model/storage.dart';
 import 'package:farm_qow/Model/susu_model.dart';
 
 class SusuController {
@@ -18,7 +18,8 @@ class SusuController {
     "Protein",
     "tgl",
     "bln",
-    "thn"
+    "thn",
+    "petugas"
   ];
 
   List susuContent = [];
@@ -41,7 +42,8 @@ class SusuController {
         item["protein"],
         item["tgl"],
         item["bln"],
-        item["thn"]
+        item["thn"],
+        item["petugas"]
       ]);
     }
     // print(sapiContent);
@@ -64,11 +66,34 @@ class SusuController {
           protein: double.parse(item[9].toString()),
           tgl: int.parse(item[10].toString()),
           bln: int.parse(item[11].toString()),
-          thn: int.parse(item[12].toString()));
+          thn: int.parse(item[12].toString()),
+          petugas: item[13]);
 
       items.add(sus.toJson());
     }
     // print(items);
     susu.write(items);
+  }
+
+  dynamic populateUser() {
+    List ps = [];
+    for (var item in susus) {
+      // var temp = {
+      //   "nik": item[0],
+      //   "nama": item[1],
+      //   "tanggal Lahir": item[2],
+      //   "tempat Lahir": item[3],
+      //   "jenis Kelamin": item[4],
+      //   "alamat": item[5],
+      //   "status Kawin": item[6],
+      //   "password": item[7],
+      //   "isAdmin": item[8],
+      //   "agama": item[9]
+      // };
+      // print("Value is : $temp");
+      ps.add(item);
+    }
+    simpan(ps);
+    return ps;
   }
 }
