@@ -238,7 +238,7 @@ class _ProfilPegawaiState extends State<ProfilPegawai> {
                   ),
                 ),
                 SizedBox(height: 20),
-                userLogin.isAdmin == 1
+                user_login[8] == true
                     ? Container(
                         width: double.infinity,
                         padding: EdgeInsets.all(15),
@@ -286,6 +286,8 @@ class _ProfilPegawaiState extends State<ProfilPegawai> {
                                                 if (user_account[i][0] ==
                                                     widget.nik) {
                                                   user_account.removeAt(i);
+                                                  UserController()
+                                                      .simpan(user_account);
                                                   Navigator.of(context)
                                                       .pushReplacement(
                                                           MaterialPageRoute(

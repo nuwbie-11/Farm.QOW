@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 
 var data_input_susu = [
   "id susu",
-  '',
+  "",
   "",
   "A+",
   "",
@@ -30,13 +30,11 @@ class InputSusuById extends StatefulWidget {
 
 class _InputSusuByIdState extends State<InputSusuById> {
   List susu = [];
-  List sapi = [];
+
   void upContent() async {
     final tempSusu = await SusuController().getDataSusu();
-    final sapiTemp = await SapiController().getDataSapi();
     setState(() {
       susu = tempSusu;
-      sapi = sapiTemp;
     });
   }
 
@@ -239,20 +237,23 @@ class _InputSusuByIdState extends State<InputSusuById> {
                 ),
                 InkWell(
                   onTap: () {
-                    var lastIdSusu = susu[susu.length - 1][0];
-                    int idSusu = int.parse(lastIdSusu.toString());
-                    idSusu += 1;
-                    data_input_susu[0] = idSusu;
                     bool isValidate = true;
-                    for (int i = 0; i < data_input_susu.length - 1; i++) {
+                    for (int i = 0; i < data_input_susu.length; i++) {
                       print(data_input_susu[i]);
                       if (data_input_susu[i] == "") {
                         isValidate = false;
                       }
                     }
                     if (isValidate == true) {
-                      print(data_input_susu[0]);
+                      var lastIdSusu =
+                          susu.length == 0 ? 0 : susu[susu.length - 1][0];
 
+                      int idCheckup = int.parse(lastIdSusu.toString());
+                      idCheckup += 1;
+                      data_input_susu[0] = idCheckup;
+
+                      data_input_susu.add(user_login[0]);
+                      print(data_input_susu);
                       if (double.parse(data_input_susu[4].toString()) >= 4 &&
                           double.parse(data_input_susu[5].toString()) >= 7.8 &&
                           double.parse(data_input_susu[6].toString()) >=
@@ -341,16 +342,17 @@ class _InputSusuByIdState extends State<InputSusuById> {
                                 ),
                                 FlatButton(
                                   onPressed: () {
-                                    susu.add(data_input_susu);
+                                    setState(() {
+                                      susu.add(data_input_susu);
+                                    });
+                                    // print(data_input_susu);
+                                    // print(user_login);
+                                    // SusuController().simpan(susu);
+                                    data_input_susu.clear();
 
-                                    print("result susu");
-                                    for (int i = 0; i < susu.length; i++) {
-                                      print(susu[i]);
-                                    }
-                                    print("result susu");
                                     data_input_susu = [
                                       "id sapi",
-                                      sapi[0][0],
+                                      0,
                                       "",
                                       "A+",
                                       "",
@@ -363,11 +365,11 @@ class _InputSusuByIdState extends State<InputSusuById> {
                                       DateTime.now().month,
                                       DateTime.now().year,
                                     ];
-
-                                    Navigator.of(context).pushReplacement(
-                                        MaterialPageRoute(builder: (context) {
-                                      return MyApp(1);
-                                    }));
+                                    print(data_input_susu);
+                                    // Navigator.of(context).pushReplacement(
+                                    //     MaterialPageRoute(builder: (context) {
+                                    //   return MyApp(1);
+                                    // }));
                                   },
                                   child: Text("Iya",
                                       style: TextStyle(color: Colors.blue)),
@@ -431,12 +433,17 @@ class IdSapiInput extends StatefulWidget {
 
 /// This is the private State class that goes with IdSapiInput.
 class IdSapiInputState extends State<IdSapiInput> {
+  List susu = [];
   List sapi = [];
   String dropdownValue = "";
+
   void upContent() async {
-    final sapiTemp = await SapiController().getDataSapi();
+    final tempSusu = await SusuController().getDataSusu();
+    final tempSapi = await SapiController().getDataSapi();
     setState(() {
-      sapi = sapiTemp;
+      susu = tempSusu;
+      sapi = tempSapi;
+      dropdownValue = sapi[0][0].toString();
     });
   }
 
@@ -444,7 +451,6 @@ class IdSapiInputState extends State<IdSapiInput> {
   void initState() {
     super.initState();
     upContent();
-    String dropdownValue = sapi[0][0].toString();
   }
 
   @override

@@ -344,7 +344,7 @@ class _LaporanState extends State<Laporan> {
                           final pdfFile = await PdfApi.generateTable(result);
                           PdfApi.open(pdfFile);
                         },
-                        child: Text("Generate")),
+                        child: Text("Export to PDF")),
                   ),
                 )
               ],

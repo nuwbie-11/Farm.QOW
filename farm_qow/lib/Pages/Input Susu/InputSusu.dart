@@ -344,8 +344,8 @@ class _InputSusuState extends State<InputSusu> {
                                     setState(() {
                                       susu.add(data_input_susu);
                                     });
-                                    print(data_input_susu);
-                                    print(user_login);
+                                    // print(data_input_susu);
+                                    // print(user_login);
                                     SusuController().simpan(susu);
 
                                     data_input_susu = [
@@ -365,10 +365,10 @@ class _InputSusuState extends State<InputSusu> {
                                       user_login[0]
                                     ];
 
-                                    // Navigator.of(context).pushReplacement(
-                                    //     MaterialPageRoute(builder: (context) {
-                                    //   return MyApp(1);
-                                    // }));
+                                    Navigator.of(context).pushReplacement(
+                                        MaterialPageRoute(builder: (context) {
+                                      return MyApp(1);
+                                    }));
                                   },
                                   child: Text("Iya",
                                       style: TextStyle(color: Colors.blue)),
