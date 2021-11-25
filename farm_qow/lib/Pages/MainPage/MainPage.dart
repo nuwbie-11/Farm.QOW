@@ -1,6 +1,16 @@
+<<<<<<< HEAD
+// ignore_for_file: file_names
+
+import 'package:farm_qow/Controller/checkup_controller.dart';
+import 'package:farm_qow/Model/storage.dart';
+import 'package:farm_qow/Pages/Input%20Susu/InputSusuById.dart';
+import 'package:farm_qow/Pages/MainPage/Akun/PreviewAkun.dart';
+import 'package:farm_qow/Pages/MainPage/Laporan/laporan.dart';
+=======
 import 'package:farm_qow/Login.dart';
 import 'package:farm_qow/Model/model.dart';
 import 'package:farm_qow/Pages/Input%20Susu/InputSusuById.dart';
+>>>>>>> main
 import 'package:farm_qow/Pages/Tambah%20Sapi/TambahSapi.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -21,16 +31,91 @@ class MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     var thisPage;
     double displayWidth = MediaQuery.of(context).size.width;
+<<<<<<< HEAD
+    if (widget.currentIndex == 0) {
+      thisPage = Center(
+        child: HalamanDataSapi(""),
+      );
+    } else if (widget.currentIndex == 1) {
+      thisPage = Center(
+        child: HalamanSusu(),
+      );
+    } else if (widget.currentIndex == 2) {
+      thisPage = Center(
+        child: Laporan(),
+      );
+    } else if (widget.currentIndex == 3) {
+      thisPage = Center(
+        child: PreviewAkun(),
+      );
+=======
     if(widget.currentIndex == 0){
       thisPage = Center(child: HalamanDataSapi(""),);
     }
     else if(widget.currentIndex == 1){
       thisPage = Center(child: HalamanSusu(),);
+>>>>>>> main
     }
 
     return Container(
       decoration: BoxDecoration(
           image: DecorationImage(
+<<<<<<< HEAD
+              image: AssetImage(
+                "assets/bg/bg5.jpg",
+              ),
+              fit: BoxFit.cover)),
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        floatingActionButton: widget.currentIndex < 2
+            ? FloatingActionButton(
+                elevation: 0,
+                onPressed: () {},
+                child: Builder(builder: (context) {
+                  return IconButton(
+                    onPressed: () {
+                      // CheckUpController().populateUser();
+                      print(user_login);
+                      if (widget.currentIndex == 0) {
+                        if (user_login[8] == false) {
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Text("Warning"),
+                                  content: Text("Anda Bukan Manager !"),
+                                  actions: [
+                                    FlatButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          Navigator.of(context).pop(true);
+                                        });
+                                      },
+                                      child: Text("Yes",
+                                          style: TextStyle(color: Colors.blue)),
+                                    )
+                                  ],
+                                );
+                              }).then((value) => null);
+                        } else {
+                          Navigator.push(
+                              context, TransitionBottomToTop(TambahSapi()));
+                        }
+                      } else if (widget.currentIndex == 1) {
+                        Navigator.push(
+                            context, TransitionBottomToTop(InputSusuById()));
+                      }
+                    },
+                    icon: Icon(
+                      Icons.add,
+                      color: Colors.white,
+                      size: 30,
+                    ),
+                  );
+                }),
+              )
+            : null,
+=======
               image: AssetImage("assets/bg/bg5.jpg",),
               fit: BoxFit.cover
           )
@@ -175,6 +260,7 @@ class MyAppState extends State<MyApp> {
         ),
 
 
+>>>>>>> main
         body: thisPage,
         bottomNavigationBar: Container(
           height: displayWidth * .155,
@@ -214,8 +300,15 @@ class MyAppState extends State<MyApp> {
                     child: AnimatedContainer(
                       duration: Duration(seconds: 1),
                       curve: Curves.fastLinearToSlowEaseIn,
+<<<<<<< HEAD
+                      height:
+                          index == widget.currentIndex ? displayWidth * .12 : 0,
+                      width:
+                          index == widget.currentIndex ? displayWidth * .32 : 0,
+=======
                       height: index == widget.currentIndex ? displayWidth * .12 : 0,
                       width: index == widget.currentIndex ? displayWidth * .32 : 0,
+>>>>>>> main
                       decoration: BoxDecoration(
                         color: index == widget.currentIndex
                             ? Colors.blueAccent.withOpacity(.2)
@@ -238,8 +331,14 @@ class MyAppState extends State<MyApp> {
                             AnimatedContainer(
                               duration: Duration(seconds: 1),
                               curve: Curves.fastLinearToSlowEaseIn,
+<<<<<<< HEAD
+                              width: index == widget.currentIndex
+                                  ? displayWidth * .13
+                                  : 0,
+=======
                               width:
                               index == widget.currentIndex ? displayWidth * .13 : 0,
+>>>>>>> main
                             ),
                             AnimatedOpacity(
                               opacity: index == widget.currentIndex ? 1 : 0,
@@ -252,7 +351,12 @@ class MyAppState extends State<MyApp> {
                                 style: TextStyle(
                                   color: Colors.blueAccent,
                                   fontWeight: FontWeight.w600,
+<<<<<<< HEAD
+                                  fontSize: 15,
+                                ),
+=======
                                   fontSize: 15,),
+>>>>>>> main
                               ),
                             ),
                           ],
@@ -262,8 +366,14 @@ class MyAppState extends State<MyApp> {
                             AnimatedContainer(
                               duration: Duration(seconds: 1),
                               curve: Curves.fastLinearToSlowEaseIn,
+<<<<<<< HEAD
+                              width: index == widget.currentIndex
+                                  ? displayWidth * .03
+                                  : 20,
+=======
                               width:
                               index == widget.currentIndex ? displayWidth * .03 : 20,
+>>>>>>> main
                             ),
                             ImageIcon(
                               listOfIcons[index],
@@ -287,16 +397,30 @@ class MyAppState extends State<MyApp> {
   }
 
   List<AssetImage> listOfIcons = [
+<<<<<<< HEAD
+    (const AssetImage("assets/icons/sapi.png")),
+    (const AssetImage("assets/icons/susu.png")),
+    (const AssetImage("assets/icons/Laporan.png")),
+    (const AssetImage("assets/icons/akun.png")),
+=======
     (AssetImage("assets/icons/sapi.png")),
     (AssetImage("assets/icons/susu.png")),
     (AssetImage("assets/icons/sapi.png")),
     (AssetImage("assets/icons/susu.png")),
+>>>>>>> main
   ];
 
   List<String> listOfStrings = [
     'Sapi',
     'Susu',
+<<<<<<< HEAD
+    'Laporan',
+    'Akun',
+  ];
+}
+=======
     'Settings',
     'Account',
   ];
 }
+>>>>>>> main

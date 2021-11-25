@@ -1,0 +1,574 @@
+// ignore_for_file: file_names
+
+import 'package:farm_qow/Controller/user_controller.dart';
+import 'package:flutter/material.dart';
+
+import '../MainPage.dart';
+
+var data_input_pegawai = [
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "Laki-laki",
+  "islam",
+  "kawin"
+];
+
+class TambahPegawai extends StatefulWidget {
+  const TambahPegawai({Key? key}) : super(key: key);
+
+  @override
+  _TambahPegawaiState createState() => _TambahPegawaiState();
+}
+
+class _TambahPegawaiState extends State<TambahPegawai> {
+  List user_account = [];
+
+  void upUser() async {
+    final tempCheckUp = await UserController().getDataUser();
+    setState(() {
+      user_account = tempCheckUp;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    upUser();
+    // mod.resetWrite();
+  }
+
+  bool passwordVision = false;
+  TextEditingController namaInput = new TextEditingController();
+  TextEditingController nikInput = new TextEditingController();
+  TextEditingController passwordInput = new TextEditingController();
+  TextEditingController tempatInput = new TextEditingController();
+  TextEditingController alamatInput = new TextEditingController();
+  var tanggalLahir = DateTime.now();
+  var stringTanggalLahir = "pilih tanggal";
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Container(
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage(
+                  "assets/bg/bg5.jpg",
+                ),
+                fit: BoxFit.cover)),
+        child: Scaffold(
+            backgroundColor: Colors.transparent,
+            appBar: AppBar(
+              backgroundColor: Color.fromRGBO(143, 197, 255, 0.95),
+              elevation: 0,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.vertical(
+                  bottom: Radius.circular(20),
+                ),
+              ),
+              title: Row(
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      data_input_pegawai = [
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "Laki-laki",
+                        "islam",
+                        "kawin"
+                      ];
+                      Navigator.of(context).pop();
+                    },
+                    icon: Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                      size: 30,
+                    ),
+                  ),
+                  Text('Tambah Pegawai'),
+                ],
+              ),
+            ),
+            body: Container(
+              margin: EdgeInsets.symmetric(horizontal: 10),
+              decoration: BoxDecoration(
+                  color: Color.fromRGBO(255, 255, 255, 0.8),
+                  border: Border.all(color: Colors.blue, width: 1)),
+              child: ListView(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                    child: TextField(
+                      keyboardType: TextInputType.phone,
+                      // textAlign: TextAlign.center,
+                      controller: namaInput,
+                      onChanged: (ValueKey) {
+                        data_input_pegawai[0] = ValueKey;
+                      },
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Nama",
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                    child: TextField(
+                      keyboardType: TextInputType.phone,
+                      // textAlign: TextAlign.center,
+                      controller: nikInput,
+                      onChanged: (ValueKey) {
+                        data_input_pegawai[1] = ValueKey;
+                      },
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Nik",
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                    child: TextField(
+                      obscureText: passwordVision == true ? false : true,
+                      keyboardType: TextInputType.phone,
+                      // textAlign: TextAlign.center,
+                      controller: passwordInput,
+                      onChanged: (ValueKey) {
+                        data_input_pegawai[2] = ValueKey;
+                      },
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: "Password",
+                          suffixIcon: IconButton(
+                            icon: Icon(Icons.remove_red_eye),
+                            onPressed: () {
+                              setState(() {
+                                if (passwordVision == true) {
+                                  passwordVision = false;
+                                } else {
+                                  passwordVision = true;
+                                }
+                              });
+                            },
+                          )),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                    child: TextField(
+                      keyboardType: TextInputType.phone,
+                      // textAlign: TextAlign.center,
+                      controller: tempatInput,
+                      onChanged: (ValueKey) {
+                        data_input_pegawai[3] = ValueKey;
+                      },
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Tempat lahir",
+                      ),
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      SizedBox(
+                        width: 30,
+                      ),
+                      Text(stringTanggalLahir),
+                      // Text(tanggalLahir.toString().substring(0,10)),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      OutlinedButton(
+                          onPressed: () {
+                            showDatePicker(
+                              context: context,
+                              initialDate: tanggalLahir,
+                              firstDate: DateTime(2000),
+                              lastDate: DateTime(2030),
+                            ).then((value) {
+                              setState(() {
+                                stringTanggalLahir =
+                                    value.toString().substring(0, 10);
+                                data_input_pegawai[4] = stringTanggalLahir;
+                                // tanggalLahir = value;
+                              });
+                              // stringTanggalLahir = "halo halo";
+                            });
+
+                            ;
+                          },
+                          child: Text("tanggal lahir"))
+                    ],
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                    child: TextField(
+                      keyboardType: TextInputType.phone,
+                      // textAlign: TextAlign.center,
+                      controller: alamatInput,
+                      onChanged: (ValueKey) {
+                        data_input_pegawai[5] = ValueKey;
+                      },
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: "Alamat",
+                      ),
+                    ),
+                  ),
+                  Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Jenis Kelamin",
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          JenisKelamin(),
+                        ],
+                      )),
+                  Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Agama",
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          Agama(),
+                        ],
+                      )),
+                  Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Status Perkawinan",
+                            style: TextStyle(fontSize: 20),
+                          ),
+                          StatusPerkawinan(),
+                        ],
+                      )),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        bool isValidate = true;
+                        for (int i = 0; i < data_input_pegawai.length; i++) {
+                          // print(data_input_pegawai[i]);
+                          if (data_input_pegawai[i] == "") {
+                            isValidate = false;
+                            break;
+                          }
+                        }
+
+                        if (isValidate == true) {
+                          for (int i = 0; i < user_account.length; i++) {
+                            if (user_account[i][0] == data_input_pegawai[1]) {
+                              isValidate = false;
+                              showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text("Confirm"),
+                                      content: Text("Data NIK Telah Digunakan"),
+                                      actions: [
+                                        FlatButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              Navigator.of(context).pop(true);
+                                            });
+                                          },
+                                          child: Text("Oke",
+                                              style: TextStyle(
+                                                  color: Colors.blue)),
+                                        )
+                                      ],
+                                    );
+                                  });
+                              break;
+                            }
+                          }
+
+                          if (isValidate == true) {
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    title: Text("Apakah Data Sudah Benar?"),
+                                    content: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text("Nama : " +
+                                            data_input_pegawai[0].toString()),
+                                        SizedBox(height: 10),
+                                        Text("NIK : " +
+                                            data_input_pegawai[1].toString()),
+                                        SizedBox(height: 10),
+                                        Text("Password : " +
+                                            data_input_pegawai[2].toString()),
+                                        SizedBox(height: 10),
+                                        Text("Tempat Lahir : " +
+                                            data_input_pegawai[3].toString()),
+                                        SizedBox(height: 10),
+                                        Text("Tanggal Lahir : " +
+                                            data_input_pegawai[4].toString()),
+                                        SizedBox(height: 10),
+                                        Text("Alamat : " +
+                                            data_input_pegawai[5].toString()),
+                                        SizedBox(height: 10),
+                                        Text("Jenis Kelamin : " +
+                                            data_input_pegawai[6].toString()),
+                                        SizedBox(height: 10),
+                                        Text("Agama : " +
+                                            data_input_pegawai[7].toString()),
+                                        SizedBox(height: 10),
+                                        Text("Status Perkawinan : " +
+                                            data_input_pegawai[8].toString()),
+                                        SizedBox(height: 10),
+                                      ],
+                                    ),
+                                    actions: [
+                                      FlatButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            Navigator.of(context).pop(true);
+                                          });
+                                        },
+                                        child: Text("Kembali",
+                                            style:
+                                                TextStyle(color: Colors.blue)),
+                                      ),
+                                      FlatButton(
+                                        onPressed: () {
+                                          user_account.add([
+                                            data_input_pegawai[1],
+                                            data_input_pegawai[0],
+                                            data_input_pegawai[4],
+                                            data_input_pegawai[3],
+                                            data_input_pegawai[6],
+                                            data_input_pegawai[5],
+                                            data_input_pegawai[8],
+                                            data_input_pegawai[2],
+                                            false,
+                                            data_input_pegawai[7]
+                                          ]);
+                                          UserController().simpan(user_account);
+                                          data_input_pegawai = [
+                                            "",
+                                            "",
+                                            "",
+                                            "",
+                                            "",
+                                            "",
+                                            "Laki-laki",
+                                            "islam",
+                                            "kawin"
+                                          ];
+
+                                          for (int i = 0;
+                                              i < user_account.length;
+                                              i++) {
+                                            print(user_account[i]);
+                                          }
+                                          Navigator.of(context).pushReplacement(
+                                              MaterialPageRoute(
+                                                  builder: (context) {
+                                            return MyApp(3);
+                                          }));
+                                        },
+                                        child: Text("Ya",
+                                            style:
+                                                TextStyle(color: Colors.blue)),
+                                      )
+                                    ],
+                                  );
+                                });
+                          }
+                        } else {
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Text("Confirm"),
+                                  content: Text("Data tidak boleh kosong"),
+                                  actions: [
+                                    FlatButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          Navigator.of(context).pop(true);
+                                        });
+                                      },
+                                      child: Text("Oke",
+                                          style: TextStyle(color: Colors.blue)),
+                                    )
+                                  ],
+                                );
+                              });
+                        }
+                      },
+                      child: Container(
+                          height: 50,
+                          child: Center(
+                              child: Text(
+                            "Tambah",
+                            style: TextStyle(fontSize: 25),
+                          ))))
+                ],
+              ),
+            )),
+      ),
+    );
+  }
+}
+
+class JenisKelamin extends StatefulWidget {
+  const JenisKelamin({Key? key}) : super(key: key);
+
+  @override
+  State<JenisKelamin> createState() => JenisKelaminState();
+}
+
+/// This is the private State class that goes with JenisKelamin.
+class JenisKelaminState extends State<JenisKelamin> {
+  String dropdownValue = 'Laki-laki';
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      value: dropdownValue,
+      iconSize: 24,
+      elevation: 2,
+      style: const TextStyle(color: Colors.black),
+      underline: Container(
+        height: 2,
+        color: Colors.deepPurpleAccent,
+      ),
+      onChanged: (String? newValue) {
+        setState(() {
+          // print(newValue);
+          data_input_pegawai[6] = newValue.toString();
+          dropdownValue = newValue!;
+        });
+      },
+      items: <String>['Laki-laki', 'Perempuan']
+          .map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(
+            value,
+            style: TextStyle(fontSize: 18),
+          ),
+        );
+      }).toList(),
+    );
+  }
+}
+
+class Agama extends StatefulWidget {
+  // const Agama({Key? key}) : super(key: key);
+
+  @override
+  State<Agama> createState() => AgamaState();
+}
+
+/// This is the private State class that goes with Agama.
+class AgamaState extends State<Agama> {
+  String dropdownValue = 'Islam';
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      value: dropdownValue,
+      iconSize: 24,
+      elevation: 2,
+      style: const TextStyle(color: Colors.black),
+      underline: Container(
+        height: 2,
+        color: Colors.deepPurpleAccent,
+      ),
+      onChanged: (String? newValue) {
+        setState(() {
+          // print(newValue);
+          data_input_pegawai[7] = newValue.toString();
+          dropdownValue = newValue!;
+        });
+      },
+      items: <String>[
+        'Islam',
+        'Kristen',
+        'Katolik',
+        'Hindu',
+        'Budha',
+        'Konggucu',
+        'Atheis',
+        'Satanic'
+      ].map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(
+            value,
+            style: TextStyle(fontSize: 18),
+          ),
+        );
+      }).toList(),
+    );
+  }
+}
+
+class StatusPerkawinan extends StatefulWidget {
+  // const StatusPerkawinan({Key? key}) : super(key: key);
+
+  @override
+  State<StatusPerkawinan> createState() => StatusPerkawinanState();
+}
+
+/// This is the private State class that goes with StatusPerkawinan.
+class StatusPerkawinanState extends State<StatusPerkawinan> {
+  String dropdownValue = 'Kawin';
+
+  @override
+  Widget build(BuildContext context) {
+    return DropdownButton<String>(
+      value: dropdownValue,
+      iconSize: 24,
+      elevation: 2,
+      style: const TextStyle(color: Colors.black),
+      underline: Container(
+        height: 2,
+        color: Colors.deepPurpleAccent,
+      ),
+      onChanged: (String? newValue) {
+        setState(() {
+          // print(newValue);
+          data_input_pegawai[8] = newValue.toString();
+          dropdownValue = newValue!;
+        });
+      },
+      items: <String>['Kawin', 'Belum Kawin', "Cerai Hidup"]
+          .map<DropdownMenuItem<String>>((String value) {
+        return DropdownMenuItem<String>(
+          value: value,
+          child: Text(
+            value,
+            style: TextStyle(fontSize: 18),
+          ),
+        );
+      }).toList(),
+    );
+  }
+}

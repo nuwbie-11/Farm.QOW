@@ -1,16 +1,57 @@
+<<<<<<< HEAD
+// ignore_for_file: file_names
+
+import 'package:farm_qow/Controller/sapi_controller.dart';
+import 'package:farm_qow/Model/storage.dart';
+=======
 import 'package:farm_qow/Model/model.dart';
+>>>>>>> main
 import 'package:farm_qow/Pages/MainPage/Data%20Sapi/dataSapi.dart';
 import 'package:farm_qow/Pages/MainPage/MainPage.dart';
 import 'package:flutter/material.dart';
 
 class TambahSapi extends StatefulWidget {
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> main
   @override
   State<TambahSapi> createState() => _TambahSapiState();
 }
 
 class _TambahSapiState extends State<TambahSapi> {
+<<<<<<< HEAD
+  List sapi = [];
+  var idSapi = 0;
+
+  void upSapi() async {
+    final sapiTemp = await SapiController().getDataSapi();
+    setState(() {
+      sapi = sapiTemp;
+      idSapi = sapi[sapi.length - 1][0];
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    upSapi();
+
+    print(idSapi);
+  }
+
+  TextEditingController namaInput = new TextEditingController();
+  TextEditingController jenisInput = new TextEditingController();
+
+  var tanggalLahir = DateTime.now();
+  var stringTanggalLahir = "pilih tanggal";
+
+  var tanggalDatang = DateTime.now();
+  var stringTanggalDatang = "pilih tanggal";
+
+  var data_input = [0, "", "", "", ""];
+=======
 
   TextEditingController namaInput = new TextEditingController();
   TextEditingController jenisInput = new TextEditingController();
@@ -28,15 +69,23 @@ class _TambahSapiState extends State<TambahSapi> {
   @override
   Widget build(BuildContext context) {
 
+>>>>>>> main
 
     return MaterialApp(
       home: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
+<<<<<<< HEAD
+                image: AssetImage(
+                  "assets/bg/bg5.jpg",
+                ),
+                fit: BoxFit.cover)),
+=======
                 image: AssetImage("assets/bg/bg5.jpg",),
                 fit: BoxFit.cover
             )
         ),
+>>>>>>> main
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
@@ -53,6 +102,17 @@ class _TambahSapiState extends State<TambahSapi> {
                 Row(
                   children: [
                     IconButton(
+<<<<<<< HEAD
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: Colors.white,
+                        size: 30,
+                      ),
+                    ),
+=======
                       onPressed: (){
 
                         Navigator.of(context).pop();
@@ -60,12 +120,83 @@ class _TambahSapiState extends State<TambahSapi> {
                       icon: Icon(Icons.arrow_back,color:Colors.white,size: 30,),
                     ),
 
+>>>>>>> main
                     Text('Tambah Sapi'),
                   ],
                 ),
               ],
             ),
           ),
+<<<<<<< HEAD
+          body: ListView(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    color: Color.fromRGBO(255, 255, 255, 0.8),
+                    border: Border.all(color: Colors.blue, width: 1)),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(right: 30, left: 30, bottom: 10),
+                      child: TextField(
+                        controller: namaInput,
+                        // textAlign: TextAlign.center,
+                        autofocus: false,
+                        onChanged: (ValueKey) {
+                          data_input[1] = ValueKey;
+                        },
+
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: "Nama Sapi",
+                        ),
+                      ),
+                    ),
+
+                    // SizedBox(height: 10,),
+                    Padding(
+                      padding: EdgeInsets.only(right: 30, left: 30, bottom: 10),
+                      child: TextField(
+                        // textAlign: TextAlign.center,
+                        controller: jenisInput,
+                        // textAlign: TextAlign.center,
+                        autofocus: false,
+                        onChanged: (ValueKey) {
+                          data_input[4] = ValueKey;
+                        },
+
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: "Jenis Sapi",
+                        ),
+                      ),
+                    ),
+
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 30,
+                        ),
+                        Text(stringTanggalLahir),
+                        // Text(tanggalLahir.toString().substring(0,10)),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        OutlinedButton(
+                            onPressed: () {
+                              showDatePicker(
+                                context: context,
+                                initialDate: tanggalLahir,
+                                firstDate: DateTime(2000),
+                                lastDate: DateTime(2030),
+                              ).then((value) {
+                                setState(() {
+                                  stringTanggalLahir =
+                                      value.toString().substring(0, 10);
+=======
 
           body: ListView(
             children: [
@@ -131,12 +262,33 @@ class _TambahSapiState extends State<TambahSapi> {
                                 setState(() {
 
                                   stringTanggalLahir = value.toString().substring(0,10);
+>>>>>>> main
                                   data_input[2] = stringTanggalLahir;
                                   // tanggalLahir = value;
                                 });
                                 // stringTanggalLahir = "halo halo";
                               });
 
+<<<<<<< HEAD
+                              ;
+                            },
+                            child: Text("tanggal lahir"))
+                      ],
+                    ),
+
+                    Row(
+                      children: [
+                        SizedBox(
+                          width: 30,
+                        ),
+                        Text(stringTanggalDatang),
+                        // Text(tanggalLahir.toString().substring(0,10)),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        OutlinedButton(
+                            onPressed: () {
+=======
 
 
                               ;
@@ -155,33 +307,72 @@ class _TambahSapiState extends State<TambahSapi> {
                         SizedBox(width: 20,),
                         OutlinedButton(
                             onPressed: (){
+>>>>>>> main
                               showDatePicker(
                                 context: context,
                                 initialDate: tanggalDatang,
                                 firstDate: DateTime(2000),
                                 lastDate: DateTime(2030),
+<<<<<<< HEAD
+                              ).then((value) {
+                                data_input[3] = stringTanggalDatang;
+                                setState(() {
+                                  stringTanggalDatang =
+                                      value.toString().substring(0, 10);
+=======
 
                               ).then((value){
                                 data_input[3] = stringTanggalDatang;
                                 setState(() {
 
                                   stringTanggalDatang = value.toString().substring(0,10);
+>>>>>>> main
                                   data_input[3] = stringTanggalDatang;
                                   // tanggalLahir = value;
                                 });
                                 // stringTanggalLahir = "halo halo";
                               });
 
+<<<<<<< HEAD
+                              ;
+                            },
+                            child: Text("tanggal datang"))
+=======
 
 
                               ;
                             },
                             child: Text("tanggal datang")
                         )
+>>>>>>> main
                       ],
                     ),
 
                     InkWell(
+<<<<<<< HEAD
+                      onTap: () {
+                        bool isValidate = true;
+
+                        print("result");
+                        for (int i = 0; i < data_input.length; i++) {
+                          if (data_input[i] == "" ||
+                              data_input[i] == "pilih tanggal") {
+                            isValidate = false;
+                            break;
+                          }
+                        }
+                        if (isValidate == true) {
+                          int num = int.parse(idSapi.toString());
+                          num += 1;
+                          data_input[0] = num;
+                          print(data_input);
+                          if (sapi.contains(data_input) == false) {
+                            sapi.add(data_input);
+                            SapiController().simpan(sapi);
+                          }
+                          ;
+                          data_input = [0, "", "", "", ""];
+=======
                       onTap: (){
                         bool isValidate = true;
 
@@ -201,26 +392,84 @@ class _TambahSapiState extends State<TambahSapi> {
                           print(data_input);
                           sapi.add(data_input);
                           data_input = [0,"","","",""];
+>>>>>>> main
                           showDialog(
                               context: context,
                               builder: (context) {
                                 return AlertDialog(
+<<<<<<< HEAD
+                                  content: Text(
+                                      "Data Profil Sapi Baru Berhasil Ditambahkan"),
+=======
                                   content: Text("Data Profil Sapi Baru Berhasil Ditambahkan"),
+>>>>>>> main
                                   actions: [
                                     FlatButton(
                                       onPressed: () {
                                         setState(() {
+<<<<<<< HEAD
+                                          Navigator.of(context).pushReplacement(
+                                              MaterialPageRoute(
+                                                  builder: (context) {
+=======
                                           Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
+>>>>>>> main
                                             return MyApp(0);
                                           }));
                                           // Navigator.push(context, Transition(ProfilSapi(num.toString())));
                                         });
                                       },
+<<<<<<< HEAD
+                                      child: Text("Oke",
+                                          style: TextStyle(color: Colors.blue)),
+=======
                                       child: Text("Oke", style: TextStyle(color: Colors.blue)),
+>>>>>>> main
                                     )
                                   ],
                                 );
                               }).then((value) => null);
+<<<<<<< HEAD
+                        } else {
+                          showDialog(
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Text("Confirm"),
+                                  content: Text("Data tidak boleh kosong"),
+                                  actions: [
+                                    FlatButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          Navigator.of(context).pop();
+                                        });
+                                      },
+                                      child: Text("Oke",
+                                          style: TextStyle(color: Colors.blue)),
+                                    )
+                                  ],
+                                );
+                              }).then((value) => null);
+                        }
+                      },
+                      child: Container(
+                        margin:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                        // width: 150,
+                        height: 40,
+                        color: Colors.blue,
+                        child: Center(
+                          child: Text(
+                            "Simpan ",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
+                          ),
+                        ),
+                      ),
+                    )
+=======
 
                         }
                         else{
@@ -259,12 +508,16 @@ class _TambahSapiState extends State<TambahSapi> {
                     )
 
 
+>>>>>>> main
                   ],
                 ),
               ),
             ],
           ),
+<<<<<<< HEAD
+=======
 
+>>>>>>> main
         ),
       ),
     );

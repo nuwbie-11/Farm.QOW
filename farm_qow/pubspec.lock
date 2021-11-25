@@ -3,11 +3,26 @@
 packages:
   animated_text_kit:
     dependency: "direct main"
+<<<<<<< HEAD
     description:
       name: animated_text_kit
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.1"
+  archive:
+    dependency: transitive
+    description:
+      name: archive
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.1.6"
+=======
+    description:
+      name: animated_text_kit
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.2.1"
+>>>>>>> main
   async:
     dependency: transitive
     description:
@@ -15,6 +30,14 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.8.1"
+  barcode:
+    dependency: transitive
+    description:
+      name: barcode
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0"
+<<<<<<< HEAD
   boolean_selector:
     dependency: transitive
     description:
@@ -22,6 +45,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+=======
+>>>>>>> main
   characters:
     dependency: transitive
     description:
@@ -50,6 +75,15 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.15.0"
+<<<<<<< HEAD
+  crypto:
+    dependency: transitive
+    description:
+      name: crypto
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.1"
+=======
   convert:
     dependency: transitive
     description:
@@ -57,6 +91,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.1"
+>>>>>>> main
   cupertino_icons:
     dependency: "direct main"
     description:
@@ -97,6 +132,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.4"
+<<<<<<< HEAD
+=======
   flutter_svg:
     dependency: "direct main"
     description:
@@ -104,11 +141,22 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.17.4"
+>>>>>>> main
   flutter_test:
     dependency: "direct dev"
     description: flutter
     source: sdk
     version: "0.0.0"
+<<<<<<< HEAD
+  image:
+    dependency: transitive
+    description:
+      name: image
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.8"
+=======
+>>>>>>> main
   intl:
     dependency: "direct dev"
     description:
@@ -137,6 +185,16 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
+<<<<<<< HEAD
+  open_file:
+    dependency: "direct main"
+    description:
+      name: open_file
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.2.1"
+=======
+>>>>>>> main
   path:
     dependency: transitive
     description:
@@ -144,6 +202,8 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.8.0"
+<<<<<<< HEAD
+=======
   path_drawing:
     dependency: transitive
     description:
@@ -151,6 +211,7 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.4.1+1"
+>>>>>>> main
   path_parsing:
     dependency: transitive
     description:
@@ -193,13 +254,24 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.3"
+  pdf:
+    dependency: "direct main"
+    description:
+      name: pdf
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.6.3"
   petitparser:
     dependency: transitive
     description:
       name: petitparser
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
+    version: "4.4.0"
+=======
     version: "3.1.0"
+>>>>>>> main
   platform:
     dependency: transitive
     description:
@@ -221,6 +293,16 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.2.4"
+<<<<<<< HEAD
+  qr:
+    dependency: transitive
+    description:
+      name: qr
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0"
+=======
+>>>>>>> main
   sky_engine:
     dependency: transitive
     description: flutter
@@ -302,7 +384,11 @@ packages:
       name: xml
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
+    version: "5.3.1"
+=======
     version: "3.7.0"
+>>>>>>> main
 sdks:
   dart: ">=2.14.0 <3.0.0"
   flutter: ">=2.5.0"

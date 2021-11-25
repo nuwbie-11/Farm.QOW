@@ -1,53 +1,73 @@
 import 'dart:convert';
-import 'dart:io';
 
+<<<<<<< HEAD
+import 'package:farm_qow/Model/sapi_model.dart';
+import 'package:farm_qow/Model/storage.dart';
+=======
 import 'package:path_provider/path_provider.dart';
+>>>>>>> main
 
 class SapiController {
-  Future<String> get _localPath async {
-    final directory = await getApplicationDocumentsDirectory();
+  Sapi sapi = Sapi();
 
-    return directory.path;
-  }
+  List sapiContent = [];
 
-  Future<File> get _localFile async {
-    final path = await _localPath;
-    final file = File(path + "/" + "sapi.json");
-    return file;
-  }
-
-  Future<String> jsonAsString() async {
-    try {
-      final file = await _localFile;
-      final content = await file.readAsString();
-      return content;
-    } catch (e) {
-      print(e);
+  dynamic getDataSapi() async {
+    final file = await sapi.localFile;
+    final content = await file.readAsString();
+    final res = content == '' ? [] : jsonDecode(content);
+    // List myList = await jsonToDynamic();
+    for (var item in res) {
+      sapiContent.add([
+        item["idProfilSapi"],
+        item["nama"],
+        item["tglDatang"],
+        item["tglLahir"],
+        item["jenisSapi"]
+      ]);
     }
-    return '[]';
+    // print(sapiContent);
+    return sapiContent;
   }
 
-  Future<File> writeJson(List<Map<String, dynamic>> jsonFile) async {
-    final file = await _localFile;
-    if (file.existsSync()) {
-      // Write the file
-      print("object");
-      return file.writeAsString(jsonEncode(jsonFile));
+  void simpan(currentSapi) {
+    List<Map<String, dynamic>> items = [];
+    for (var item in currentSapi) {
+      Sapi saps = Sapi(
+          idSapi: int.parse(item[0].toString()),
+          nama: item[1].toString(),
+          tglDatang: item[2].toString(),
+          tglLahir: item[3].toString(),
+          jenisSapi: item[4].toString());
+      items.add(saps.toJson());
     }
-    print(file.existsSync());
-    file.create();
-    return file.writeAsString(jsonEncode(jsonFile));
+    // print(items);
+
+    sapi.write(items);
   }
 
-  dynamic jsonToDynamic() {
-    dynamic res = jsonAsString().then((result) {
-      // print("from whole : $result");
-      final res = jsonDecode(result);
-      return res;
-    });
-    return res;
-  }
-
+<<<<<<< HEAD
+  dynamic populateUser() {
+    List ps = [];
+    for (var item in sapis) {
+      // var temp = {
+      //   "nik": item[0],
+      //   "nama": item[1],
+      //   "tanggal Lahir": item[2],
+      //   "tempat Lahir": item[3],
+      //   "jenis Kelamin": item[4],
+      //   "alamat": item[5],
+      //   "status Kawin": item[6],
+      //   "password": item[7],
+      //   "isAdmin": item[8],
+      //   "agama": item[9]
+      // };
+      // print("Value is : $temp");
+      ps.add(item);
+    }
+    simpan(ps);
+    return ps;
+=======
   List sapiContent = [];
 
   dynamic fetch2List() async {
@@ -63,5 +83,6 @@ class SapiController {
     }
     // print(sapiContent);
     return sapiContent;
+>>>>>>> main
   }
 }

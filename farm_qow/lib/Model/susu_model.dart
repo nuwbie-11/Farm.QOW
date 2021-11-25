@@ -1,3 +1,68 @@
+<<<<<<< HEAD
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:path_provider/path_provider.dart';
+
+class Susu {
+  int? idSusu;
+  int? idProfilSapi;
+  int? jumlahSusu;
+  String? grade;
+  double? fat;
+  double? snf;
+  double? density;
+  double? lactose;
+  double? solids;
+  double? protein;
+  int? tgl;
+  int? bln;
+  int? thn;
+  dynamic? petugas;
+
+  Susu(
+      {this.idSusu,
+      this.idProfilSapi,
+      this.jumlahSusu,
+      this.grade,
+      this.fat,
+      this.snf,
+      this.density,
+      this.lactose,
+      this.solids,
+      this.protein,
+      this.tgl,
+      this.bln,
+      this.thn,
+      this.petugas});
+  Future<String> get localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+
+    return directory.path;
+  }
+
+  Future<File> get localFile async {
+    final path = await localPath;
+    final file = File(path + "/" + "susu.json");
+    if (file.existsSync()) {
+      // print(file.existsSync());
+      return file;
+    }
+    file.create();
+    file.writeAsString("");
+    return file;
+  }
+
+  Future<File> write(List<Map<String, dynamic>> jsonFile) async {
+    final file = await localFile;
+    if (file.existsSync()) {
+      // Write the file
+      return file.writeAsString(jsonEncode(jsonFile));
+    }
+    file.create();
+    return file.writeAsString(jsonEncode(jsonFile));
+  }
+=======
 // [
 //   "idSusu",
 //   "idProfilSapi",
@@ -45,6 +110,7 @@ class Susu {
       required this.tgl,
       required this.bln,
       required this.thn});
+>>>>>>> main
 
   factory Susu.fromJson(Map<String, dynamic> json) {
     return Susu(
@@ -60,7 +126,12 @@ class Susu {
         protein: json["protein"],
         tgl: json["tgl"],
         bln: json["bln"],
+<<<<<<< HEAD
+        thn: json["thn"],
+        petugas: json["petugas"]);
+=======
         thn: json["thn"]);
+>>>>>>> main
   }
 
   Map<String, dynamic> toJson() => {
@@ -77,5 +148,9 @@ class Susu {
         "tgl": tgl,
         "bln": bln,
         "thn": thn,
+<<<<<<< HEAD
+        "petugas": petugas
+=======
+>>>>>>> main
       };
 }

@@ -1,4 +1,50 @@
+<<<<<<< HEAD
+var user_login = [];
+
+var pegawai = [
+  //* NIK , Nama , Tanggal Lahir, Tempat Lahir, Jenis Kelamin, Alamat, Status Kawin, Password, is_admin, agama
+  [
+    "3510161111000000",
+    "Abdul",
+    "1 Januari 1976",
+    "Jember",
+    "Laki-Laki",
+    "Jl. Abdurrohman no.3a",
+    "Kawin",
+    "admin123",
+    true,
+    "Islam"
+  ],
+  [
+    "3510161111000001",
+    "Temon",
+    "2 Januari 1976",
+    "Jember",
+    "Laki-Laki",
+    "Jl. Abdurrohman no.3a",
+    "Belum Kawin",
+    "pwnibozz2",
+    false,
+    "Islam"
+  ],
+  [
+    "3510161111000002",
+    "Mufrid",
+    "3 Januari 1976",
+    "Jember",
+    "Laki-Laki",
+    "Jl. Abdurrohman no.3a",
+    "Cerai Hidup",
+    "ppp222",
+    false,
+    "Islam"
+  ],
+];
+
+var sapis = [
+=======
 var sapi = [
+>>>>>>> main
   [1, "Yusrian", "2020-07-17", "2020-07-17", "sapi jersey"],
   [2, "Hilmi", "2020-10-20", "2020-10-20", "sapi Perah"],
   [3, "Mas Imas", "2021-12-20", "2021-12-20", "Sapi Petarung"],
@@ -8,6 +54,9 @@ var sapi = [
 ];
 
 var checkup = [
+<<<<<<< HEAD
+  // ["Id Checkup","Id Sapi","tanggal checkup","bulancheckup","tahun checktup","berat","suhu tubuh","denyut nadi","nafsu makan","aktif","gerak tubuh","warna feses","bau feses","testur feses","Diagnosa Dokter","catatan"],
+=======
   [
     "Id Checkup",
     "Id Sapi",
@@ -26,6 +75,7 @@ var checkup = [
     "Diagnosa Dokter",
     "catatan"
   ],
+>>>>>>> main
   [
     1,
     1,
@@ -42,7 +92,12 @@ var checkup = [
     "busuk",
     "SangatKasar",
     "Sehat",
+<<<<<<< HEAD
+    "Bisakosong",
+    "3510161111000002"
+=======
     "Bisakosong"
+>>>>>>> main
   ],
   [
     2,
@@ -60,7 +115,12 @@ var checkup = [
     "tidakberbautanah",
     "Kasar",
     "Tidak Sehat",
+<<<<<<< HEAD
+    "tidakada",
+    "3510161111000001"
+=======
     "tidakada"
+>>>>>>> main
   ],
   [
     3,
@@ -78,7 +138,12 @@ var checkup = [
     "agakberbautanah",
     "Agakhalus",
     "Sehat",
+<<<<<<< HEAD
+    "tidakada",
+    "3510161111000002"
+=======
     "tidakada"
+>>>>>>> main
   ],
   [
     4,
@@ -96,7 +161,12 @@ var checkup = [
     "berbautanah",
     "halus",
     "Sehat",
+<<<<<<< HEAD
+    "Bisakosong",
+    "3510161111000002"
+=======
     "Bisakosong"
+>>>>>>> main
   ],
   [
     5,
@@ -114,7 +184,12 @@ var checkup = [
     "sangatberbautanah",
     "sangatHalus",
     "Sehat",
+<<<<<<< HEAD
+    "tidakada",
+    "3510161111000002"
+=======
     "tidakada"
+>>>>>>> main
   ],
   [
     6,
@@ -132,7 +207,12 @@ var checkup = [
     "busuk",
     "SangatKasar",
     "Sehat",
+<<<<<<< HEAD
+    "tidakada",
+    "3510161111000002"
+=======
     "tidakada"
+>>>>>>> main
   ],
   [
     7,
@@ -150,7 +230,12 @@ var checkup = [
     "tidakberbautanah",
     "Kasar",
     "Sehat",
+<<<<<<< HEAD
+    "Bisakosong",
+    "3510161111000002"
+=======
     "Bisakosong"
+>>>>>>> main
   ],
   [
     8,
@@ -168,7 +253,12 @@ var checkup = [
     "agakberbautanah",
     "Agakhalus",
     "Tidak Sehat",
+<<<<<<< HEAD
+    "tidakada",
+    "3510161111000001"
+=======
     "tidakada"
+>>>>>>> main
   ],
   [
     9,
@@ -186,7 +276,12 @@ var checkup = [
     "berbautanah",
     "halus",
     "Sehat",
+<<<<<<< HEAD
+    "tidakada",
+    "3510161111000002"
+=======
     "tidakada"
+>>>>>>> main
   ],
   [
     10,
@@ -204,11 +299,20 @@ var checkup = [
     "sangatberbautanah",
     "sangatHalus",
     "Sehat",
+<<<<<<< HEAD
+    "Bisakosong",
+    "3510161111000002"
+  ],
+];
+
+var susus = [
+=======
     "Bisakosong"
   ],
 ];
 
 var susu = [
+>>>>>>> main
   // [
   //   "idSusu",
   //   "idProfilSapi",
@@ -224,6 +328,28 @@ var susu = [
   //   "bln",
   //   "thn"
   // ],
+<<<<<<< HEAD
+  [1, 1, 15, "B+", 4, 6, 0.8, 3.79, 8, 2.3, 13, 1, 2020, "3510161111000002"],
+  [2, 1, 16, "A", 4, 8, 3.2, 6, 11.2, 3, 13, 1, 2020, "3510161111000002"],
+  [3, 2, 17, "A", 4, 8, 3.2, 6, 11.2, 3.2, 14, 1, 2020, "3510161111000002"],
+  [4, 2, 18, "B-", 2.9, 8, 3.2, 6, 11.2, 2, 14, 1, 2020, "3510161111000002"],
+  [5, 3, 20, "A", 4, 8, 3.2, 6, 11.2, 3, 15, 1, 2020, "3510161111000002"],
+  [6, 2, 13, "B+", 4, 7, 1, 3.89, 9.99, 2, 16, 1, 2020, "3510161111000002"],
+  [7, 1, 15, "B-", 2.9, 8, 2.69, 4, 10.89, 4, 1, 2, 2020, "3510161111000002"],
+  [8, 2, 18, "B+", 4, 9, 1, 3.89, 9.99, 5, 2, 2, 2020, "3510161111000002"],
+  [9, 2, 13, "A", 5, 8.4, 3.2, 6, 11.2, 4, 3, 2, 2020, "3510161111000002"],
+  [10, 3, 13, "C", 2, 5, 1, 3.89, 9.99, 2, 3, 2, 2020, "3510161111000002"],
+  [11, 1, 15, "B+", 4, 6, 0.8, 3.79, 8, 2.3, 13, 1, 2021, "3510161111000001"],
+  [12, 1, 16, "A", 4, 8, 3.2, 6, 11.2, 3, 13, 1, 2021, "3510161111000001"],
+  [13, 2, 17, "A", 4, 8, 3.2, 6, 11.2, 3.2, 14, 1, 2021, "3510161111000001"],
+  [14, 2, 18, "B-", 2.9, 8, 3.2, 6, 11.2, 2, 14, 1, 2021, "3510161111000001"],
+  [15, 3, 20, "A", 4, 8, 3.2, 6, 11.2, 3, 15, 1, 2021, "3510161111000001"],
+  [16, 2, 13, "B+", 4, 7, 1, 3.89, 9.99, 2, 16, 1, 2021, "3510161111000001"],
+  [17, 1, 15, "B-", 2.9, 8, 2.69, 4, 10.89, 4, 1, 2, 2021, "3510161111000001"],
+  [18, 2, 18, "B+", 4, 9, 1, 3.89, 9.99, 5, 2, 2, 2021, "3510161111000001"],
+  [19, 2, 13, "A", 5, 8.4, 3.2, 6, 11.2, 4, 3, 2, 2021, "3510161111000001"],
+  [20, 3, 13, "C", 2, 5, 1, 3.89, 9.99, 2, 3, 2, 2021, "3510161111000001"],
+=======
   [1, 1, 15, "B+", 4, 6, 0.8, 3.79, 8, 2.3, 13, 1, 2020],
   [2, 1, 16, "A", 4, 8, 3.2, 6, 11.2, 3, 13, 1, 2020],
   [3, 2, 17, "A", 4, 8, 3.2, 6, 11.2, 3.2, 14, 1, 2020],
@@ -244,4 +370,5 @@ var susu = [
   [18, 2, 18, "B+", 4, 9, 1, 3.89, 9.99, 5, 2, 2, 2021],
   [19, 2, 13, "A", 5, 8.4, 3.2, 6, 11.2, 4, 3, 2, 2021],
   [20, 3, 13, "C", 2, 5, 1, 3.89, 9.99, 2, 3, 2, 2021],
+>>>>>>> main
 ];

@@ -1,3 +1,11 @@
+<<<<<<< HEAD
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:path_provider/path_provider.dart';
+
+=======
+>>>>>>> main
 class CheckUp {
   int? idCheckup;
   int? idProfilSapi;
@@ -15,6 +23,55 @@ class CheckUp {
   String? tglCheckUp;
   String? blncheckup;
   String? thnCheckup;
+<<<<<<< HEAD
+  dynamic petugas;
+
+  CheckUp(
+      {this.idCheckup,
+      this.idProfilSapi,
+      this.diagnosaDokter,
+      this.catatan,
+      this.beratSapi,
+      this.nafsuMakan,
+      this.aktifTanggap,
+      this.gerakTubuh,
+      this.warnaFeses,
+      this.bauFeses,
+      this.teksturFeses,
+      this.suhuTubuh,
+      this.denyutNadi,
+      this.tglCheckUp,
+      this.blncheckup,
+      this.thnCheckup,
+      this.petugas});
+  Future<String> get localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+
+    return directory.path;
+  }
+
+  Future<File> get localFile async {
+    final path = await localPath;
+    final file = File(path + "/" + "checkup.json");
+    if (file.existsSync()) {
+      // print(file.existsSync());
+      return file;
+    }
+    file.create();
+    file.writeAsString("");
+    return file;
+  }
+
+  Future<File> write(List<Map<String, dynamic>> jsonFile) async {
+    final file = await localFile;
+    if (file.existsSync()) {
+      // Write the file
+      return file.writeAsString(jsonEncode(jsonFile));
+    }
+    file.create();
+    return file.writeAsString(jsonEncode(jsonFile));
+  }
+=======
 
   CheckUp(
       {required this.idCheckup,
@@ -33,6 +90,7 @@ class CheckUp {
       required this.tglCheckUp,
       required this.blncheckup,
       required this.thnCheckup});
+>>>>>>> main
 
   factory CheckUp.fromJson(Map<String, dynamic> json) {
     return CheckUp(
@@ -51,7 +109,12 @@ class CheckUp {
         denyutNadi: json['denyutNadi'],
         suhuTubuh: json['suhuTubuh'],
         tglCheckUp: json['tglCheckUp'],
+<<<<<<< HEAD
+        thnCheckup: json['thnCheckup'],
+        petugas: json['petugas']);
+=======
         thnCheckup: json['thnCheckup']);
+>>>>>>> main
   }
 
   Map<String, dynamic> toJson() => {
@@ -70,6 +133,11 @@ class CheckUp {
         "denyutNadi": denyutNadi,
         "tglCheckUp": tglCheckUp,
         "blncheckup": blncheckup,
+<<<<<<< HEAD
+        "thnCheckup": thnCheckup,
+        "petugas": petugas,
+=======
         "thnCheckup": thnCheckup
+>>>>>>> main
       };
 }
