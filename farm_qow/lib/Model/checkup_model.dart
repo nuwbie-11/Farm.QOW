@@ -1,11 +1,8 @@
-<<<<<<< HEAD
 import 'dart:convert';
 import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
 
-=======
->>>>>>> main
 class CheckUp {
   int? idCheckup;
   int? idProfilSapi;
@@ -23,7 +20,6 @@ class CheckUp {
   String? tglCheckUp;
   String? blncheckup;
   String? thnCheckup;
-<<<<<<< HEAD
   dynamic petugas;
 
   CheckUp(
@@ -71,26 +67,6 @@ class CheckUp {
     file.create();
     return file.writeAsString(jsonEncode(jsonFile));
   }
-=======
-
-  CheckUp(
-      {required this.idCheckup,
-      required this.idProfilSapi,
-      required this.diagnosaDokter,
-      required this.catatan,
-      required this.beratSapi,
-      required this.nafsuMakan,
-      required this.aktifTanggap,
-      required this.gerakTubuh,
-      required this.warnaFeses,
-      required this.bauFeses,
-      required this.teksturFeses,
-      required this.suhuTubuh,
-      required this.denyutNadi,
-      required this.tglCheckUp,
-      required this.blncheckup,
-      required this.thnCheckup});
->>>>>>> main
 
   factory CheckUp.fromJson(Map<String, dynamic> json) {
     return CheckUp(
@@ -109,12 +85,8 @@ class CheckUp {
         denyutNadi: json['denyutNadi'],
         suhuTubuh: json['suhuTubuh'],
         tglCheckUp: json['tglCheckUp'],
-<<<<<<< HEAD
         thnCheckup: json['thnCheckup'],
         petugas: json['petugas']);
-=======
-        thnCheckup: json['thnCheckup']);
->>>>>>> main
   }
 
   Map<String, dynamic> toJson() => {
@@ -133,11 +105,7 @@ class CheckUp {
         "denyutNadi": denyutNadi,
         "tglCheckUp": tglCheckUp,
         "blncheckup": blncheckup,
-<<<<<<< HEAD
         "thnCheckup": thnCheckup,
         "petugas": petugas,
-=======
-        "thnCheckup": thnCheckup
->>>>>>> main
       };
 }
