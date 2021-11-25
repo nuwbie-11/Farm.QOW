@@ -22,7 +22,12 @@ class UserController {
   dynamic getDataUser() async {
     final file = await user.localFile;
     final content = await file.readAsString();
-    final res = content == '' ? populateUser() : jsonDecode(content);
+    // final res = content == '' ? [] : jsonDecode(content);
+    if (content == '') {
+      final res = populateUser();
+      return res;
+    }
+    final res = jsonDecode(content);
     // List myList = await jsonToDynamic();
     // print(res);
     for (var item in res) {

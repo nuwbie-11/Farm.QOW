@@ -75,7 +75,7 @@ class SusuController {
     susu.write(items);
   }
 
-  dynamic populateUser() {
+  dynamic populateSusu() {
     List ps = [];
     for (var item in susus) {
       // var temp = {

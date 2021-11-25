@@ -20,6 +20,9 @@ class _LoginPageState extends State<LoginPage> {
   User userLogin = User();
   void upUser() async {
     final tempUser = await UserController().getDataUser();
+    // if (tempUser == []) {
+    //   print("No Accounts Saved");
+    // }
     setState(() {
       user_account = tempUser;
     });
