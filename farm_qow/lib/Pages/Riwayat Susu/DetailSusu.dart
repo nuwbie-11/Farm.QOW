@@ -1,11 +1,7 @@
-<<<<<<< HEAD
 // ignore_for_file: file_names
 
 import 'package:farm_qow/Controller/susu_controller.dart';
 import 'package:farm_qow/Model/storage.dart';
-=======
-import 'package:farm_qow/Model/model.dart';
->>>>>>> main
 import 'package:flutter/material.dart';
 
 class DetailSusu extends StatefulWidget {
@@ -18,7 +14,6 @@ class DetailSusu extends StatefulWidget {
 }
 
 class _DetailSusuState extends State<DetailSusu> {
-<<<<<<< HEAD
   List susu = [];
 
   void upContent() async {
@@ -40,40 +35,19 @@ class _DetailSusuState extends State<DetailSusu> {
     var dataSusu;
     for (int i = 0; i < susu.length; i++) {
       if (susu[i][0] == widget.idRiwayatSusu) {
-=======
-  @override
-  Widget build(BuildContext context) {
-    var dataSusu;
-    for(int i=0; i<susu.length;i++){
-      if(susu[i][0] == widget.idRiwayatSusu ){
->>>>>>> main
         dataSusu = (susu[i]);
         break;
         // break;
       }
     }
-<<<<<<< HEAD
-
-=======
-    print("ini data susu");
-    print(dataSusu);
-    print("ini data susu");
->>>>>>> main
     return MaterialApp(
       home: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-<<<<<<< HEAD
                 image: AssetImage(
                   "assets/bg/bg5.jpg",
                 ),
                 fit: BoxFit.cover)),
-=======
-                image: AssetImage("assets/bg/bg5.jpg",),
-                fit: BoxFit.cover
-            )
-        ),
->>>>>>> main
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
@@ -89,7 +63,6 @@ class _DetailSusuState extends State<DetailSusu> {
                 Row(
                   children: [
                     IconButton(
-<<<<<<< HEAD
                       onPressed: () {
                         Navigator.pop(context, true);
                       },
@@ -99,21 +72,12 @@ class _DetailSusuState extends State<DetailSusu> {
                         size: 30,
                       ),
                     ),
-=======
-                      onPressed: (){
-                        Navigator.pop(context, true);
-                      },
-                      icon: Icon(Icons.arrow_back,color:Colors.white,size: 30,),
-                    ),
-
->>>>>>> main
                     Text('Detail Riwayat Susu'),
                   ],
                 ),
               ],
             ),
           ),
-<<<<<<< HEAD
           body: ListView(
             children: [
               SizedBox(
@@ -177,67 +141,6 @@ class _DetailSusuState extends State<DetailSusu> {
               ),
             ],
           ),
-=======
-
-            body: ListView(
-              children: [
-                SizedBox(height: 10,),
-                Container(
-                  width: double.infinity,
-                  margin: EdgeInsets.symmetric(horizontal: 20),
-                  padding:  EdgeInsets.symmetric(vertical: 20,horizontal: 20),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 5,
-                        blurRadius: 7,
-                        offset: Offset(0, 3), // changes position of shadow
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-
-                    children: [
-                      for(int i=0; i<dataSusu.length;i++)
-
-                        Column(
-                          children: [
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Flexible(
-                                    fit: FlexFit.tight,
-                                    child: Container(
-                                      width: 20,
-                                      // color: Colors.green,
-                                      child: Text(susu[0][i].toString(),style: TextStyle(fontWeight: FontWeight.bold,fontSize: 18),),
-                                    )
-                                ),
-                                Flexible(
-                                    fit: FlexFit.tight,
-                                    child: Container(
-                                      // color: Colors.blue,
-                                      child: Text( ":  " +dataSusu[i].toString(),style: TextStyle(fontSize: 18),),
-                                    )
-                                ),
-                              ],
-
-                            ),
-                            SizedBox(height: 10,),
-                          ],
-                        ),
-
-                    ],
-                  ),
-                ),
-
-              ],
-            ),
->>>>>>> main
         ),
       ),
     );

@@ -1,11 +1,7 @@
-<<<<<<< HEAD
 // ignore_for_file: file_names
 
 import 'package:farm_qow/Controller/susu_controller.dart';
 import 'package:farm_qow/Model/storage.dart';
-=======
-import 'package:farm_qow/Model/model.dart';
->>>>>>> main
 import 'package:farm_qow/Pages/Riwayat%20Susu/DetailSusu.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +17,6 @@ class RiwayatSusu extends StatefulWidget {
 }
 
 class _RiwayatSusuState extends State<RiwayatSusu> {
-<<<<<<< HEAD
   List susu = [];
 
   void upContent() async {
@@ -42,22 +37,11 @@ class _RiwayatSusuState extends State<RiwayatSusu> {
     var dataSusu = [];
     for (int i = 0; i < susu.length; i++) {
       if (susu[i][1] == widget.idSapi) {
-=======
-  @override
-  Widget build(BuildContext context) {
-    var dataSusu = [];
-    for(int i=0; i<susu.length;i++){
-      if(susu[i][1] == widget.idSapi){
->>>>>>> main
         dataSusu.add(susu[i]);
       }
     }
     print("result");
-<<<<<<< HEAD
     for (int i = 0; i < dataSusu.length; i++) {
-=======
-    for(int i=0; i<dataSusu.length; i++){
->>>>>>> main
       print(dataSusu[i]);
     }
     print("result");
@@ -65,17 +49,10 @@ class _RiwayatSusuState extends State<RiwayatSusu> {
       home: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
-<<<<<<< HEAD
                 image: AssetImage(
                   "assets/bg/bg5.jpg",
                 ),
                 fit: BoxFit.cover)),
-=======
-                image: AssetImage("assets/bg/bg5.jpg",),
-                fit: BoxFit.cover
-            )
-        ),
->>>>>>> main
         child: Scaffold(
           backgroundColor: Colors.transparent,
           endDrawer: Drawer(
@@ -85,16 +62,9 @@ class _RiwayatSusuState extends State<RiwayatSusu> {
               color: Color.fromRGBO(143, 197, 255, 0.95),
               child: ListView(
                 children: [
-<<<<<<< HEAD
                   YearFilterAll(widget.idSapi),
                   for (int i = 21; i > 16; i--)
                     YearFilter(widget.idSapi, "20" + i.toString())
-=======
-
-                  YearFilterAll(widget.idSapi),
-                  for(int i=21;i>16;i--)
-                    YearFilter(widget.idSapi,"20"+i.toString())
->>>>>>> main
                 ],
               ),
             ),
@@ -106,17 +76,12 @@ class _RiwayatSusuState extends State<RiwayatSusu> {
                 bottom: Radius.circular(20),
               ),
             ),
-<<<<<<< HEAD
-=======
-
->>>>>>> main
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
                     IconButton(
-<<<<<<< HEAD
                       onPressed: () {
                         Navigator.pop(context, true);
                       },
@@ -126,34 +91,17 @@ class _RiwayatSusuState extends State<RiwayatSusu> {
                         size: 30,
                       ),
                     ),
-=======
-                      onPressed: (){
-                        Navigator.pop(context, true);
-                      },
-                      icon: Icon(Icons.arrow_back,color:Colors.white,size: 30,),
-                    ),
-
->>>>>>> main
                     Text('Riwayat Susu | Semua Waktu'),
                   ],
                 ),
               ],
             ),
           ),
-<<<<<<< HEAD
           body: ListView(
             children: [
               for (int i = dataSusu.length - 1; i > -1; i--)
                 ItemSusu(widget.idSapi, dataSusu[i][10], dataSusu[i][11],
                     dataSusu[i][12], dataSusu[i][3], dataSusu[i][0])
-=======
-
-          body: ListView(
-            children: [
-
-              for(int i=dataSusu.length-1;i>-1;i--)
-                ItemSusu(widget.idSapi,dataSusu[i][10],dataSusu[i][11],dataSusu[i][12],dataSusu[i][3],dataSusu[i][0])
->>>>>>> main
               // ItemCheckup('2', "3", "20021")
             ],
           ),
@@ -163,12 +111,6 @@ class _RiwayatSusuState extends State<RiwayatSusu> {
   }
 }
 
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> main
 class ItemSusu extends StatelessWidget {
   // const ItemSusu({Key? key}) : super(key: key);
   int idSapi;
@@ -178,17 +120,12 @@ class ItemSusu extends StatelessWidget {
   String gradeSusu;
   int idRiwayatSusu;
 
-<<<<<<< HEAD
   ItemSusu(this.idSapi, this.tgl, this.bulan, this.tahun, this.gradeSusu,
       this.idRiwayatSusu);
-=======
-  ItemSusu(this.idSapi,this.tgl,this.bulan,this.tahun,this.gradeSusu,this.idRiwayatSusu);
->>>>>>> main
 
   @override
   Widget build(BuildContext context) {
     var bgGrade;
-<<<<<<< HEAD
     if (gradeSusu == "A") {
       bgGrade = Colors.green[300];
     } else if (gradeSusu == "B" || gradeSusu == "B+") {
@@ -201,30 +138,12 @@ class ItemSusu extends StatelessWidget {
     return Builder(builder: (context) {
       return InkWell(
         onTap: () {
-=======
-    if(gradeSusu == "A"){
-      bgGrade = Colors.green[300];
-    }
-    else if(gradeSusu == "B" || gradeSusu == "B+"){
-      bgGrade = Colors.blue;
-    }
-    else if(gradeSusu == "B-"){
-      bgGrade = Colors.orangeAccent;
-    }
-    else{
-      bgGrade = Colors.redAccent;
-    }
-    return Builder(builder: (context){
-      return InkWell(
-        onTap: (){
->>>>>>> main
           Navigator.push(context, Transition(DetailSusu(idRiwayatSusu)));
           // Navigator.of(context).push(MaterialPageRoute(builder: (context){
           //   return DetailSusu(idRiwayatSusu);
           // }));
         },
         child: Container(
-<<<<<<< HEAD
             margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
             padding: EdgeInsets.all(10),
             width: double.infinity,
@@ -270,73 +189,23 @@ class ItemSusu extends StatelessWidget {
                     ),
                   ),
                 ])),
-=======
-          margin: const EdgeInsets.symmetric(vertical: 5,horizontal: 10),
-          padding: EdgeInsets.all(10),
-          width: double.infinity,
-          height: 70,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(15),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.5),
-                spreadRadius: 5,
-                blurRadius: 7,
-                offset: Offset(0, 3), // changes position of shadow
-              ),
-            ],
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(tgl.toString()+"/".toString()+bulan.toString()+"/"+tahun.toString(),style: TextStyle(fontSize: 22),),
-              Container(
-                width: 100,
-                height: 200,
-                decoration: BoxDecoration(
-                    color: bgGrade,
-                    borderRadius: BorderRadius.circular(10)
-                ),
-
-                child: Center(child: Text(gradeSusu,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),),),
-
-          ),]
-      )),
->>>>>>> main
       );
     });
   }
 }
 
-<<<<<<< HEAD
 class YearFilter extends StatelessWidget {
   int idSapi;
   String tahun;
   YearFilter(this.idSapi, this.tahun);
-=======
-
-
-
-class YearFilter extends StatelessWidget {
-  int idSapi;
-  String tahun;
-  YearFilter(this.idSapi,this.tahun);
->>>>>>> main
   // const YearFilter({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-<<<<<<< HEAD
       onTap: () {
         Navigator.push(
             context, Transition(RiwayatSusuByTahun(idSapi, int.parse(tahun))));
-=======
-      onTap: (){
-        Navigator.push(context, Transition(RiwayatSusuByTahun(idSapi, int.parse(tahun))));
->>>>>>> main
         // Navigator.of(context).push(MaterialPageRoute(builder: (context){
         //   return RiwayatSusuByTahun(idSapi, int.parse(tahun));
         // }));
@@ -346,26 +215,17 @@ class YearFilter extends StatelessWidget {
         width: double.infinity,
         height: 60,
         color: Colors.white,
-<<<<<<< HEAD
         child: Center(
           child: Text(
             tahun,
             style: TextStyle(fontSize: 26),
           ),
         ),
-=======
-        child: Center(child: Text(tahun,style: TextStyle(fontSize: 26),),),
->>>>>>> main
       ),
     );
   }
 }
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> main
 class YearFilterAll extends StatelessWidget {
   int idSapi;
   YearFilterAll(this.idSapi);
@@ -374,11 +234,7 @@ class YearFilterAll extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-<<<<<<< HEAD
       onTap: () {
-=======
-      onTap: (){
->>>>>>> main
         Navigator.push(context, Transition(RiwayatSusu(idSapi)));
         // Navigator.of(context).push(MaterialPageRoute(builder: (context){
         //   return RiwayatSusu(idSapi);
@@ -389,21 +245,13 @@ class YearFilterAll extends StatelessWidget {
         width: double.infinity,
         height: 60,
         color: Colors.white,
-<<<<<<< HEAD
         child: Center(
           child: Text(
             "Semua Waktu",
             style: TextStyle(fontSize: 26),
           ),
         ),
-=======
-        child: Center(child: Text("Semua Waktu",style: TextStyle(fontSize: 26),),),
->>>>>>> main
       ),
     );
   }
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> main
