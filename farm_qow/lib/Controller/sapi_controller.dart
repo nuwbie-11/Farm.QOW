@@ -1,7 +1,11 @@
 import 'dart:convert';
 
+<<<<<<< HEAD
 import 'package:farm_qow/Model/sapi_model.dart';
 import 'package:farm_qow/Model/storage.dart';
+=======
+import 'package:path_provider/path_provider.dart';
+>>>>>>> main
 
 class SapiController {
   Sapi sapi = Sapi();
@@ -42,6 +46,7 @@ class SapiController {
     sapi.write(items);
   }
 
+<<<<<<< HEAD
   dynamic populateUser() {
     List ps = [];
     for (var item in sapis) {
@@ -62,5 +67,22 @@ class SapiController {
     }
     simpan(ps);
     return ps;
+=======
+  List sapiContent = [];
+
+  dynamic fetch2List() async {
+    List myList = await jsonToDynamic();
+    for (var item in myList) {
+      this.sapiContent.add([
+        item["idProfilSapi"],
+        item["nama"],
+        item["tglDatang"],
+        item["tglLahir"],
+        item["jenisSapi"]
+      ]);
+    }
+    // print(sapiContent);
+    return sapiContent;
+>>>>>>> main
   }
 }

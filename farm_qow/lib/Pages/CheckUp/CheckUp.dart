@@ -1,12 +1,17 @@
+<<<<<<< HEAD
 // ignore_for_file: file_names
 
 import 'package:farm_qow/Controller/checkup_controller.dart';
+=======
+import 'package:farm_qow/Model/model.dart';
+>>>>>>> main
 import 'package:farm_qow/Pages/CheckUp/CheckupByYear.dart';
 import 'package:farm_qow/Pages/CheckUp/DetailCheckUp.dart';
 import 'package:flutter/material.dart';
 
 import '../../main.dart';
 
+<<<<<<< HEAD
 class CheckUp extends StatefulWidget {
   int idSapi;
   CheckUp(this.idSapi);
@@ -31,12 +36,31 @@ class _CheckUpState extends State<CheckUp> {
     upCheckUp();
     // mod.resetWrite();
   }
+=======
+
+
+class CheckUp extends StatefulWidget {
+  int idSapi;
+  CheckUp(this.idSapi);
+>>>>>>> main
 
   @override
+  _CheckUpState createState() => _CheckUpState();
+}
+
+class _CheckUpState extends State<CheckUp> {
+  @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     var dataCheckup = [];
     for (int i = 0; i < checkup.length; i++) {
       if (checkup[i][1] == widget.idSapi) {
+=======
+
+    var dataCheckup = [];
+    for(int i=0; i<checkup.length;i++){
+      if(checkup[i][1] == widget.idSapi ){
+>>>>>>> main
         dataCheckup.add(checkup[i]);
       }
     }
@@ -44,14 +68,23 @@ class _CheckUpState extends State<CheckUp> {
       home: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
+<<<<<<< HEAD
                 image: AssetImage(
                   "assets/bg/bg5.jpg",
                 ),
                 fit: BoxFit.cover)),
+=======
+                image: AssetImage("assets/bg/bg5.jpg",),
+                fit: BoxFit.cover
+            )
+        ),
+
+>>>>>>> main
         child: Scaffold(
           backgroundColor: Colors.transparent,
           endDrawer: Drawer(
             child: Container(
+<<<<<<< HEAD
               width: 50,
               height: 50,
               color: Color.fromRGBO(143, 197, 255, 0.95),
@@ -62,6 +95,18 @@ class _CheckUpState extends State<CheckUp> {
                     YearFilter(widget.idSapi, "20" + i.toString())
                 ],
               ),
+=======
+                width: 50,
+                height: 50,
+                color: Color.fromRGBO(143, 197, 255, 0.95),
+                child: ListView(
+                  children: [
+                    YearFilterAll(widget.idSapi),
+                    for(int i=21;i>16;i--)
+                    YearFilter(widget.idSapi,"20"+i.toString())
+              ],
+                ),
+>>>>>>> main
             ),
           ),
           appBar: AppBar(
@@ -78,6 +123,7 @@ class _CheckUpState extends State<CheckUp> {
                 Row(
                   children: [
                     IconButton(
+<<<<<<< HEAD
                       onPressed: () {
                         Navigator.pop(context, true);
                       },
@@ -87,6 +133,14 @@ class _CheckUpState extends State<CheckUp> {
                         size: 30,
                       ),
                     ),
+=======
+                      onPressed: (){
+                        Navigator.pop(context, true);
+                      },
+                      icon: Icon(Icons.arrow_back,color:Colors.white,size: 30,),
+                    ),
+
+>>>>>>> main
                     Text('Check Up | Semua Waktu'),
                   ],
                 ),
@@ -95,6 +149,7 @@ class _CheckUpState extends State<CheckUp> {
           ),
           body: ListView(
             children: [
+<<<<<<< HEAD
               for (int i = dataCheckup.length - 1; i > -1; i--)
                 ItemCheckup(
                     widget.idSapi,
@@ -104,6 +159,12 @@ class _CheckUpState extends State<CheckUp> {
                     dataCheckup[i][14],
                     dataCheckup[i][0])
               // ItemCheckup('2', "3", "20021")
+=======
+
+              for(int i=dataCheckup.length-1;i>-1;i--)
+                ItemCheckup(widget.idSapi,dataCheckup[i][2],dataCheckup[i][3],dataCheckup[i][4],dataCheckup[i][14],dataCheckup[i][0])
+                // ItemCheckup('2', "3", "20021")
+>>>>>>> main
             ],
           ),
         ),
@@ -112,6 +173,7 @@ class _CheckUpState extends State<CheckUp> {
   }
 }
 
+<<<<<<< HEAD
 class ItemCheckup extends StatelessWidget {
   // const ItemCheckup({Key? key}) : super(key: key);
   int idSapi;
@@ -123,28 +185,61 @@ class ItemCheckup extends StatelessWidget {
 
   ItemCheckup(this.idSapi, this.tgl, this.bulan, this.tahun, this.kesehatanSapi,
       this.idCheckup);
+=======
+
+
+
+class ItemCheckup extends StatelessWidget {
+  // const ItemCheckup({Key? key}) : super(key: key);
+  int idSapi;
+  int tgl;
+  int bulan;
+  int tahun;
+  String kesehatanSapi;
+  int idCheckup;
+
+  ItemCheckup(this.idSapi,this.tgl,this.bulan,this.tahun,this.kesehatanSapi,this.idCheckup);
+>>>>>>> main
 
   @override
   Widget build(BuildContext context) {
     var bgKesehatan;
+<<<<<<< HEAD
     if (kesehatanSapi == "Sehat") {
       bgKesehatan = Colors.green[300];
     } else if (kesehatanSapi == "Kurang Sehat") {
       bgKesehatan = Colors.yellow;
     } else {
+=======
+    if(kesehatanSapi == "Sehat"){
+      bgKesehatan = Colors.green[300];
+    }
+    else if(kesehatanSapi == "Kurang Sehat"){
+      bgKesehatan = Colors.yellow;
+    }
+    else{
+>>>>>>> main
       bgKesehatan = Colors.redAccent;
     }
 
-    return Builder(builder: (context) {
+    return Builder(builder: (context){
       return InkWell(
+<<<<<<< HEAD
         onTap: () {
+=======
+        onTap: (){
+>>>>>>> main
           Navigator.push(context, Transition(DetailChecUp(idCheckup)));
           // Navigator.of(context).push(MaterialPageRoute(builder: (context){
           //   return DetailChecUp(idCheckup);
           // }));
         },
         child: Container(
+<<<<<<< HEAD
           margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+=======
+          margin: const EdgeInsets.symmetric(vertical: 5,horizontal: 10),
+>>>>>>> main
           padding: EdgeInsets.all(10),
           width: double.infinity,
           height: 70,
@@ -164,6 +259,7 @@ class ItemCheckup extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+<<<<<<< HEAD
               Text(
                 tgl.toString() +
                     "/".toString() +
@@ -172,16 +268,26 @@ class ItemCheckup extends StatelessWidget {
                     tahun.toString(),
                 style: TextStyle(fontSize: 22),
               ),
+=======
+              Text(tgl.toString()+"/".toString()+bulan.toString()+"/"+tahun.toString(),style: TextStyle(fontSize: 22),),
+>>>>>>> main
               Container(
                 width: 100,
                 height: 200,
                 decoration: BoxDecoration(
                     color: bgKesehatan,
+<<<<<<< HEAD
                     borderRadius: BorderRadius.circular(10)),
+=======
+                  borderRadius: BorderRadius.circular(10)
+                ),
+
+>>>>>>> main
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+<<<<<<< HEAD
                     Text(
                       kesehatanSapi,
                       style: TextStyle(
@@ -189,6 +295,9 @@ class ItemCheckup extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                           color: Colors.white),
                     ),
+=======
+                    Text(kesehatanSapi,style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold,color: Colors.white),),
+>>>>>>> main
                   ],
                 ),
               )
@@ -200,18 +309,34 @@ class ItemCheckup extends StatelessWidget {
   }
 }
 
+<<<<<<< HEAD
 class YearFilter extends StatelessWidget {
   int idSapi;
   String tahun;
   YearFilter(this.idSapi, this.tahun);
+=======
+
+
+
+
+class YearFilter extends StatelessWidget {
+  int idSapi;
+  String tahun;
+  YearFilter(this.idSapi,this.tahun);
+>>>>>>> main
   // const YearFilter({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
+<<<<<<< HEAD
       onTap: () {
         Navigator.push(
             context, Transition(CheckUpByYear(idSapi, int.parse(tahun))));
+=======
+      onTap: (){
+        Navigator.push(context, Transition(CheckUpByYear(idSapi, int.parse(tahun))));
+>>>>>>> main
         // Navigator.of(context).push(MaterialPageRoute(builder: (context){
         //   return CheckUpByYear(idSapi, int.parse(tahun));
         // }));
@@ -221,17 +346,26 @@ class YearFilter extends StatelessWidget {
         width: double.infinity,
         height: 60,
         color: Colors.white,
+<<<<<<< HEAD
         child: Center(
           child: Text(
             tahun,
             style: TextStyle(fontSize: 26),
           ),
         ),
+=======
+        child: Center(child: Text(tahun,style: TextStyle(fontSize: 26),),),
+>>>>>>> main
       ),
     );
   }
 }
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> main
 class YearFilterAll extends StatelessWidget {
   int idSapi;
   YearFilterAll(this.idSapi);
@@ -240,7 +374,11 @@ class YearFilterAll extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+<<<<<<< HEAD
       onTap: () {
+=======
+      onTap: (){
+>>>>>>> main
         Navigator.push(context, Transition(CheckUp(idSapi)));
         // Navigator.of(context).push(MaterialPageRoute(builder: (context){
         //   return CheckUp(idSapi);
@@ -251,12 +389,16 @@ class YearFilterAll extends StatelessWidget {
         width: double.infinity,
         height: 60,
         color: Colors.white,
+<<<<<<< HEAD
         child: Center(
           child: Text(
             "All",
             style: TextStyle(fontSize: 26),
           ),
         ),
+=======
+        child: Center(child: Text("All",style: TextStyle(fontSize: 26),),),
+>>>>>>> main
       ),
     );
   }

@@ -1,8 +1,11 @@
+<<<<<<< HEAD
 import 'dart:convert';
 import 'dart:io';
 
 import 'package:path_provider/path_provider.dart';
 
+=======
+>>>>>>> main
 class Sapi {
   int? idSapi;
   String? nama;

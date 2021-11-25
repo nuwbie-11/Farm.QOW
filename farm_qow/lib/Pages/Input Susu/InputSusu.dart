@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 // ignore_for_file: file_names
 
 import 'package:farm_qow/Controller/susu_controller.dart';
 import 'package:farm_qow/Model/storage.dart';
+=======
+import 'package:farm_qow/Model/model.dart';
+>>>>>>> main
 import 'package:farm_qow/Pages/MainPage/MainPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -20,9 +24,16 @@ var data_input_susu = [
   DateTime.now().day,
   DateTime.now().month,
   DateTime.now().year,
+<<<<<<< HEAD
   user_login[0],
 ];
 
+=======
+];
+
+
+
+>>>>>>> main
 class InputSusu extends StatefulWidget {
   int idSapi;
   InputSusu(this.idSapi);
@@ -32,6 +43,7 @@ class InputSusu extends StatefulWidget {
 }
 
 class _InputSusuState extends State<InputSusu> {
+<<<<<<< HEAD
   List susu = [];
 
   void upContent() async {
@@ -48,6 +60,8 @@ class _InputSusuState extends State<InputSusu> {
     upContent();
   }
 
+=======
+>>>>>>> main
   TextEditingController jumlahSusuInput = new TextEditingController();
   TextEditingController fatInput = new TextEditingController();
   TextEditingController snfInput = new TextEditingController();
@@ -56,6 +70,11 @@ class _InputSusuState extends State<InputSusu> {
   TextEditingController solidsInput = new TextEditingController();
   TextEditingController proteinInput = new TextEditingController();
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> main
   @override
   Widget build(BuildContext context) {
     data_input_susu[1] = widget.idSapi;
@@ -64,14 +83,22 @@ class _InputSusuState extends State<InputSusu> {
       home: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
+<<<<<<< HEAD
                 image: AssetImage(
                   "assets/bg/bg5.jpg",
                 ),
                 fit: BoxFit.cover)),
+=======
+                image: AssetImage("assets/bg/bg5.jpg",),
+                fit: BoxFit.cover
+            )
+        ),
+>>>>>>> main
         child: Scaffold(
           backgroundColor: Colors.transparent,
           endDrawer: Container(
             padding: EdgeInsets.only(top: 40),
+<<<<<<< HEAD
             width: MediaQuery.of(context).size.width - 50,
             height: double.infinity,
             decoration: BoxDecoration(
@@ -79,6 +106,18 @@ class _InputSusuState extends State<InputSusu> {
                 image: DecorationImage(
                     image: AssetImage("assets/images/inputCheckup.png"))),
           ),
+=======
+            width: MediaQuery.of(context).size.width-50,
+            height: double.infinity,
+
+            decoration: BoxDecoration(
+                color: Colors.white,
+                image: DecorationImage(image: AssetImage("assets/images/inputCheckup.png"))
+            ),
+
+          ),
+
+>>>>>>> main
           appBar: AppBar(
             backgroundColor: Color.fromRGBO(143, 197, 255, 0.95),
             elevation: 0,
@@ -87,12 +126,17 @@ class _InputSusuState extends State<InputSusu> {
                 bottom: Radius.circular(20),
               ),
             ),
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
                   children: [
                     IconButton(
+<<<<<<< HEAD
                       onPressed: () {
                         Navigator.pop(context, true);
                       },
@@ -102,12 +146,21 @@ class _InputSusuState extends State<InputSusu> {
                         size: 30,
                       ),
                     ),
+=======
+                      onPressed: (){
+                        Navigator.pop(context, true);
+                      },
+                      icon: Icon(Icons.arrow_back,color:Colors.white,size: 30,),
+                    ),
+
+>>>>>>> main
                     Text('Input Data Susu'),
                   ],
                 ),
               ],
             ),
           ),
+<<<<<<< HEAD
           body: Container(
             margin: EdgeInsets.symmetric(horizontal: 10),
             decoration: BoxDecoration(
@@ -127,12 +180,40 @@ class _InputSusuState extends State<InputSusu> {
                           "nomor sapi : " + widget.idSapi.toString(),
                           style: TextStyle(fontSize: 20),
                         ),
+=======
+
+          body: Container(
+
+            margin: EdgeInsets.symmetric(horizontal: 10),
+            decoration: BoxDecoration(
+                color: Color.fromRGBO(255,255,255, 0.8),
+                border: Border.all(color: Colors.blue,width: 1)
+            ),
+            child: ListView(
+              children: [
+                Card(
+                  margin: EdgeInsets.symmetric(horizontal: 12,vertical: 10),
+                  child: Container(
+                    height: 40,
+                    padding: EdgeInsets.symmetric(horizontal: 12,vertical: 3),
+
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("nomor sapi : "+widget.idSapi.toString(),style: TextStyle(fontSize:20),),
+>>>>>>> main
                       ],
                     ),
                   ),
                 ),
+<<<<<<< HEAD
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+=======
+
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12,vertical: 3),
+>>>>>>> main
                   child: TextField(
                     keyboardType: TextInputType.phone,
                     // textAlign: TextAlign.center,
@@ -146,8 +227,14 @@ class _InputSusuState extends State<InputSusu> {
                     ),
                   ),
                 ),
+<<<<<<< HEAD
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+=======
+
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12,vertical: 3),
+>>>>>>> main
                   child: TextField(
                     keyboardType: TextInputType.phone,
                     // textAlign: TextAlign.center,
@@ -161,8 +248,14 @@ class _InputSusuState extends State<InputSusu> {
                     ),
                   ),
                 ),
+<<<<<<< HEAD
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+=======
+
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12,vertical: 3),
+>>>>>>> main
                   child: TextField(
                     keyboardType: TextInputType.phone,
                     // textAlign: TextAlign.center,
@@ -176,8 +269,14 @@ class _InputSusuState extends State<InputSusu> {
                     ),
                   ),
                 ),
+<<<<<<< HEAD
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+=======
+
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12,vertical: 3),
+>>>>>>> main
                   child: TextField(
                     keyboardType: TextInputType.phone,
                     // textAlign: TextAlign.center,
@@ -191,8 +290,14 @@ class _InputSusuState extends State<InputSusu> {
                     ),
                   ),
                 ),
+<<<<<<< HEAD
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+=======
+
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12,vertical: 3),
+>>>>>>> main
                   child: TextField(
                     keyboardType: TextInputType.phone,
                     // textAlign: TextAlign.center,
@@ -206,8 +311,15 @@ class _InputSusuState extends State<InputSusu> {
                     ),
                   ),
                 ),
+<<<<<<< HEAD
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+=======
+
+
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12,vertical: 3),
+>>>>>>> main
                   child: TextField(
                     keyboardType: TextInputType.phone,
                     // textAlign: TextAlign.center,
@@ -221,8 +333,15 @@ class _InputSusuState extends State<InputSusu> {
                     ),
                   ),
                 ),
+<<<<<<< HEAD
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
+=======
+
+
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 12,vertical: 3),
+>>>>>>> main
                   child: TextField(
                     keyboardType: TextInputType.phone,
                     // textAlign: TextAlign.center,
@@ -236,6 +355,7 @@ class _InputSusuState extends State<InputSusu> {
                     ),
                   ),
                 ),
+<<<<<<< HEAD
                 InkWell(
                   onTap: () {
                     data_input_susu[1] = widget.idSapi;
@@ -275,11 +395,48 @@ class _InputSusuState extends State<InputSusu> {
                       } else {
                         data_input_susu[3] = "C";
                       }
+=======
+
+
+                InkWell(
+                  onTap: (){
+                    data_input_susu[1] = widget.idSapi;
+                    bool isValidate = true;
+                    for(int i=0; i<data_input_susu.length-1;i++){
+                      print(data_input_susu[i]);
+                      if(data_input_susu[i] == ""){
+
+                        isValidate = false;
+                      }
+                    }
+                    if(isValidate == true){
+
+
+                      var lastIdSusu = susu[susu.length-1][0];
+                      int idCheckup = int.parse(lastIdSusu.toString());
+                      idCheckup +=1;
+                      data_input_susu[0] = idCheckup;
+
+                      if(double.parse(data_input_susu[4].toString()) >=4  && double.parse(data_input_susu[5].toString()) >= 7.8 && double.parse(data_input_susu[6].toString()) >= 1.027 && double.parse(data_input_susu[7].toString()) >=4 && double.parse(data_input_susu[8].toString()) >=10.8 && double.parse(data_input_susu[9].toString()) >=2.8){
+                        data_input_susu[3] = "A";
+                      }
+                      else if(double.parse(data_input_susu[4].toString()) >=4){
+                        data_input_susu[3] = "B+";
+                      }
+                      else if(double.parse(data_input_susu[5].toString()) >= 7.8 && double.parse(data_input_susu[6].toString()) >= 1.027 && double.parse(data_input_susu[7].toString()) >=4 && double.parse(data_input_susu[8].toString()) >=10.8 && double.parse(data_input_susu[9].toString()) >=2.8){
+                        data_input_susu[3] = "B-";
+                      }
+                      else{
+                        data_input_susu[3] = "C";
+                    }
+
+>>>>>>> main
 
                       showDialog(
                           context: context,
                           builder: (context) {
                             return AlertDialog(
+<<<<<<< HEAD
                               title: Text("Data Input Checkup"),
                               content: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -327,6 +484,32 @@ class _InputSusuState extends State<InputSusu> {
                                   Text("Protein : " +
                                       data_input_susu[9].toString()),
                                   SizedBox(height: 10),
+=======
+                              title: Text("Data Input Pemerahan Susu"),
+                              content: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text("Grade : "+data_input_susu[3].toString(),textAlign: TextAlign.center,style: TextStyle(fontWeight: FontWeight.bold),),SizedBox(height:10),
+
+                                  Text("id Susu : "+data_input_susu[0].toString()),SizedBox(height:10),
+                                  Text("id sapi : "+data_input_susu[1].toString()),SizedBox(height:10),
+                                  Text("tanggal : "+data_input_susu[10].toString()),SizedBox(height:10),
+                                  Text("bulan : "+data_input_susu[11].toString()),SizedBox(height:10),
+                                  Text("tahun : "+data_input_susu[12].toString()),SizedBox(height:10),
+                                  Text("Jumlah Susu : "+data_input_susu[2].toString()),SizedBox(height:10),
+
+                                  Text("Lemak : "+data_input_susu[4].toString()),SizedBox(height:10),
+                                  Text("SNF : "+data_input_susu[5].toString()),SizedBox(height:10),
+                                  Text("Density : "+data_input_susu[6].toString()),SizedBox(height:10),
+                                  Text("Laktosa : "+data_input_susu[7].toString()),SizedBox(height:10),
+                                  Text("Solids : "+data_input_susu[8].toString()),SizedBox(height:10),
+                                  Text("Protein : "+data_input_susu[9].toString()),SizedBox(height:10),
+
+
+
+
+
+>>>>>>> main
                                 ],
                               ),
                               actions: [
@@ -334,16 +517,24 @@ class _InputSusuState extends State<InputSusu> {
                                   onPressed: () {
                                     setState(() {
                                       Navigator.of(context).pop();
+<<<<<<< HEAD
                                     });
                                   },
                                   child: Text("Tidak",
                                       style: TextStyle(color: Colors.blue)),
+=======
+
+                                    });
+                                  },
+                                  child: Text("Tidak", style: TextStyle(color: Colors.blue)),
+>>>>>>> main
                                 ),
                                 FlatButton(
                                   onPressed: () {
                                     setState(() {
                                       susu.add(data_input_susu);
                                     });
+<<<<<<< HEAD
                                     // print(data_input_susu);
                                     // print(user_login);
                                     SusuController().simpan(susu);
@@ -351,6 +542,16 @@ class _InputSusuState extends State<InputSusu> {
                                     data_input_susu = [
                                       "id sapi",
                                       0,
+=======
+                                    print("result");
+                                    for(int i=0;i<susu.length;i++){
+                                      print(susu[i]);
+                                    }
+                                    print("result");
+                                    data_input_susu = [
+                                      "id sapi",
+                                      sapi[0][0],
+>>>>>>> main
                                       "",
                                       "A+",
                                       "",
@@ -362,6 +563,7 @@ class _InputSusuState extends State<InputSusu> {
                                       DateTime.now().day,
                                       DateTime.now().month,
                                       DateTime.now().year,
+<<<<<<< HEAD
                                       user_login[0]
                                     ];
 
@@ -372,11 +574,25 @@ class _InputSusuState extends State<InputSusu> {
                                   },
                                   child: Text("Iya",
                                       style: TextStyle(color: Colors.blue)),
+=======
+                                    ];
+
+                                    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context){
+                                      return MyApp(1);
+                                    }));
+                                  },
+                                  child: Text("Iya", style: TextStyle(color: Colors.blue)),
+>>>>>>> main
                                 )
                               ],
                             );
                           });
+<<<<<<< HEAD
                     } else {
+=======
+                    }
+                    else{
+>>>>>>> main
                       showDialog(
                           context: context,
                           builder: (context) {
@@ -390,13 +606,18 @@ class _InputSusuState extends State<InputSusu> {
                                       Navigator.of(context).pop(true);
                                     });
                                   },
+<<<<<<< HEAD
                                   child: Text("Yes",
                                       style: TextStyle(color: Colors.blue)),
+=======
+                                  child: Text("Yes", style: TextStyle(color: Colors.blue)),
+>>>>>>> main
                                 )
                               ],
                             );
                           }).then((value) => null);
                     }
+<<<<<<< HEAD
                   },
                   child: Container(
                     margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -412,6 +633,16 @@ class _InputSusuState extends State<InputSusu> {
                             fontSize: 20),
                       ),
                     ),
+=======
+
+                  },
+                  child: Container(
+                    margin: EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                    // width: 150,
+                    height: 40,
+                    color: Colors.blue,
+                    child: Center(child: Text("Simpan",style: TextStyle(color:Colors.white,fontWeight: FontWeight.bold,fontSize: 20),),),
+>>>>>>> main
                   ),
                 )
               ],
@@ -421,4 +652,8 @@ class _InputSusuState extends State<InputSusu> {
       ),
     );
   }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> main

@@ -1,4 +1,5 @@
 import 'dart:convert';
+<<<<<<< HEAD
 
 import 'package:farm_qow/Model/checkup_model.dart';
 import 'package:farm_qow/Model/storage.dart';
@@ -35,6 +36,71 @@ class CheckUpController {
 
     for (var item in res) {
       checkUpContent.add([
+=======
+import 'dart:io';
+
+import 'package:path_provider/path_provider.dart';
+
+class CheckUpController {
+  Future<String> get _localPath async {
+    final directory = await getApplicationDocumentsDirectory();
+
+    return directory.path;
+  }
+
+  Future<File> get _localFile async {
+    final path = await _localPath;
+    final file = File(path + "/" + "checkup.json");
+    return file;
+  }
+
+  Future<String> jsonAsString() async {
+    try {
+      final file = await _localFile;
+      final content = await file.readAsString();
+      return content;
+    } catch (e) {
+      print(e);
+    }
+    return '[]';
+  }
+
+  Future<File> writeJson(List<Map<String, dynamic>> jsonFile) async {
+    final file = await _localFile;
+    if (file.existsSync()) {
+      // Write the file
+      print("object");
+      return file.writeAsString(jsonEncode(jsonFile));
+    }
+    print(file.existsSync());
+    file.create();
+    return file.writeAsString(jsonEncode(jsonFile));
+  }
+
+  dynamic jsonToDynamic() {
+    dynamic res = jsonAsString().then((result) {
+      // print("from whole : $result");
+      final res = jsonDecode(result);
+      return res;
+    });
+    return res;
+  }
+
+  bool _checkExist(id, jsonFile) {
+    for (var item in jsonFile) {
+      if (id == item["idCheckUp"]) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  List checkUpContent = [];
+  dynamic fetch2List() async {
+    List myList = await jsonToDynamic();
+    for (var item in myList) {
+      this.checkUpContent.add([
+>>>>>>> main
         item["idCheckUp"],
         item["idProfilSapi"],
         item['tglCheckUp'],
@@ -50,13 +116,18 @@ class CheckUpController {
         item['bauFeses'],
         item['teksturFeses'],
         item['diagnosaDokter'],
+<<<<<<< HEAD
         item["catatan"],
         item["petugas"]
+=======
+        item["catatan"]
+>>>>>>> main
       ]);
     }
     // print(sapiContent);
     return checkUpContent;
   }
+<<<<<<< HEAD
 
   void simpan(current) {
     List<Map<String, dynamic>> items = [];
@@ -107,4 +178,6 @@ class CheckUpController {
     simpan(ps);
     return ps;
   }
+=======
+>>>>>>> main
 }
