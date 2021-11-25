@@ -7,7 +7,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 var data_input = [
-  0,3,
+  0,
+  3,
   DateTime.now().day,
   DateTime.now().month,
   DateTime.now().year,
@@ -22,19 +23,17 @@ var data_input = [
   "Kasar",
   "Sehat",
   "tidak ada",
-  user_login[0]
+  user_login[0],
 ];
-
-
 
 class InputCheckup extends StatefulWidget {
   int idSapi;
   InputCheckup(this.idSapi);
 
   List<DropdownMenuItem> nafsuMakan = [
-    DropdownMenuItem(child: Text("Baik"),value: "Baik"),
-    DropdownMenuItem(child: Text("Cukup"),value: "Cukup"),
-    DropdownMenuItem(child: Text("Kurang"),value: "Kurang"),
+    DropdownMenuItem(child: Text("Baik"), value: "Baik"),
+    DropdownMenuItem(child: Text("Cukup"), value: "Cukup"),
+    DropdownMenuItem(child: Text("Kurang"), value: "Kurang"),
   ];
 
   @override
@@ -285,6 +284,7 @@ class _InputCheckupState extends State<InputCheckup> {
                 InkWell(
                   onTap: () {
                     bool isValidate = true;
+                    print(data_input);
                     for (int i = 1; i < data_input.length - 1; i++) {
                       print(data_input[i]);
                       if (data_input[i] == "" || data_input[i] == 0) {
@@ -292,12 +292,12 @@ class _InputCheckupState extends State<InputCheckup> {
                       }
                     }
                     if (isValidate == true) {
-                      var lastIdCheckup = checkup.length == 0
-                          ? 0
-                          : checkup[checkup.length - 1][0];
+                      var lastIdCheckup =
+                          checkup.isEmpty ? 0 : checkup[checkup.length - 1][0];
                       int idCheckup = int.parse(lastIdCheckup.toString());
                       idCheckup += 1;
                       data_input[0] = idCheckup;
+
                       showDialog(
                           context: context,
                           builder: (context) {
@@ -390,7 +390,8 @@ class _InputCheckupState extends State<InputCheckup> {
                                       "Busuk",
                                       "Kasar",
                                       "Sehat",
-                                      "tidak ada"
+                                      "tidak ada",
+                                      user_login[0]
                                     ];
 
                                     Navigator.of(context).pushReplacement(
@@ -451,17 +452,6 @@ class _InputCheckupState extends State<InputCheckup> {
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
 class NafsuMakan extends StatefulWidget {
   const NafsuMakan({Key? key}) : super(key: key);
 
@@ -495,7 +485,10 @@ class NafsuMakanState extends State<NafsuMakan> {
           .map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
           value: value,
-          child: Text(value,style: TextStyle(fontSize: 18),),
+          child: Text(
+            value,
+            style: TextStyle(fontSize: 18),
+          ),
         );
       }).toList(),
     );
@@ -535,7 +528,10 @@ class AktifTanggapState extends State<AktifTanggap> {
           .map<DropdownMenuItem<String>>((String value) {
         return DropdownMenuItem<String>(
           value: value,
-          child: Text(value,style: TextStyle(fontSize: 18),),
+          child: Text(
+            value,
+            style: TextStyle(fontSize: 18),
+          ),
         );
       }).toList(),
     );
@@ -679,6 +675,7 @@ class TexsturFeses extends StatefulWidget {
   @override
   State<TexsturFeses> createState() => TexsturFesesState();
 }
+
 class TexsturFesesState extends State<TexsturFeses> {
   String dropdownValue = 'Kasar';
 
@@ -722,6 +719,7 @@ class Kesehatan extends StatefulWidget {
   @override
   State<Kesehatan> createState() => KesehatanState();
 }
+
 class KesehatanState extends State<Kesehatan> {
   String dropdownValue = 'Sehat';
 
