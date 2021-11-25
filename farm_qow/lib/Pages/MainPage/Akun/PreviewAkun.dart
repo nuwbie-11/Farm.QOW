@@ -74,7 +74,7 @@ class _PreviewAkunState extends State<PreviewAkun> {
                     // border: Border.all(color: Colors.grey,width: 1)
                   ),
                   child: Text(
-                    user_login[8] == 0 ? "Pegawai Pengecekan" : "Manager",
+                    user_login[8] == false ? "Pegawai Pengecekan" : "Manager",
                     style: TextStyle(fontSize: 20, color: Colors.white),
                   ),
                 ),

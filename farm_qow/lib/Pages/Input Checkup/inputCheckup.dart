@@ -284,6 +284,7 @@ class _InputCheckupState extends State<InputCheckup> {
                 InkWell(
                   onTap: () {
                     bool isValidate = true;
+                    print(data_input);
                     for (int i = 1; i < data_input.length - 1; i++) {
                       print(data_input[i]);
                       if (data_input[i] == "" || data_input[i] == 0) {
@@ -291,12 +292,12 @@ class _InputCheckupState extends State<InputCheckup> {
                       }
                     }
                     if (isValidate == true) {
-                      var lastIdCheckup = checkup.length == 0
-                          ? 0
-                          : checkup[checkup.length - 1][0];
+                      var lastIdCheckup =
+                          checkup.isEmpty ? 0 : checkup[checkup.length - 1][0];
                       int idCheckup = int.parse(lastIdCheckup.toString());
                       idCheckup += 1;
                       data_input[0] = idCheckup;
+
                       showDialog(
                           context: context,
                           builder: (context) {
@@ -389,7 +390,8 @@ class _InputCheckupState extends State<InputCheckup> {
                                       "Busuk",
                                       "Kasar",
                                       "Sehat",
-                                      "tidak ada"
+                                      "tidak ada",
+                                      user_login[0]
                                     ];
 
                                     Navigator.of(context).pushReplacement(
