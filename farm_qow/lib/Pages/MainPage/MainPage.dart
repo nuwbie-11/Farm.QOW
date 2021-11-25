@@ -1,5 +1,6 @@
 // ignore_for_file: file_names
 
+import 'package:farm_qow/Controller/checkup_controller.dart';
 import 'package:farm_qow/Model/storage.dart';
 import 'package:farm_qow/Pages/Input%20Susu/InputSusuById.dart';
 import 'package:farm_qow/Pages/MainPage/Akun/PreviewAkun.dart';
@@ -58,6 +59,7 @@ class MyAppState extends State<MyApp> {
                 child: Builder(builder: (context) {
                   return IconButton(
                     onPressed: () {
+                      // CheckUpController().populateUser();
                       print(user_login);
                       if (widget.currentIndex == 0) {
                         if (user_login[8] == false) {
@@ -215,10 +217,10 @@ class MyAppState extends State<MyApp> {
   }
 
   List<AssetImage> listOfIcons = [
-    (AssetImage("assets/icons/sapi.png")),
-    (AssetImage("assets/icons/susu.png")),
-    (AssetImage("assets/icons/sapi.png")),
-    (AssetImage("assets/icons/susu.png")),
+    (const AssetImage("assets/icons/sapi.png")),
+    (const AssetImage("assets/icons/susu.png")),
+    (const AssetImage("assets/icons/Laporan.png")),
+    (const AssetImage("assets/icons/akun.png")),
   ];
 
   List<String> listOfStrings = [

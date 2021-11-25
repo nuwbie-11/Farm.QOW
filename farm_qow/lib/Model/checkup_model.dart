@@ -20,6 +20,7 @@ class CheckUp {
   String? tglCheckUp;
   String? blncheckup;
   String? thnCheckup;
+  dynamic petugas;
 
   CheckUp(
       {this.idCheckup,
@@ -37,7 +38,8 @@ class CheckUp {
       this.denyutNadi,
       this.tglCheckUp,
       this.blncheckup,
-      this.thnCheckup});
+      this.thnCheckup,
+      this.petugas});
   Future<String> get localPath async {
     final directory = await getApplicationDocumentsDirectory();
 
@@ -83,7 +85,8 @@ class CheckUp {
         denyutNadi: json['denyutNadi'],
         suhuTubuh: json['suhuTubuh'],
         tglCheckUp: json['tglCheckUp'],
-        thnCheckup: json['thnCheckup']);
+        thnCheckup: json['thnCheckup'],
+        petugas: json['petugas']);
   }
 
   Map<String, dynamic> toJson() => {
@@ -102,6 +105,7 @@ class CheckUp {
         "denyutNadi": denyutNadi,
         "tglCheckUp": tglCheckUp,
         "blncheckup": blncheckup,
-        "thnCheckup": thnCheckup
+        "thnCheckup": thnCheckup,
+        "petugas": petugas,
       };
 }

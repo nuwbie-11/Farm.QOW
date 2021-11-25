@@ -1,6 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:farm_qow/Controller/checkup_controller.dart';
+import 'package:farm_qow/Model/storage.dart';
 import 'package:farm_qow/Pages/MainPage/MainPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +22,8 @@ var data_input = [
   "Busuk",
   "Kasar",
   "Sehat",
-  "tidak ada"
+  "tidak ada",
+  user_login[0]
 ];
 
 class InputCheckup extends StatefulWidget {

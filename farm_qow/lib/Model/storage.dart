@@ -50,24 +50,7 @@ var sapis = [
 ];
 
 var checkup = [
-  // [
-  //   "Id Checkup",
-  //   "Id Sapi",
-  //   "tanggal checkup",
-  //   "bulancheckup",
-  //   "tahun checktup",
-  //   "berat",
-  //   "suhu tubuh",
-  //   "denyut nadi",
-  //   "nafsu makan",
-  //   "aktif",
-  //   "gerak tubuh",
-  //   "warna feses",
-  //   "bau feses",
-  //   "testur feses",
-  //   "Diagnosa Dokter",
-  //   "catatan"
-  // ],
+  // ["Id Checkup","Id Sapi","tanggal checkup","bulancheckup","tahun checktup","berat","suhu tubuh","denyut nadi","nafsu makan","aktif","gerak tubuh","warna feses","bau feses","testur feses","Diagnosa Dokter","catatan"],
   [
     1,
     1,
@@ -84,7 +67,8 @@ var checkup = [
     "busuk",
     "SangatKasar",
     "Sehat",
-    "Bisakosong"
+    "Bisakosong",
+    "3510161111000002"
   ],
   [
     2,
@@ -102,7 +86,8 @@ var checkup = [
     "tidakberbautanah",
     "Kasar",
     "Tidak Sehat",
-    "tidakada"
+    "tidakada",
+    "3510161111000001"
   ],
   [
     3,
@@ -120,7 +105,8 @@ var checkup = [
     "agakberbautanah",
     "Agakhalus",
     "Sehat",
-    "tidakada"
+    "tidakada",
+    "3510161111000002"
   ],
   [
     4,
@@ -138,7 +124,8 @@ var checkup = [
     "berbautanah",
     "halus",
     "Sehat",
-    "Bisakosong"
+    "Bisakosong",
+    "3510161111000002"
   ],
   [
     5,
@@ -156,7 +143,8 @@ var checkup = [
     "sangatberbautanah",
     "sangatHalus",
     "Sehat",
-    "tidakada"
+    "tidakada",
+    "3510161111000002"
   ],
   [
     6,
@@ -174,7 +162,8 @@ var checkup = [
     "busuk",
     "SangatKasar",
     "Sehat",
-    "tidakada"
+    "tidakada",
+    "3510161111000002"
   ],
   [
     7,
@@ -192,7 +181,8 @@ var checkup = [
     "tidakberbautanah",
     "Kasar",
     "Sehat",
-    "Bisakosong"
+    "Bisakosong",
+    "3510161111000002"
   ],
   [
     8,
@@ -210,7 +200,8 @@ var checkup = [
     "agakberbautanah",
     "Agakhalus",
     "Tidak Sehat",
-    "tidakada"
+    "tidakada",
+    "3510161111000001"
   ],
   [
     9,
@@ -228,7 +219,8 @@ var checkup = [
     "berbautanah",
     "halus",
     "Sehat",
-    "tidakada"
+    "tidakada",
+    "3510161111000002"
   ],
   [
     10,
@@ -246,7 +238,8 @@ var checkup = [
     "sangatberbautanah",
     "sangatHalus",
     "Sehat",
-    "Bisakosong"
+    "Bisakosong",
+    "3510161111000002"
   ],
 ];
 

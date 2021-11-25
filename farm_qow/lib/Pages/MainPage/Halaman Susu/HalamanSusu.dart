@@ -90,30 +90,34 @@ class _HalamanSusuState extends State<HalamanSusu> {
           height: 20,
         ),
         Card(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Total Susu : " + totalSusu.toString() + " liter",
-                style: TextStyle(fontSize: 25),
-              ),
-              Text(
-                "Grade A : " + gradeA.toString(),
-                style: TextStyle(fontSize: 25),
-              ),
-              Text(
-                "Grade B+ : " + gradeBplus.toString(),
-                style: TextStyle(fontSize: 25),
-              ),
-              Text(
-                "Grade B- : " + gradeBmin.toString(),
-                style: TextStyle(fontSize: 25),
-              ),
-              Text(
-                "Grade C : " + gradeC.toString(),
-                style: TextStyle(fontSize: 25),
-              ),
-            ],
+          margin: EdgeInsets.symmetric(horizontal: 10),
+          child: Padding(
+            padding: const EdgeInsets.all(15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Total Susu : " + totalSusu.toString() + " liter",
+                  style: TextStyle(fontSize: 25),
+                ),
+                Text(
+                  "Grade A : " + gradeA.toString(),
+                  style: TextStyle(fontSize: 25),
+                ),
+                Text(
+                  "Grade B+ : " + gradeBplus.toString(),
+                  style: TextStyle(fontSize: 25),
+                ),
+                Text(
+                  "Grade B- : " + gradeBmin.toString(),
+                  style: TextStyle(fontSize: 25),
+                ),
+                Text(
+                  "Grade C : " + gradeC.toString(),
+                  style: TextStyle(fontSize: 25),
+                ),
+              ],
+            ),
           ),
         ),
         SizedBox(

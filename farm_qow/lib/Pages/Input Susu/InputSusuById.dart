@@ -7,22 +7,6 @@ import 'package:farm_qow/Pages/MainPage/MainPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-var data_input_susu = [
-  "id susu",
-  "",
-  "",
-  "A+",
-  "",
-  "",
-  "",
-  "",
-  "",
-  "",
-  DateTime.now().day,
-  DateTime.now().month,
-  DateTime.now().year,
-];
-
 class InputSusuById extends StatefulWidget {
   @override
   State<InputSusuById> createState() => _InputSusuByIdState();
@@ -30,7 +14,22 @@ class InputSusuById extends StatefulWidget {
 
 class _InputSusuByIdState extends State<InputSusuById> {
   List susu = [];
-
+  var data_input_susu = [
+    "id susu",
+    "",
+    "",
+    "A+",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    DateTime.now().day,
+    DateTime.now().month,
+    DateTime.now().year,
+    user_login[0],
+  ];
   void upContent() async {
     final tempSusu = await SusuController().getDataSusu();
     setState(() {
@@ -125,7 +124,7 @@ class _InputSusuByIdState extends State<InputSusuById> {
                               "Id Sapi",
                               style: TextStyle(fontSize: 20),
                             ),
-                            IdSapiInput(),
+                            IdSapiInput(data_input_susu),
                           ],
                         )),
                   ),
@@ -251,8 +250,7 @@ class _InputSusuByIdState extends State<InputSusuById> {
                       int idCheckup = int.parse(lastIdSusu.toString());
                       idCheckup += 1;
                       data_input_susu[0] = idCheckup;
-
-                      data_input_susu.add(user_login[0]);
+                      // data_input_susu.add(user_login[0]);
                       print(data_input_susu);
                       if (double.parse(data_input_susu[4].toString()) >= 4 &&
                           double.parse(data_input_susu[5].toString()) >= 7.8 &&
@@ -347,8 +345,8 @@ class _InputSusuByIdState extends State<InputSusuById> {
                                     });
                                     // print(data_input_susu);
                                     // print(user_login);
-                                    // SusuController().simpan(susu);
-                                    data_input_susu.clear();
+                                    SusuController().simpan(susu);
+                                    // data_input_susu.clear();
 
                                     data_input_susu = [
                                       "id sapi",
@@ -366,10 +364,10 @@ class _InputSusuByIdState extends State<InputSusuById> {
                                       DateTime.now().year,
                                     ];
                                     print(data_input_susu);
-                                    // Navigator.of(context).pushReplacement(
-                                    //     MaterialPageRoute(builder: (context) {
-                                    //   return MyApp(1);
-                                    // }));
+                                    Navigator.of(context).pushReplacement(
+                                        MaterialPageRoute(builder: (context) {
+                                      return MyApp(1);
+                                    }));
                                   },
                                   child: Text("Iya",
                                       style: TextStyle(color: Colors.blue)),
@@ -426,7 +424,8 @@ class _InputSusuByIdState extends State<InputSusuById> {
 
 class IdSapiInput extends StatefulWidget {
   // const IdSapiInput({Key? key}) : super(key: key);
-
+  List data_input_susu;
+  IdSapiInput(this.data_input_susu);
   @override
   State<IdSapiInput> createState() => IdSapiInputState();
 }
@@ -473,7 +472,7 @@ class IdSapiInputState extends State<IdSapiInput> {
       onChanged: (String? newValue) {
         setState(() {
           // print(newValue);
-          data_input_susu[1] = int.parse(newValue.toString());
+          widget.data_input_susu[1] = int.parse(newValue.toString());
           dropdownValue = newValue.toString();
         });
       },

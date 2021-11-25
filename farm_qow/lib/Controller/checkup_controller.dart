@@ -21,7 +21,8 @@ class CheckUpController {
     "bau feses",
     "testur feses",
     "Diagnosa Dokter",
-    "catatan"
+    "catatan",
+    "Petugas"
   ];
 
   List checkUpContent = [];
@@ -49,7 +50,8 @@ class CheckUpController {
         item['bauFeses'],
         item['teksturFeses'],
         item['diagnosaDokter'],
-        item["catatan"]
+        item["catatan"],
+        item["petugas"]
       ]);
     }
     // print(sapiContent);
@@ -75,7 +77,8 @@ class CheckUpController {
           denyutNadi: item[7].toString(),
           tglCheckUp: item[2].toString(),
           blncheckup: item[3].toString(),
-          thnCheckup: item[4].toString());
+          thnCheckup: item[4].toString(),
+          petugas: item[16]);
       items.add(saps.toJson());
     }
     // print(items);
