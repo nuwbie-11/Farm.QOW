@@ -117,8 +117,103 @@ class _LaporanState extends State<Laporan> {
         ),
         body: TabBarView(
           children: [
+            // Chart
             ListView(
               children: [
+                Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.symmetric(
+                                  vertical: 15, horizontal: 8),
+                              width: 45,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                color: Colors.green,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                            Text(
+                              "Grade A",
+                              style: TextStyle(
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.symmetric(
+                                  vertical: 15, horizontal: 8),
+                              width: 45,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                color: Colors.blue,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                            Text(
+                              "Grade B +",
+                              style: TextStyle(
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.symmetric(
+                                  vertical: 15, horizontal: 8),
+                              width: 45,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                            Text(
+                              "Grade C",
+                              style: TextStyle(
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Row(
+                          children: [
+                            Container(
+                              margin: EdgeInsets.symmetric(
+                                  vertical: 15, horizontal: 8),
+                              width: 45,
+                              height: 30,
+                              decoration: BoxDecoration(
+                                color: Colors.yellow,
+                                borderRadius: BorderRadius.circular(8),
+                              ),
+                            ),
+                            Text(
+                              "Grade B -",
+                              style: TextStyle(
+                                fontSize: 14,
+                              ),
+                            ),
+                          ],
+                        )
+                      ],
+                    )
+                  ],
+                ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   child: Column(
@@ -250,9 +345,12 @@ class _LaporanState extends State<Laporan> {
                         )
                     ],
                   ),
-                )
+                ),
+                //Grade Info
               ],
             ),
+
+            //Laporan
             ListView(
               children: [
                 Table(

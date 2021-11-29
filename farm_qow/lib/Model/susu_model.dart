@@ -17,7 +17,7 @@ class Susu {
   int? tgl;
   int? bln;
   int? thn;
-  dynamic? petugas;
+  dynamic petugas;
 
   Susu(
       {this.idSusu,

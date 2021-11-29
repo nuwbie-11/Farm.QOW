@@ -30,9 +30,13 @@ class CheckUpController {
     final file = await check.localFile;
     final content = await file.readAsString();
     // print(content == '');
-    final res = content == '' ? [] : jsonDecode(content);
+    // final res = content == '' ? [] : jsonDecode(content);
     // print(res);
-
+    if (content == '') {
+      final res = populateCheckUp();
+      return res;
+    }
+    final res = jsonDecode(content);
     for (var item in res) {
       checkUpContent.add([
         item["idCheckUp"],
@@ -86,7 +90,7 @@ class CheckUpController {
     check.write(items);
   }
 
-  dynamic populateUser() {
+  dynamic populateCheckUp() {
     List ps = [];
     for (var item in checkup) {
       // var temp = {

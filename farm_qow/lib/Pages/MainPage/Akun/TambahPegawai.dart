@@ -106,7 +106,6 @@ class _TambahPegawaiState extends State<TambahPegawai> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
                     child: TextField(
-                      keyboardType: TextInputType.phone,
                       // textAlign: TextAlign.center,
                       controller: namaInput,
                       onChanged: (ValueKey) {
@@ -137,7 +136,6 @@ class _TambahPegawaiState extends State<TambahPegawai> {
                     padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
                     child: TextField(
                       obscureText: passwordVision == true ? false : true,
-                      keyboardType: TextInputType.phone,
                       // textAlign: TextAlign.center,
                       controller: passwordInput,
                       onChanged: (ValueKey) {
@@ -163,7 +161,7 @@ class _TambahPegawaiState extends State<TambahPegawai> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
                     child: TextField(
-                      keyboardType: TextInputType.phone,
+                      // keyboardType: TextInputType.phone,
                       // textAlign: TextAlign.center,
                       controller: tempatInput,
                       onChanged: (ValueKey) {
@@ -210,7 +208,7 @@ class _TambahPegawaiState extends State<TambahPegawai> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
                     child: TextField(
-                      keyboardType: TextInputType.phone,
+                      // keyboardType: TextInputType.phone,
                       // textAlign: TextAlign.center,
                       controller: alamatInput,
                       onChanged: (ValueKey) {

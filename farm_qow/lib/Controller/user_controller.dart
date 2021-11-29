@@ -91,22 +91,27 @@ class UserController {
 
   dynamic populateUser() {
     List ps = [];
-    for (var item in pegawai) {
-      // var temp = {
-      //   "nik": item[0],
-      //   "nama": item[1],
-      //   "tanggal Lahir": item[2],
-      //   "tempat Lahir": item[3],
-      //   "jenis Kelamin": item[4],
-      //   "alamat": item[5],
-      //   "status Kawin": item[6],
-      //   "password": item[7],
-      //   "isAdmin": item[8],
-      //   "agama": item[9]
-      // };
-      // print("Value is : $temp");
-      ps.add(item);
+    try {
+      for (var item in pegawai) {
+        // var temp = {
+        //   "nik": item[0],
+        //   "nama": item[1],
+        //   "tanggal Lahir": item[2],
+        //   "tempat Lahir": item[3],
+        //   "jenis Kelamin": item[4],
+        //   "alamat": item[5],
+        //   "status Kawin": item[6],
+        //   "password": item[7],
+        //   "isAdmin": item[8],
+        //   "agama": item[9]
+        // };
+        // print("Value is : $temp");
+        ps.add(item);
+      }
+    } catch (e) {
+      ps = [];
     }
+
     simpan(ps);
     return ps;
   }

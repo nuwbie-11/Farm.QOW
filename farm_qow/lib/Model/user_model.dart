@@ -4,16 +4,16 @@ import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 
 class User {
-  dynamic? nik;
-  dynamic? nama;
-  dynamic? tanggalLahir;
-  dynamic? tempatLahir;
-  dynamic? jenisKelamin;
-  dynamic? alamat;
-  dynamic? statusKawin;
-  dynamic? password;
-  dynamic? isAdmin;
-  dynamic? agama;
+  dynamic nik;
+  dynamic nama;
+  dynamic tanggalLahir;
+  dynamic tempatLahir;
+  dynamic jenisKelamin;
+  dynamic alamat;
+  dynamic statusKawin;
+  dynamic password;
+  dynamic isAdmin;
+  dynamic agama;
 
   User(
       {this.nik,

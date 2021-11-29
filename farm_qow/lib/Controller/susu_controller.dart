@@ -27,7 +27,12 @@ class SusuController {
   dynamic getDataSusu() async {
     final file = await susu.localFile;
     final content = await file.readAsString();
-    final res = content == '' ? [] : jsonDecode(content);
+    // final res = content == '' ? [] : jsonDecode(content);
+    if (content == '') {
+      final res = populateSusu();
+      return res;
+    }
+    final res = jsonDecode(content);
     for (var item in res) {
       susuContent.add([
         item["idSusu"],

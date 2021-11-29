@@ -106,7 +106,6 @@ class _UbahDataPegawaiState extends State<UbahDataPegawai> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
                     child: TextField(
-                      keyboardType: TextInputType.phone,
                       // textAlign: TextAlign.center,
                       controller: namaInput,
                       onChanged: (ValueKey) {
@@ -122,7 +121,7 @@ class _UbahDataPegawaiState extends State<UbahDataPegawai> {
                     padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
                     child: TextField(
                       obscureText: passwordVision == true ? false : true,
-                      keyboardType: TextInputType.phone,
+
                       // textAlign: TextAlign.center,
                       controller: passwordInput,
                       onChanged: (ValueKey) {
@@ -148,7 +147,6 @@ class _UbahDataPegawaiState extends State<UbahDataPegawai> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
                     child: TextField(
-                      keyboardType: TextInputType.phone,
                       // textAlign: TextAlign.center,
                       controller: tempatInput,
                       onChanged: (ValueKey) {
@@ -195,7 +193,6 @@ class _UbahDataPegawaiState extends State<UbahDataPegawai> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
                     child: TextField(
-                      keyboardType: TextInputType.phone,
                       // textAlign: TextAlign.center,
                       controller: alamatInput,
                       onChanged: (ValueKey) {

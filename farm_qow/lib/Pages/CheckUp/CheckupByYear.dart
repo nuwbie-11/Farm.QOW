@@ -37,10 +37,13 @@ class _CheckUpByYearState extends State<CheckUpByYear> {
   Widget build(BuildContext context) {
     var dataCheckup = [];
     for (int i = 0; i < checkup.length; i++) {
-      if (checkup[i][1] == widget.idSapi && checkup[i][4] == (widget.tahun)) {
+      // print(checkup[i][4] == (widget.tahun).toString());
+      if (checkup[i][1] == widget.idSapi &&
+          (checkup[i][4]) == (widget.tahun).toString()) {
         dataCheckup.add(checkup[i]);
       }
     }
+    // print(widget.tahun);
     return MaterialApp(
       home: Container(
         decoration: BoxDecoration(
@@ -97,8 +100,13 @@ class _CheckUpByYearState extends State<CheckUpByYear> {
           body: ListView(
             children: [
               for (int i = dataCheckup.length - 1; i > -1; i--)
-                ItemCheckup(widget.idSapi, dataCheckup[i][2], dataCheckup[i][3],
-                    dataCheckup[i][4], dataCheckup[i][14], dataCheckup[i][0])
+                ItemCheckup(
+                    widget.idSapi,
+                    int.parse(dataCheckup[i][2]),
+                    int.parse(dataCheckup[i][3]),
+                    int.parse(dataCheckup[i][4]),
+                    dataCheckup[i][14],
+                    dataCheckup[i][0])
               // ItemCheckup('2', "3", "20021")
             ],
           ),

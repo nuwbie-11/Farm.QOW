@@ -11,8 +11,13 @@ class SapiController {
   dynamic getDataSapi() async {
     final file = await sapi.localFile;
     final content = await file.readAsString();
-    final res = content == '' ? [] : jsonDecode(content);
+    // final res = content == '' ? [] : jsonDecode(content);
     // List myList = await jsonToDynamic();
+    if (content == '') {
+      final res = populateSapi();
+      return res;
+    }
+    final res = jsonDecode(content);
     for (var item in res) {
       sapiContent.add([
         item["idProfilSapi"],
@@ -42,7 +47,7 @@ class SapiController {
     sapi.write(items);
   }
 
-  dynamic populateUser() {
+  dynamic populateSapi() {
     List ps = [];
     for (var item in sapis) {
       // var temp = {

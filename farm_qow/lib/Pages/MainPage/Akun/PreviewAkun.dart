@@ -78,7 +78,7 @@ class _PreviewAkunState extends State<PreviewAkun> {
                     style: TextStyle(fontSize: 20, color: Colors.white),
                   ),
                 ),
-                userLogin.isAdmin == 1
+                user_login[8] == true
                     ? IconButton(
                         onPressed: () {
                           Navigator.push(

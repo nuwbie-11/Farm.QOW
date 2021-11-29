@@ -17,7 +17,6 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   List user_account = [];
-  User userLogin = User();
   void upUser() async {
     final tempUser = await UserController().getDataUser();
     // if (tempUser == []) {
@@ -106,23 +105,11 @@ class _LoginPageState extends State<LoginPage> {
                       backgroundColor: MaterialStateProperty.all(Colors.blue),
                     ),
                     onPressed: () {
-                      print(nikInput);
-                      print(passwordInput);
-                      print("USERS : $user_account");
+                      // print(nikInput);
+                      // print(passwordInput);
+                      // print("USERS : $user_account");
                       if (nikInput == "3510161111000000" &&
                           passwordInput == "admin123") {
-                        var getDataUser = user_account[0];
-                        userLogin.nik = getDataUser[0];
-                        userLogin.nama = getDataUser[1];
-                        userLogin.tanggalLahir = getDataUser[2];
-                        userLogin.tempatLahir = getDataUser[3];
-                        userLogin.jenisKelamin = getDataUser[4];
-                        userLogin.alamat = getDataUser[5];
-                        userLogin.statusKawin = getDataUser[6];
-                        userLogin.password = getDataUser[7];
-                        userLogin.isAdmin = getDataUser[8];
-                        userLogin.agama = getDataUser[9];
-
                         user_login = user_account[0];
 
                         Navigator.of(context).pushReplacement(
@@ -136,18 +123,6 @@ class _LoginPageState extends State<LoginPage> {
                         for (int i = 0; i < user_account.length; i++) {
                           if (user_account[i][0] == nikInput &&
                               user_account[i][7] == passwordInput) {
-                            var getDataUser = user_account[i];
-                            // user_login = user_account[i];
-                            userLogin.nik = getDataUser[0];
-                            userLogin.nama = getDataUser[1];
-                            userLogin.tanggalLahir = getDataUser[2];
-                            userLogin.tempatLahir = getDataUser[3];
-                            userLogin.jenisKelamin = getDataUser[4];
-                            userLogin.alamat = getDataUser[5];
-                            userLogin.statusKawin = getDataUser[6];
-                            userLogin.password = getDataUser[7];
-                            userLogin.isAdmin = getDataUser[8];
-                            userLogin.agama = getDataUser[9];
                             isValidate = true;
                             user_login = user_account[i];
                             Navigator.of(context).pushReplacement(

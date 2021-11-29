@@ -52,7 +52,7 @@ class MyAppState extends State<MyApp> {
               fit: BoxFit.cover)),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        floatingActionButton: widget.currentIndex < 2
+        floatingActionButton: widget.currentIndex < 2 && user_login[8] == true
             ? FloatingActionButton(
                 elevation: 0,
                 onPressed: () {},
@@ -60,7 +60,7 @@ class MyAppState extends State<MyApp> {
                   return IconButton(
                     onPressed: () {
                       // CheckUpController().populateUser();
-                      print(user_login);
+                      // print(user_login);
                       if (widget.currentIndex == 0) {
                         if (user_login[8] == false) {
                           showDialog(
@@ -98,6 +98,18 @@ class MyAppState extends State<MyApp> {
                     ),
                   );
                 }),
+              )
+            : null,
+        appBar: widget.currentIndex != 2
+            ? AppBar(
+                backgroundColor: Color.fromRGBO(143, 197, 255, 0.95),
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.vertical(
+                    bottom: Radius.circular(20),
+                  ),
+                ),
+                title: Text(listOfStrings[widget.currentIndex]),
               )
             : null,
         body: thisPage,
