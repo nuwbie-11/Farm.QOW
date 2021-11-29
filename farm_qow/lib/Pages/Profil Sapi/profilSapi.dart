@@ -98,16 +98,18 @@ class _ProfilSapiState extends State<ProfilSapi> {
                   Text('Farm.QOW'),
                 ],
               ),
-              IconButton(
-                onPressed: () {
-                  Navigator.push(
-                      context, TransitionTopToBottom(EditSapi(intIdSapi)));
-                  // Navigator.of(context).push(MaterialPageRoute(builder: (context){
-                  //   return EditSapi(intIdSapi);
-                  // }));
-                },
-                icon: Icon(Icons.create_rounded, color: Colors.white),
-              )
+              user_login[8] == true
+                  ? IconButton(
+                      onPressed: () {
+                        Navigator.push(context,
+                            TransitionTopToBottom(EditSapi(intIdSapi)));
+                        // Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                        //   return EditSapi(intIdSapi);
+                        // }));
+                      },
+                      icon: Icon(Icons.create_rounded, color: Colors.white),
+                    )
+                  : Container(),
             ],
           ),
         ),
@@ -369,59 +371,65 @@ class _ProfilSapiState extends State<ProfilSapi> {
                   SizedBox(
                     height: 40,
                   ),
-                  InkWell(
-                    onTap: () {
-                      showDialog(
-                          context: context,
-                          builder: (context) {
-                            return AlertDialog(
-                              content: Text(
-                                  "Apakah anda yakin akan menghapus data tersebut ?"),
-                              actions: [
-                                FlatButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        Navigator.of(context).pop(false);
-                                      });
-                                    },
-                                    child: Text("Tidak")),
-                                FlatButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        for (int i = 0; i < sapi.length; i++) {
-                                          if (sapi[i][0] == intIdSapi) {
-                                            sapi.removeAt(i);
-                                            SapiController().simpan(sapi);
-                                            Navigator.of(context)
-                                                .pushReplacement(
-                                                    MaterialPageRoute(
-                                                        builder: (context) {
-                                              return MyApp(0);
-                                            }));
-                                            break;
-                                          }
-                                        }
-                                      });
-                                    },
-                                    child: Text("Oke")),
-                              ],
-                            );
-                          });
-                    },
-                    child: Container(
-                      width: 220,
-                      height: 60,
-                      decoration: BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.circular(30)),
-                      child: Center(
-                        child: Text(
-                          "Hapus",
-                          style: TextStyle(color: Colors.white, fontSize: 20),
-                        ),
-                      ),
-                    ),
-                  )
+                  user_login[8] == true
+                      ? InkWell(
+                          onTap: () {
+                            showDialog(
+                                context: context,
+                                builder: (context) {
+                                  return AlertDialog(
+                                    content: Text(
+                                        "Apakah anda yakin akan menghapus data tersebut ?"),
+                                    actions: [
+                                      FlatButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              Navigator.of(context).pop(false);
+                                            });
+                                          },
+                                          child: Text("Tidak")),
+                                      FlatButton(
+                                          onPressed: () {
+                                            setState(() {
+                                              for (int i = 0;
+                                                  i < sapi.length;
+                                                  i++) {
+                                                if (sapi[i][0] == intIdSapi) {
+                                                  sapi.removeAt(i);
+                                                  SapiController().simpan(sapi);
+                                                  Navigator.of(context)
+                                                      .pushReplacement(
+                                                          MaterialPageRoute(
+                                                              builder:
+                                                                  (context) {
+                                                    return MyApp(0);
+                                                  }));
+                                                  break;
+                                                }
+                                              }
+                                            });
+                                          },
+                                          child: Text("Oke")),
+                                    ],
+                                  );
+                                });
+                          },
+                          child: Container(
+                            width: 220,
+                            height: 60,
+                            decoration: BoxDecoration(
+                                color: Colors.red,
+                                borderRadius: BorderRadius.circular(30)),
+                            child: Center(
+                              child: Text(
+                                "Hapus",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20),
+                              ),
+                            ),
+                          ),
+                        )
+                      : Container()
                 ],
               ),
             ),
