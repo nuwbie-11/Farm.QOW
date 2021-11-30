@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../MainPage.dart';
 
-var data_input_ubah_pegawai = ["", "", "", "", "", "", "", "", 0, ""];
+var data_input_ubah_pegawai = ["", "", "", "", "", "", "", "", false, ""];
 
 class UbahDataPegawai extends StatefulWidget {
   String nik;
@@ -73,7 +73,7 @@ class _UbahDataPegawaiState extends State<UbahDataPegawai> {
                         "",
                         "",
                         "",
-                        0,
+                        false,
                         ""
                       ];
 
@@ -311,7 +311,7 @@ class _UbahDataPegawaiState extends State<UbahDataPegawai> {
                                           "",
                                           "",
                                           "",
-                                          0,
+                                          false,
                                           ""
                                         ];
                                         Navigator.of(context).pushReplacement(

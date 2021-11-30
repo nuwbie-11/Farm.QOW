@@ -52,7 +52,9 @@ class MyAppState extends State<MyApp> {
               fit: BoxFit.cover)),
       child: Scaffold(
         backgroundColor: Colors.transparent,
-        floatingActionButton: widget.currentIndex < 2 && user_login[8] == true
+        floatingActionButton: (widget.currentIndex < 2 &&
+                    user_login[8] == true) ||
+                (widget.currentIndex == 1 && user_login[8] == false)
             ? FloatingActionButton(
                 elevation: 0,
                 onPressed: () {},
@@ -100,18 +102,18 @@ class MyAppState extends State<MyApp> {
                 }),
               )
             : null,
-        appBar: widget.currentIndex != 2
-            ? AppBar(
-                backgroundColor: Color.fromRGBO(143, 197, 255, 0.95),
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.vertical(
-                    bottom: Radius.circular(20),
-                  ),
-                ),
-                title: Text(listOfStrings[widget.currentIndex]),
-              )
-            : null,
+        // appBar: widget.currentIndex != 2
+
+        //         backgroundColor: Color.fromRGBO(143, 197, 255, 0.95),
+        //         elevation: 0,
+        //         shape: RoundedRectangleBorder(
+        //           borderRadius: BorderRadius.vertical(
+        //             bottom: Radius.circular(20),
+        //           ),
+        //         ),
+        //         title: Text(listOfStrings[widget.currentIndex]),
+        //       )
+        //     : null,
         body: thisPage,
         bottomNavigationBar: Container(
           height: displayWidth * .155,

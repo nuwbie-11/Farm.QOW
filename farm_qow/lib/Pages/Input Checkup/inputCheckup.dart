@@ -5,10 +5,11 @@ import 'package:farm_qow/Model/storage.dart';
 import 'package:farm_qow/Pages/MainPage/MainPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 var data_input = [
   0,
-  3,
+  0,
   DateTime.now().day,
   DateTime.now().month,
   DateTime.now().year,
@@ -100,6 +101,25 @@ class _InputCheckupState extends State<InputCheckup> {
                   children: [
                     IconButton(
                       onPressed: () {
+                        data_input = [
+                          0,
+                          0,
+                          DateTime.now().day,
+                          DateTime.now().month,
+                          DateTime.now().year,
+                          0,
+                          0,
+                          0,
+                          "Baik",
+                          "Tanggap",
+                          "Normal",
+                          "Hijau Pucat",
+                          "Busuk",
+                          "Kasar",
+                          "Sehat",
+                          "tidak ada",
+                          user_login[0]
+                        ];
                         Navigator.of(context).pop();
                       },
                       icon: Icon(
@@ -130,7 +150,7 @@ class _InputCheckupState extends State<InputCheckup> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "nomor sapi : " + widget.idSapi.toString(),
+                          "nomor sapi : " + data_input[1].toString(),
                           style: TextStyle(fontSize: 20),
                         ),
                       ],
@@ -152,8 +172,11 @@ class _InputCheckupState extends State<InputCheckup> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
                   child: TextField(
-                    keyboardType: TextInputType.phone,
+                    keyboardType: TextInputType.number,
                     // textAlign: TextAlign.center,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp("[0-9a-zA-Z]")),
+                    ],
                     controller: beratInput,
                     onChanged: (ValueKey) {
                       data_input[5] = ValueKey;
@@ -167,8 +190,11 @@ class _InputCheckupState extends State<InputCheckup> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
                   child: TextField(
-                    keyboardType: TextInputType.phone,
+                    keyboardType: TextInputType.number,
                     // textAlign: TextAlign.center,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp("[0-9a-zA-Z]")),
+                    ],
                     controller: suhuBadanInput,
                     onChanged: (ValueKey) {
                       data_input[6] = ValueKey;
@@ -182,8 +208,11 @@ class _InputCheckupState extends State<InputCheckup> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
                   child: TextField(
-                    keyboardType: TextInputType.phone,
+                    keyboardType: TextInputType.number,
                     // textAlign: TextAlign.center,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp("[0-9a-zA-Z]")),
+                    ],
                     controller: denyutNadiInput,
                     onChanged: (ValueKey) {
                       data_input[7] = ValueKey;
@@ -283,6 +312,7 @@ class _InputCheckupState extends State<InputCheckup> {
                 ),
                 InkWell(
                   onTap: () {
+                    data_input[1] = widget.idSapi;
                     bool isValidate = true;
                     print(data_input);
                     for (int i = 1; i < data_input.length - 1; i++) {
@@ -297,111 +327,128 @@ class _InputCheckupState extends State<InputCheckup> {
                       int idCheckup = int.parse(lastIdCheckup.toString());
                       idCheckup += 1;
                       data_input[0] = idCheckup;
-
+                      print(widget.idSapi);
+                      print(data_input[1]);
                       showDialog(
                           context: context,
                           builder: (context) {
-                            return AlertDialog(
-                              title: Text("Apakah Data Sudah Benar?"),
-                              content: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text("id checkup : " +
-                                      data_input[0].toString()),
-                                  SizedBox(height: 10),
-                                  Text("id sapi : " + data_input[1].toString()),
-                                  SizedBox(height: 10),
-                                  Text("tanggal : " + data_input[2].toString()),
-                                  SizedBox(height: 10),
-                                  Text("bulan : " + data_input[3].toString()),
-                                  SizedBox(height: 10),
-                                  Text("tahun : " + data_input[4].toString()),
-                                  SizedBox(height: 10),
-                                  Text("Diagnosa Dokter : " +
-                                      data_input[14].toString()),
-                                  SizedBox(height: 10),
-                                  Text("Berat : " +
-                                      data_input[5].toString() +
-                                      " Kg"),
-                                  SizedBox(height: 10),
-                                  Text("Suhu : " +
-                                      data_input[6].toString() +
-                                      " Celcious"),
-                                  SizedBox(height: 10),
-                                  Text("Denyut Nadi : " +
-                                      data_input[7].toString() +
-                                      " BPM"),
-                                  SizedBox(height: 10),
-                                  Text("Nafsu Makan : " +
-                                      data_input[8].toString()),
-                                  SizedBox(height: 10),
-                                  Text("Aktif dan Tanggap : " +
-                                      data_input[9].toString()),
-                                  SizedBox(height: 10),
-                                  Text("Gerak Tubuh : " +
-                                      data_input[10].toString()),
-                                  SizedBox(height: 10),
-                                  Text("Warna Feses : " +
-                                      data_input[11].toString()),
-                                  SizedBox(height: 10),
-                                  Text("Bau Feses : " +
-                                      data_input[12].toString()),
-                                  SizedBox(height: 10),
-                                  Text("Textur Feses : " +
-                                      data_input[13].toString()),
-                                  SizedBox(height: 10),
-                                  Text(
-                                      "Catatan : " + data_input[15].toString()),
-                                  SizedBox(height: 10),
-                                ],
-                              ),
-                              actions: [
-                                FlatButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      Navigator.of(context).pop(true);
-                                    });
-                                  },
-                                  child: Text("Kembali",
-                                      style: TextStyle(color: Colors.blue)),
-                                ),
-                                FlatButton(
-                                  onPressed: () {
-                                    checkup.add(data_input);
-                                    CheckUpController().simpan(checkup);
-                                    print("result");
-                                    for (int i = 0; i < checkup.length; i++) {
-                                      print(checkup[i]);
-                                    }
-                                    print("result");
-                                    data_input = [
-                                      0,
-                                      3,
-                                      DateTime.now().day,
-                                      DateTime.now().month,
-                                      DateTime.now().year,
-                                      0,
-                                      0,
-                                      0,
-                                      "Baik",
-                                      "Tanggap",
-                                      "Normal",
-                                      "Hijau Pucat",
-                                      "Busuk",
-                                      "Kasar",
-                                      "Sehat",
-                                      "tidak ada",
-                                      user_login[0]
-                                    ];
+                            return ListView(
+                              children: [
+                                AlertDialog(
+                                  title: Text("Apakah Data Sudah Benar?"),
+                                  content: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text("id checkup : " +
+                                          data_input[0].toString()),
+                                      SizedBox(height: 10),
+                                      Text("id sapi : " +
+                                          data_input[1].toString()),
+                                      SizedBox(height: 10),
+                                      Text("tanggal : " +
+                                          data_input[2].toString()),
+                                      SizedBox(height: 10),
+                                      Text("bulan : " +
+                                          data_input[3].toString()),
+                                      SizedBox(height: 10),
+                                      Text("tahun : " +
+                                          data_input[4].toString()),
+                                      SizedBox(height: 10),
+                                      Text("Diagnosa Dokter : " +
+                                          data_input[14].toString()),
+                                      SizedBox(height: 10),
+                                      Text("Berat : " +
+                                          data_input[5].toString() +
+                                          " Kg"),
+                                      SizedBox(height: 10),
+                                      Text("Suhu : " +
+                                          data_input[6].toString() +
+                                          " Celcious"),
+                                      SizedBox(height: 10),
+                                      Text("Denyut Nadi : " +
+                                          data_input[7].toString() +
+                                          " BPM"),
+                                      SizedBox(height: 10),
+                                      Text("Nafsu Makan : " +
+                                          data_input[8].toString()),
+                                      SizedBox(height: 10),
+                                      Text("Aktif dan Tanggap : " +
+                                          data_input[9].toString()),
+                                      SizedBox(height: 10),
+                                      Text("Gerak Tubuh : " +
+                                          data_input[10].toString()),
+                                      SizedBox(height: 10),
+                                      Text("Warna Feses : " +
+                                          data_input[11].toString()),
+                                      SizedBox(height: 10),
+                                      Text("Bau Feses : " +
+                                          data_input[12].toString()),
+                                      SizedBox(height: 10),
+                                      Text("Textur Feses : " +
+                                          data_input[13].toString()),
+                                      SizedBox(height: 10),
+                                      Text("Catatan : " +
+                                          data_input[15].toString()),
+                                      SizedBox(height: 10),
+                                    ],
+                                  ),
+                                  actions: [
+                                    FlatButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          Navigator.of(context).pop(true);
+                                        });
+                                      },
+                                      child: Text("Kembali",
+                                          style: TextStyle(color: Colors.blue)),
+                                    ),
+                                    FlatButton(
+                                      onPressed: () {
+                                        checkup.add(data_input);
+                                        print(data_input);
+                                        CheckUpController().simpan(checkup);
+                                        // print("result");
+                                        // for (int i = 0;
+                                        //     i < checkup.length;
+                                        //     i++) {
+                                        //   print(checkup[i]);
+                                        // }
+                                        // print("result");
+                                        data_input = [
+                                          0,
+                                          0,
+                                          DateTime.now().day,
+                                          DateTime.now().month,
+                                          DateTime.now().year,
+                                          0,
+                                          0,
+                                          0,
+                                          "Baik",
+                                          "Tanggap",
+                                          "Normal",
+                                          "Hijau Pucat",
+                                          "Busuk",
+                                          "Kasar",
+                                          "Sehat",
+                                          "tidak ada",
+                                          user_login[0]
+                                        ];
+                                        beratInput.clear();
+                                        suhuBadanInput.clear();
+                                        denyutNadiInput.clear();
 
-                                    Navigator.of(context).pushReplacement(
-                                        MaterialPageRoute(builder: (context) {
-                                      return MyApp(0);
-                                    }));
-                                  },
-                                  child: Text("Ya",
-                                      style: TextStyle(color: Colors.blue)),
-                                )
+                                        Navigator.of(context).pushReplacement(
+                                            MaterialPageRoute(
+                                                builder: (context) {
+                                          return MyApp(0);
+                                        }));
+                                      },
+                                      child: Text("Ya",
+                                          style: TextStyle(color: Colors.blue)),
+                                    )
+                                  ],
+                                ),
                               ],
                             );
                           });
@@ -409,19 +456,23 @@ class _InputCheckupState extends State<InputCheckup> {
                       showDialog(
                           context: context,
                           builder: (context) {
-                            return AlertDialog(
-                              title: Text("Confirm"),
-                              content: Text("Data tidak boleh kosong"),
-                              actions: [
-                                FlatButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      Navigator.of(context).pop(true);
-                                    });
-                                  },
-                                  child: Text("Oke",
-                                      style: TextStyle(color: Colors.blue)),
-                                )
+                            return ListView(
+                              children: [
+                                AlertDialog(
+                                  title: Text("Confirm"),
+                                  content: Text("Data tidak boleh kosong"),
+                                  actions: [
+                                    FlatButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          Navigator.of(context).pop(true);
+                                        });
+                                      },
+                                      child: Text("Oke",
+                                          style: TextStyle(color: Colors.blue)),
+                                    )
+                                  ],
+                                ),
                               ],
                             );
                           }).then((value) => null);

@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import '../../../Login.dart';
 import '../MainPage.dart';
 
-var dataInputUbahManager = ["", "", "", "", "", "", "", "", 1, ""];
+var dataInputUbahManager = ["", "", "", "", "", "", "", "", true, ""];
 
 class UbahDataManager extends StatefulWidget {
   // const UbahDataManager({Key? key}) : super(key: key);
@@ -73,7 +73,7 @@ class _UbahDataManagerState extends State<UbahDataManager> {
                         "",
                         "",
                         "",
-                        0,
+                        true,
                         ""
                       ];
 
@@ -334,7 +334,7 @@ class _UbahDataManagerState extends State<UbahDataManager> {
                                               "",
                                               "",
                                               "",
-                                              0,
+                                              true,
                                               ""
                                             ];
                                             Navigator.of(context)

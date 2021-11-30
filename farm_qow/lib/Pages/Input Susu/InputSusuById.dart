@@ -434,7 +434,7 @@ class IdSapiInput extends StatefulWidget {
 class IdSapiInputState extends State<IdSapiInput> {
   List susu = [];
   List sapi = [];
-  String dropdownValue = "";
+  String dropdownValue = "1";
 
   void upContent() async {
     final tempSusu = await SusuController().getDataSusu();

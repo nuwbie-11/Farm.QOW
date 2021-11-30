@@ -5,6 +5,7 @@ import 'package:farm_qow/Model/storage.dart';
 import 'package:farm_qow/Pages/MainPage/MainPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 var data_input_susu = [
   "id sapi",
@@ -94,6 +95,24 @@ class _InputSusuState extends State<InputSusu> {
                   children: [
                     IconButton(
                       onPressed: () {
+                        data_input_susu = [
+                          "id sapi",
+                          0,
+                          "",
+                          "A+",
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          "",
+                          DateTime.now().day,
+                          DateTime.now().month,
+                          DateTime.now().year,
+                          user_login[0]
+                        ];
+                        jumlahSusuInput.clear();
+                        fatInput.clear();
                         Navigator.pop(context, true);
                       },
                       icon: Icon(
@@ -134,8 +153,11 @@ class _InputSusuState extends State<InputSusu> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
                   child: TextField(
-                    keyboardType: TextInputType.phone,
+                    keyboardType: TextInputType.number,
                     // textAlign: TextAlign.center,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp("[0-9a-zA-Z]")),
+                    ],
                     controller: jumlahSusuInput,
                     onChanged: (ValueKey) {
                       data_input_susu[2] = ValueKey;
@@ -149,8 +171,11 @@ class _InputSusuState extends State<InputSusu> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
                   child: TextField(
-                    keyboardType: TextInputType.phone,
+                    keyboardType: TextInputType.number,
                     // textAlign: TextAlign.center,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp("[0-9a-zA-Z]")),
+                    ],
                     controller: fatInput,
                     onChanged: (ValueKey) {
                       data_input_susu[4] = ValueKey;
@@ -164,8 +189,11 @@ class _InputSusuState extends State<InputSusu> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
                   child: TextField(
-                    keyboardType: TextInputType.phone,
+                    keyboardType: TextInputType.number,
                     // textAlign: TextAlign.center,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp("[0-9a-zA-Z]")),
+                    ],
                     controller: snfInput,
                     onChanged: (ValueKey) {
                       data_input_susu[5] = ValueKey;
@@ -179,8 +207,11 @@ class _InputSusuState extends State<InputSusu> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
                   child: TextField(
-                    keyboardType: TextInputType.phone,
+                    keyboardType: TextInputType.number,
                     // textAlign: TextAlign.center,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp("[0-9a-zA-Z]")),
+                    ],
                     controller: densityInput,
                     onChanged: (ValueKey) {
                       data_input_susu[6] = ValueKey;
@@ -194,8 +225,11 @@ class _InputSusuState extends State<InputSusu> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
                   child: TextField(
-                    keyboardType: TextInputType.phone,
+                    keyboardType: TextInputType.number,
                     // textAlign: TextAlign.center,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp("[0-9a-zA-Z]")),
+                    ],
                     controller: laktosaInput,
                     onChanged: (ValueKey) {
                       data_input_susu[7] = ValueKey;
@@ -209,8 +243,11 @@ class _InputSusuState extends State<InputSusu> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
                   child: TextField(
-                    keyboardType: TextInputType.phone,
+                    keyboardType: TextInputType.number,
                     // textAlign: TextAlign.center,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp("[0-9a-zA-Z]")),
+                    ],
                     controller: solidsInput,
                     onChanged: (ValueKey) {
                       data_input_susu[8] = ValueKey;
@@ -224,8 +261,11 @@ class _InputSusuState extends State<InputSusu> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 12, vertical: 3),
                   child: TextField(
-                    keyboardType: TextInputType.phone,
+                    keyboardType: TextInputType.number,
                     // textAlign: TextAlign.center,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp("[0-9a-zA-Z]")),
+                    ],
                     controller: proteinInput,
                     onChanged: (ValueKey) {
                       data_input_susu[9] = ValueKey;
@@ -279,100 +319,107 @@ class _InputSusuState extends State<InputSusu> {
                       showDialog(
                           context: context,
                           builder: (context) {
-                            return AlertDialog(
-                              title: Text("Data Input Checkup"),
-                              content: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Grade : " + data_input_susu[3].toString(),
-                                    textAlign: TextAlign.center,
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
+                            return ListView(
+                              children: [
+                                AlertDialog(
+                                  title: Text("Data Input Checkup"),
+                                  content: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        "Grade : " +
+                                            data_input_susu[3].toString(),
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      SizedBox(height: 10),
+                                      Text("id Susu : " +
+                                          data_input_susu[0].toString()),
+                                      SizedBox(height: 10),
+                                      Text("id sapi : " +
+                                          data_input_susu[1].toString()),
+                                      SizedBox(height: 10),
+                                      Text("tanggal : " +
+                                          data_input_susu[10].toString()),
+                                      SizedBox(height: 10),
+                                      Text("bulan : " +
+                                          data_input_susu[11].toString()),
+                                      SizedBox(height: 10),
+                                      Text("tahun : " +
+                                          data_input_susu[12].toString()),
+                                      SizedBox(height: 10),
+                                      Text("Jumlah Susu : " +
+                                          data_input_susu[2].toString()),
+                                      SizedBox(height: 10),
+                                      Text("Lemak : " +
+                                          data_input_susu[4].toString()),
+                                      SizedBox(height: 10),
+                                      Text("SNF : " +
+                                          data_input_susu[5].toString()),
+                                      SizedBox(height: 10),
+                                      Text("Density : " +
+                                          data_input_susu[6].toString()),
+                                      SizedBox(height: 10),
+                                      Text("Laktosa : " +
+                                          data_input_susu[7].toString()),
+                                      SizedBox(height: 10),
+                                      Text("Solids : " +
+                                          data_input_susu[8].toString()),
+                                      SizedBox(height: 10),
+                                      Text("Protein : " +
+                                          data_input_susu[9].toString()),
+                                      SizedBox(height: 10),
+                                    ],
                                   ),
-                                  SizedBox(height: 10),
-                                  Text("id Susu : " +
-                                      data_input_susu[0].toString()),
-                                  SizedBox(height: 10),
-                                  Text("id sapi : " +
-                                      data_input_susu[1].toString()),
-                                  SizedBox(height: 10),
-                                  Text("tanggal : " +
-                                      data_input_susu[10].toString()),
-                                  SizedBox(height: 10),
-                                  Text("bulan : " +
-                                      data_input_susu[11].toString()),
-                                  SizedBox(height: 10),
-                                  Text("tahun : " +
-                                      data_input_susu[12].toString()),
-                                  SizedBox(height: 10),
-                                  Text("Jumlah Susu : " +
-                                      data_input_susu[2].toString()),
-                                  SizedBox(height: 10),
-                                  Text("Lemak : " +
-                                      data_input_susu[4].toString()),
-                                  SizedBox(height: 10),
-                                  Text(
-                                      "SNF : " + data_input_susu[5].toString()),
-                                  SizedBox(height: 10),
-                                  Text("Density : " +
-                                      data_input_susu[6].toString()),
-                                  SizedBox(height: 10),
-                                  Text("Laktosa : " +
-                                      data_input_susu[7].toString()),
-                                  SizedBox(height: 10),
-                                  Text("Solids : " +
-                                      data_input_susu[8].toString()),
-                                  SizedBox(height: 10),
-                                  Text("Protein : " +
-                                      data_input_susu[9].toString()),
-                                  SizedBox(height: 10),
-                                ],
-                              ),
-                              actions: [
-                                FlatButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      Navigator.of(context).pop();
-                                    });
-                                  },
-                                  child: Text("Tidak",
-                                      style: TextStyle(color: Colors.blue)),
+                                  actions: [
+                                    FlatButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          Navigator.of(context).pop();
+                                        });
+                                      },
+                                      child: Text("Tidak",
+                                          style: TextStyle(color: Colors.blue)),
+                                    ),
+                                    FlatButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          susu.add(data_input_susu);
+                                        });
+                                        // print(data_input_susu);
+                                        // print(user_login);
+                                        SusuController().simpan(susu);
+
+                                        data_input_susu = [
+                                          "id sapi",
+                                          0,
+                                          "",
+                                          "A+",
+                                          "",
+                                          "",
+                                          "",
+                                          "",
+                                          "",
+                                          "",
+                                          DateTime.now().day,
+                                          DateTime.now().month,
+                                          DateTime.now().year,
+                                          user_login[0]
+                                        ];
+
+                                        Navigator.of(context).pushReplacement(
+                                            MaterialPageRoute(
+                                                builder: (context) {
+                                          return MyApp(1);
+                                        }));
+                                      },
+                                      child: Text("Iya",
+                                          style: TextStyle(color: Colors.blue)),
+                                    )
+                                  ],
                                 ),
-                                FlatButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      susu.add(data_input_susu);
-                                    });
-                                    // print(data_input_susu);
-                                    // print(user_login);
-                                    SusuController().simpan(susu);
-
-                                    data_input_susu = [
-                                      "id sapi",
-                                      0,
-                                      "",
-                                      "A+",
-                                      "",
-                                      "",
-                                      "",
-                                      "",
-                                      "",
-                                      "",
-                                      DateTime.now().day,
-                                      DateTime.now().month,
-                                      DateTime.now().year,
-                                      user_login[0]
-                                    ];
-
-                                    Navigator.of(context).pushReplacement(
-                                        MaterialPageRoute(builder: (context) {
-                                      return MyApp(1);
-                                    }));
-                                  },
-                                  child: Text("Iya",
-                                      style: TextStyle(color: Colors.blue)),
-                                )
                               ],
                             );
                           });
